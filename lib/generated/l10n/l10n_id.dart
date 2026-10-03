@@ -9,84 +9,6 @@ class AppLocalizationsId extends AppLocalizations {
   AppLocalizationsId([String locale = 'id']) : super(locale);
 
   @override
-  String get appearanceSettings => 'Tampilan';
-
-  @override
-  String get appearancePreset => 'Preset tema';
-
-  @override
-  String get appearanceThemeSchemaRange => 'Skema tema yang didukung';
-
-  @override
-  String get appearanceThemeInstall => 'Pasang tema';
-
-  @override
-  String get appearanceThemeStore => 'Toko tema';
-
-  @override
-  String get appearanceInvalidTheme => 'Paket tema atau katalog tidak valid';
-
-  @override
-  String get themeStoreRefreshFailed => 'Tidak dapat membaca katalog tema.';
-
-  @override
-  String themeStoreDeleteTheme(String name) {
-    return 'Hapus “$name”? Berkasnya dihapus dari perangkat ini. Jika ini tema yang sedang dipakai, aplikasi kembali ke tema bawaan.';
-  }
-
-  @override
-  String themeStoreUpdatedFmt(String ago) {
-    return 'diperbarui $ago';
-  }
-
-  @override
-  String get themeStoreUpdatedJustNow => 'baru saja diperbarui';
-
-  @override
-  String get themeStoreSortInUse => 'Yang digunakan dulu';
-
-  @override
-  String themeStoreMakeOwnFmt(String doc) {
-    return 'Ingin membuat tema sendiri? Lihat [cara membuatnya]($doc) — terima kasih atas kontribusimu!';
-  }
-
-  @override
-  String appearanceThemeNeedsNewerApp(String version) {
-    return 'Memerlukan aplikasi versi lebih baru: $version';
-  }
-
-  @override
-  String get appearanceFontFamilies => 'Daftar keluarga font antarmuka';
-
-  @override
-  String get appearanceFontFamiliesTip =>
-      'Satu nama per baris; font dicoba sesuai urutan.';
-
-  @override
-  String get appearanceFontImport => 'Impor berkas font antarmuka';
-
-  @override
-  String get appearanceGradient => 'Gradasi';
-
-  @override
-  String get appearanceNoBackground => 'Tanpa latar belakang';
-
-  @override
-  String get appearanceIcons => 'Ikon dalam aplikasi';
-
-  @override
-  String get appearanceCorners => 'Sudut';
-
-  @override
-  String get appearanceCardCorners => 'Sudut kartu';
-
-  @override
-  String get appearanceTileCorners => 'Sudut tile';
-
-  @override
-  String get appearanceButtonCorners => 'Sudut tombol';
-
-  @override
   String get crashCollect => 'Data diagnostik';
 
   @override
@@ -152,110 +74,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get askAi => 'Tanya AI';
 
   @override
-  String get askAiAwaitingResponse => 'Menunggu respons AI...';
-
-  @override
-  String get askAiEndpointTip =>
-      'Domain atau URL lengkap. Path dilengkapi dari protokol yang dipilih.';
-
-  @override
-  String get askAiProtocolTip =>
-      'Auto mencoba Responses, lalu Chat Completions.';
-
-  @override
-  String get askAiCommandInserted => 'Perintah dimasukkan ke terminal';
-
-  @override
-  String askAiConfigMissing(String fields) {
-    return 'Harap konfigurasikan $fields di Pengaturan.';
-  }
-
-  @override
-  String get askAiDisclaimer => 'AI bisa saja salah. Gunakan dengan hati-hati.';
-
-  @override
   String get askAiInsertTerminal => 'Masukkan ke terminal';
 
   @override
-  String get askAiNoResponse => 'Tidak ada respons';
-
-  @override
   String get remoteDesktop => 'Desktop jarak jauh';
-
-  @override
-  String get askAiAgentWelcome => 'Apa yang akan kita lakukan di server ini?';
-
-  @override
-  String get askAiAgentPromptHint =>
-      'Minta Agent memeriksa atau memperbaiki sesuatu...';
-
-  @override
-  String get askAiAnalyzeSelectionPrompt =>
-      'Analisis keluaran terminal yang dipilih dan jelaskan apa yang terjadi';
-
-  @override
-  String get askAiTerminalContext => 'Konteks terminal';
-
-  @override
-  String get askAiReviewNeeded => 'Tinjau';
-
-  @override
-  String get askAiReviewAction => 'Tinjau perintah yang diusulkan';
-
-  @override
-  String get askAiReviewBeforeContinuing =>
-      'Tinjau atau tolak saran saat ini dulu';
-
-  @override
-  String get askAiApproveRun => 'Setujui & jalankan';
-
-  @override
-  String get askAiDecline => 'Tolak';
-
-  @override
-  String get askAiActionDeclined => 'Perintah yang diusulkan ditolak.';
-
-  @override
-  String get askAiInterrupted => 'Respons Agent terputus.';
-
-  @override
-  String get askAiResend => 'Resend';
-
-  @override
-  String get askAiResendTip =>
-      'Semua setelah pesan ini akan dibuang—balasan, perintah, dan hasilnya.';
-
-  @override
-  String get askAiDeleteTip =>
-      'Pesan ini dan semua setelahnya akan dihapus—balasan, perintah, dan hasilnya.';
-
-  @override
-  String get askAiModelTable => 'Model table';
-
-  @override
-  String get askAiModelTableTip =>
-      'Ukuran konteks menurut nama model dari models.dev. Satu versi disertakan dalam aplikasi; ketuk untuk mengambil versi terbaru.';
-
-  @override
-  String get askAiContextFallback => 'tidak ada dalam tabel';
-
-  @override
-  String get askAiCompactAt => 'Summarise at';
-
-  @override
-  String get askAiCompactAtTip =>
-      'Seberapa penuh konteks model sebelum percakapan sebelumnya diringkas. Lebih awal akan lebih cepat kehilangan detail; lebih lambat berisiko membuat model menolak permintaan.';
-
-  @override
-  String get askAiContextTokens => 'Context size';
-
-  @override
-  String get askAiContextTokensTip =>
-      'Jumlah token yang dapat ditampung model ini. Otomatis mencarinya berdasarkan nama; tentukan angka jika provider menyediakan jendela konteks yang lebih pendek.';
-
-  @override
-  String get askAiConversationCompacted =>
-      'Pesan sebelumnya telah diringkas agar percakapan dapat dilanjutkan.';
 
   @override
   String get askAiRiskReadOnly => 'Hanya baca';
@@ -270,23 +92,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get askAiRiskDestructive => 'Risiko tinggi';
 
   @override
-  String get askAiHighRiskConfirmTitle => 'Jalankan perintah berisiko tinggi?';
-
-  @override
-  String get askAiHighRiskConfirmBody =>
-      'Perintah ini bisa membuat perubahan yang sulit dibatalkan. Periksa baik-baik.';
-
-  @override
-  String get askAiNoCommandOutput => 'Perintah selesai tanpa keluaran.';
-
-  @override
-  String get askAiOutputTruncated =>
-      'Keluaran panjang dipotong sebelum dikirim kembali ke Agent.';
-
-  @override
-  String get askAiAutoApproved => 'Disetujui otomatis';
-
-  @override
   String get askAiAutoRunSafeCommands =>
       'Jalankan otomatis perintah hanya-baca';
 
@@ -295,38 +100,10 @@ class AppLocalizationsId extends AppLocalizations {
       'Hanya jalan jika model dan pemeriksaan lokal sama-sama menyebutnya hanya-baca';
 
   @override
-  String get askAiSendOnEnter => 'Enter mengirim';
-
-  @override
-  String get askAiSendOnEnterTip =>
-      'Enter mengirim, Shift+Enter baris baru. Mati: Enter baris baru, Cmd/Ctrl+Enter mengirim.';
-
-  @override
-  String get askAiApiKeyOptional =>
-      'Kosongkan untuk lokal atau tanpa autentikasi';
-
-  @override
-  String get askAiAllowInsecure => 'Izinkan HTTP tanpa enkripsi';
-
-  @override
-  String get askAiAllowInsecureTip =>
-      'Mengizinkan koneksi http:// ke model yang di-host sendiri pada alamat selain localhost. Kunci API dan konteks terminal akan dikirim tanpa enkripsi; localhost tidak terpengaruh.';
-
-  @override
-  String get askAiInsecureEndpoint =>
-      'Endpoint ini menggunakan http://. Aktifkan “Izinkan HTTP tanpa enkripsi” di pengaturan AI untuk menggunakannya.';
-
-  @override
   String get askAiHistory => 'Riwayat percakapan';
 
   @override
   String get askAiNewConversation => 'Percakapan baru';
-
-  @override
-  String get askAiNoHistory => 'Belum ada percakapan tersimpan';
-
-  @override
-  String get askAiNoHistoryMessages => 'Belum ada pesan';
 
   @override
   String get askAiUntitledConversation => 'Tanpa judul';
@@ -340,27 +117,6 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get askAiDeleteConversationTip =>
       'Menghapusnya dari perangkat ini. Tidak bisa dibatalkan.';
-
-  @override
-  String get askAiClearHistoryTitle => 'Hapus riwayat Agent untuk server ini?';
-
-  @override
-  String get askAiClearHistoryTip =>
-      'Semua percakapan Agent tersimpan untuk server ini akan dihapus.';
-
-  @override
-  String get askAiRestoredReview => 'Perintah ini dari riwayat. Tinjau lagi';
-
-  @override
-  String get agentWelcome => 'Apa yang akan kita lakukan di server Anda?';
-
-  @override
-  String get agentWelcomeTip =>
-      'Biarkan Agent mendiagnosis masalah atau menjalankan tugas';
-
-  @override
-  String get agentPromptHint =>
-      'Minta Agent memeriksa atau mengoperasikan server Anda...';
 
   @override
   String get agentNoHistory =>
@@ -381,14 +137,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get agentToolWriteFile => 'Tulis berkas';
-
-  @override
-  String get agentToolFailed => 'Eksekusi alat gagal.';
-
-  @override
-  String agentToolCallsFmt(int count) {
-    return '$count panggilan alat';
-  }
 
   @override
   String get floatOverTabs => 'Mengambang di atas tab lain';
@@ -672,10 +420,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get copyPath => 'Path Copy';
 
   @override
-  String get cpuViewAsProgressTip =>
-      'Tampilkan tingkat penggunaan setiap CPU dalam gaya bilah kemajuan (gaya lama)';
-
-  @override
   String get customCmd => 'Perintah kustom';
 
   @override
@@ -683,10 +427,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get deleteDirRecursive => 'Hapus folder beserta seluruh isinya';
-
-  @override
-  String get desktopTerminalTip =>
-      'Perintah yang digunakan untuk membuka emulator terminal saat memulai sesi SSH.';
 
   @override
   String get dirEmpty => 'Pastikan dir kosong.';
@@ -707,9 +447,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get diskHealth => 'Kesehatan disk';
 
   @override
-  String get displayCpuIndex => 'Tampilkan indeks CPU';
-
-  @override
   String dl2Local(String fileName) {
     return 'Unduh $fileName ke lokal?';
   }
@@ -727,13 +464,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get dockerStatistics => 'Statistik Docker';
-
-  @override
-  String get doubleColumnMode => 'Mode kolom ganda';
-
-  @override
-  String get doubleColumnTip =>
-      'Opsi ini hanya mengaktifkan fitur, apakah itu benar-benar dapat diaktifkan tergantung pada lebar perangkat';
 
   @override
   String get editVirtKeys => 'Kunci virtual';
@@ -953,13 +683,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get noConnectionMethod => 'Atur SSH, agen monitor, atau keduanya';
 
   @override
-  String get preferredTransport => 'Coba lebih dulu';
-
-  @override
-  String get preferredTransportTip =>
-      'Dari mana status dibaca, dan koneksi mana yang dibuka perintah lebih dulu. Yang lain tetap tersedia.';
-
-  @override
   String get keepForeground => 'Simpan Aplikasi Foreground!';
 
   @override
@@ -1004,27 +727,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get maxRetryCount => 'Jumlah penyambungan kembali server';
 
   @override
-  String mismatchSystem(String system) {
-    return 'Sistem tidak cocok: $system';
-  }
-
-  @override
   String get mirror => 'Mirror';
 
   @override
   String get needRestart => 'Perlu memulai ulang aplikasi';
 
   @override
-  String get netViewType => 'Jenis tampilan bersih';
-
-  @override
   String get newContainer => 'Wadah baru';
 
   @override
   String get noConnectionStatsData => 'Tidak ada data statistik koneksi';
-
-  @override
-  String get noLineChart => 'Jangan gunakan grafik garis';
 
   @override
   String get noPrivateKeyTip =>
@@ -1043,9 +755,6 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get parseContainerStatsTip =>
       'Parsing status okupansi oleh Docker agak lambat';
-
-  @override
-  String get preferDiskAmount => 'Prioritaskan tampilan kapasitas disk';
 
   @override
   String get privateKey => 'Kunci Pribadi';
@@ -1303,6 +1012,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get serverOrder => 'Pesanan server';
 
   @override
+  String get serverOverview => 'Ringkasan server';
+
+  @override
+  String get serverOverviewTip =>
+      'Tampilkan ringkasan di atas daftar server, dan bilah server di atas server yang terbuka';
+
+  @override
   String get serverTabEmpty => 'Belum ada server';
 
   @override
@@ -1427,16 +1143,6 @@ class AppLocalizationsId extends AppLocalizations {
   String sshConfigAllExist(int duplicateCount) {
     return 'Semua server sudah ada (ditemukan $duplicateCount duplikat)';
   }
-
-  @override
-  String get sshConnectionModeTip =>
-      'Bawaan: memakai terminal aplikasi. SSH sistem: menjalankan perintah ssh sistem di terminal eksternal.';
-
-  @override
-  String get sshConnectionModeUseBuiltin => 'Pakai terminal bawaan';
-
-  @override
-  String get sshConnectionModeUseSystem => 'Pakai SSH sistem';
 
   @override
   String sshConfigDuplicatesSkipped(int duplicateCount) {
@@ -1567,9 +1273,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get used => 'Digunakan';
-
-  @override
-  String get view => 'Tampilan';
 
   @override
   String get viewDetails => 'Lihat Detail';
@@ -1715,13 +1418,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get tmuxSessionName => 'Nama sesi';
 
   @override
-  String get tmuxExistingSessions => 'Sesi yang ada';
-
-  @override
   String get tmuxNewSession => 'Sesi baru';
-
-  @override
-  String get tmuxWindows => 'Jendela';
 
   @override
   String get tmuxNewWindow => 'Jendela baru';
@@ -1740,30 +1437,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String tmuxPaneCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count panel',
-    );
-    return '$_temp0';
-  }
-
-  @override
   String get tmuxAttached => 'Tersambung';
-
-  @override
-  String get tmuxActive => 'Aktif';
-
-  @override
-  String tmuxActiveAt(String time) {
-    return 'aktif: $time';
-  }
-
-  @override
-  String tmuxAttachedAt(String time) {
-    return 'tersambung: $time';
-  }
 
   @override
   String get tmuxSkip => 'Lewati';
@@ -2043,9 +1717,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get bmcStaleWrite => 'BMC berubah saat proses tulis. Coba lagi.';
-
-  @override
-  String get send => 'Kirim';
 
   @override
   String get privacyBlur => 'Privasi latar belakang';
@@ -2388,6 +2059,20 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String funcNeedsAgentGrant(String func, String setting) {
+    return '$func memerlukan $setting diaktifkan di Monitor agent.';
+  }
+
+  @override
+  String funcNeedsAgentUpdate(String func) {
+    return '$func memerlukan Monitor agent yang lebih baru.';
+  }
+
+  @override
+  String get portForwardRemoteNeedsAgent =>
+      'Penerusan jarak jauh melalui Monitor agent memerlukan versi yang lebih baru: perbarui di server.';
+
+  @override
   String get rangeLive => 'Langsung';
 
   @override
@@ -2425,6 +2110,71 @@ class AppLocalizationsId extends AppLocalizations {
   String agentRetentionFmt(String kept) {
     return 'Agen menyimpan $kept';
   }
+
+  @override
+  String get agentServerTools => 'Alat server';
+
+  @override
+  String get agentServerToolsTip =>
+      'Menjalankan perintah serta membaca atau menulis berkas di server Anda, terhubung ke host lain lewat SSH, dan memakai tindakan ServerBox sendiri.';
+
+  @override
+  String get agentTerminalTools => 'Terminal';
+
+  @override
+  String get agentTerminalToolsTip =>
+      'Di obrolan milik terminal: membaca apa yang ditampilkan terminal dan menjalankan perintah di servernya.';
+
+  @override
+  String get agentToolTerminalScreen => 'Baca layar';
+
+  @override
+  String get agentProviders => 'Penyedia';
+
+  @override
+  String get agentProvidersTip =>
+      'Kunci API, model, dan model untuk obrolan baru';
+
+  @override
+  String get agentTools => 'Alat';
+
+  @override
+  String get agentToolsTip =>
+      'Apa yang boleh dipakai Agent, dan server MCP-nya';
+
+  @override
+  String get agentSnippetToolsTip =>
+      'Menampilkan, menambah, mengubah, dan menghapus snippet. Perubahan akan ditanyakan.';
+
+  @override
+  String get agentVirtToolsTip =>
+      'Membaca VM dan kontainer yang dimuat tab Virtualisasi.';
+
+  @override
+  String get agentBenchmarkToolsTip =>
+      'Membaca hasil benchmark; menjalankan atau menghentikan benchmark dengan persetujuanmu.';
+
+  @override
+  String get agentRemoteDesktopToolsTip =>
+      'Menampilkan profil remote desktop; menghubungkan atau memutus dengan persetujuanmu.';
+
+  @override
+  String get agentSkills => 'Skills';
+
+  @override
+  String get agentSkillsTip =>
+      'Petunjuk untuk tugas tertentu, dipasang dari GitHub atau tautan';
+
+  @override
+  String get agentPermissions => 'Izin';
+
+  @override
+  String get agentEmptyHint =>
+      'Tanyakan tentang server Anda, atau minta Agent melakukan sesuatu di sana.';
+
+  @override
+  String get agentTerminalEmptyHint =>
+      'Tanyakan tentang server ini. Agent dapat membaca terminal ini dan menjalankan perintah di sini.';
 
   @override
   String oldestSampleFmt(String time) {
@@ -2621,34 +2371,8 @@ class AppLocalizationsId extends AppLocalizations {
       'Keduanya bisa aktif bersamaan. Urutannya adalah urutan pemanggilan.';
 
   @override
-  String transportOrderFmt(String first, String second) {
-    return 'Seret untuk mengubah urutan. $first dipanggil lebih dulu; jika tidak menjawab, $second menanggung sesi sendirian.';
-  }
-
-  @override
-  String transportOnlyFmt(String name) {
-    return 'Hanya $name yang aktif, jadi tidak ada cadangan.';
-  }
-
-  @override
   String get transportNoneOn =>
       'Keduanya nonaktif — server ini tidak dapat dihubungi.';
-
-  @override
-  String get transportOffKept =>
-      'nonaktif — pengaturan disimpan, tidak pernah dipanggil';
-
-  @override
-  String get transportDialledFirst => 'dipanggil lebih dulu';
-
-  @override
-  String get transportFallback => 'cadangan';
-
-  @override
-  String get transportOnlyMethod => 'satu-satunya cara';
-
-  @override
-  String get transportOff => 'nonaktif';
 
   @override
   String get thisDevice => 'Perangkat ini';
@@ -2696,10 +2420,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get optional => 'Opsional';
-
-  @override
-  String get optionalTip =>
-      'Tidak ada di sini yang diperlukan untuk terhubung. Buka salah satu dan kolomnya mengambil alih formulir.';
 
   @override
   String get sshAdvanced => 'SSH lanjutan';
@@ -3106,6 +2826,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get remoteDesktopFullScreen => 'Layar penuh';
 
   @override
+  String get remoteDesktopExitFullScreen => 'Keluar dari layar penuh';
+
+  @override
   String get remoteDesktopCloseSession => 'Tutup sesi';
 
   @override
@@ -3203,6 +2926,18 @@ class AppLocalizationsId extends AppLocalizations {
   String get remoteDesktopUsernameRequired => 'Masukkan nama pengguna RDP.';
 
   @override
+  String get remoteDesktopNameInvalid =>
+      'Nama profil paling banyak 64 karakter dan tidak boleh berisi baris baru.';
+
+  @override
+  String get remoteDesktopHostInvalid =>
+      'Host tujuan tidak boleh berisi spasi atau baris baru.';
+
+  @override
+  String get remoteDesktopCredentialInvalid =>
+      'Nama pengguna dan domain paling banyak 256 karakter dan tidak boleh berisi baris baru.';
+
+  @override
   String get remoteDesktopVncPasswordAscii =>
       'Kata sandi VNC klasik hanya boleh berisi karakter ASCII.';
 
@@ -3262,11 +2997,6 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String remoteDesktopCertificateValidity(String start, String end) {
     return 'Berlaku: $start – $end';
-  }
-
-  @override
-  String appearanceThemeModeLocked(String mode) {
-    return 'Tema ini hanya mendukung $mode. Pilih tema lain untuk mengubah mode.';
   }
 
   @override
@@ -3529,9 +3259,6 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get reopen => 'Buka lagi';
-
-  @override
   String get virtSnapshots => 'Snapshot';
 
   @override
@@ -3701,9 +3428,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get virtCreateNameTaken => 'Sudah ada tamu dengan nama ini.';
-
-  @override
-  String get virtCreateVmidInvalid => 'Dari 100 sampai 999999999.';
 
   @override
   String get virtCreateVmidTaken => 'VMID ini sudah dipakai.';
@@ -4210,9 +3934,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get virtHwEfiStorage => 'Tempat variabel EFI';
-
-  @override
-  String get virtHwTpmStorage => 'Tempat status TPM';
 
   @override
   String virtHwSwitchFirmwareAsk(String guest, String firmware) {
@@ -4848,9 +4569,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get virtSnapshotFormInternal => 'Internal (di dalam image)';
 
   @override
-  String get virtSnapshotForm => 'Jenis';
-
-  @override
   String get virtSnapshotOverlayPool => 'Pool overlay';
 
   @override
@@ -4878,11 +4596,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get virtSnapshotChainBase => 'Image dasar';
 
   @override
-  String virtSnapshotChainRaw(String format) {
-    return 'Snapshot eksternal memerlukan disk qcow2. Yang ini $format.';
-  }
-
-  @override
   String get virtSnapshotNoSupport =>
       'Penyimpanan guest tidak mendukung snapshot, jadi tidak ada yang bisa dibuat.';
 
@@ -4903,9 +4616,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get virtSnapshotDiffShow => 'Bandingkan dengan sekarang';
-
-  @override
-  String get virtSnapshotDiffGroup => 'Berubah';
 
   @override
   String get virtSnapshotDiffGroupCpu => 'Prosesor';
@@ -4986,19 +4696,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get virtTemplateTip => 'Template hanya berjalan setelah diklon.';
 
   @override
-  String get virtCloneStorage => 'Penyimpanan tujuan';
-
-  @override
   String get virtCloneStorageSame => 'Sama seperti sumber';
 
   @override
-  String get virtCloneNode => 'Node tujuan';
-
-  @override
   String get virtCloneNodeSame => 'Sama seperti sumber';
-
-  @override
-  String get virtClonePool => 'Pool tujuan';
 
   @override
   String get virtCloneStorageContent =>
@@ -5024,9 +4725,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get virtBackupJobNew => 'Tugas baru';
-
-  @override
-  String get virtBackupJobEdit => 'Edit tugas';
 
   @override
   String get virtBackupJobRun => 'Jalankan sekarang';
@@ -5079,12 +4777,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get virtBackupMail => 'Notifikasi';
 
   @override
-  String get virtBackupMailAlways => 'Selalu';
-
-  @override
-  String get virtBackupMailFailure => 'Saat gagal';
-
-  @override
   String get virtBackupNotesTemplate => 'Catatan backup';
 
   @override
@@ -5098,9 +4790,6 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get virtBackupPruneTip =>
       'Opsi retensi PVE, mis. keep-last=7,keep-daily=4. Kosong: milik penyimpanan atau node.';
-
-  @override
-  String get virtBackupNextRun => 'Jalan berikutnya';
 
   @override
   String get virtBackupJobNode => 'Node';
@@ -5135,9 +4824,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get virtBackupRestoreStorageSame => 'Seperti di backup';
-
-  @override
-  String get virtBackupModeSnapshotTip => 'snapshot · tanpa henti';
 
   @override
   String get virtCloneStorageMissing =>
@@ -5325,4 +5011,377 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get copyLink => 'Salin tautan';
+
+  @override
+  String funcNeedsAgentPermission(String func) {
+    return 'Akun Anda di Monitor agent ini tidak punya izin untuk $func. Minta kepada admin agent.';
+  }
+
+  @override
+  String funcNeedsAgentHttps(String func) {
+    return '$func memerlukan HTTPS ke Monitor agent ini, atau HTTP diizinkan di agent dan aplikasi ini.';
+  }
+
+  @override
+  String funcNeedsAgentSetup(String func) {
+    return '$func belum disiapkan di Monitor agent ini; operatornya harus mengonfigurasinya.';
+  }
+
+  @override
+  String get monitorFilesReadOnly =>
+      'Hanya baca: akun ini dapat menelusuri file di agent tetapi tidak dapat mengubahnya.';
+
+  @override
+  String get monitorAccess => 'Akses';
+
+  @override
+  String get monitorAccounts => 'Akun';
+
+  @override
+  String get monitorRoles => 'Peran';
+
+  @override
+  String get monitorRole => 'Peran';
+
+  @override
+  String get monitorChangePassword => 'Ubah kata sandi';
+
+  @override
+  String get monitorNewPassword => 'Kata sandi baru';
+
+  @override
+  String get monitorCurrentPassword => 'Kata sandi Anda saat ini';
+
+  @override
+  String get monitorReauthTip =>
+      'Mengubah akses memerlukan kata sandi Anda lagi.';
+
+  @override
+  String get monitorPasswordTooShort => 'Minimal 8 karakter';
+
+  @override
+  String get monitorPasswordMismatch => 'Kata sandi tidak cocok';
+
+  @override
+  String get monitorErrReauth => 'Kata sandi Anda salah.';
+
+  @override
+  String get monitorErrLastAdmin =>
+      'Agent memerlukan setidaknya satu akun admin.';
+
+  @override
+  String get monitorErrConflict => 'Sudah ada, atau masih digunakan.';
+
+  @override
+  String get monitorErrForbidden => 'Hanya admin yang dapat melakukan ini.';
+
+  @override
+  String get monitorRoleNameRule =>
+      'Huruf kecil, angka, - dan _, maksimal 32 karakter';
+
+  @override
+  String get monitorGrantShell => 'Shell dan perintah';
+
+  @override
+  String get monitorGrantShellTip =>
+      'Terminal, proses, layanan, kontainer, snippet, daya — sebagai akun agent';
+
+  @override
+  String get monitorGrantSshTerminal => 'Terminal panel lewat SSH';
+
+  @override
+  String get monitorGrantVirt => 'Virtualisasi';
+
+  @override
+  String get monitorGrantVirtTip =>
+      'Proxmox VE, libvirt, dan BMC yang dijangkau agen, di panel web-nya';
+
+  @override
+  String get monitorGrantFiles => 'File';
+
+  @override
+  String get monitorGrantConnect => 'Koneksi keluar';
+
+  @override
+  String get monitorGrantConnectTip =>
+      'Penerusan port lokal dan dinamis, desktop jarak jauh';
+
+  @override
+  String get monitorGrantConnectAllow =>
+      'Tujuan yang diizinkan (IP atau CIDR, opsional :port atau :dari-sampai; satu per baris, kosong = di mana saja)';
+
+  @override
+  String get monitorGrantListen => 'Mendengarkan di server';
+
+  @override
+  String get monitorGrantListenTip => 'Penerusan port jarak jauh';
+
+  @override
+  String get monitorGrantListenPublic => 'Alamat non-loopback';
+
+  @override
+  String get monitorGrantPorts => 'Rentang port (kosong = apa saja)';
+
+  @override
+  String get monitorGrantOff => 'Mati';
+
+  @override
+  String get monitorBuiltin => 'Bawaan';
+
+  @override
+  String get monitorAdminRoleTip =>
+      'Mengelola akun, peran, dan pengaturan agent';
+
+  @override
+  String get monitorYou => 'Anda';
+
+  @override
+  String get monitorNoAccessToSettings =>
+      'Hanya admin yang dapat mengubah pengaturan agent ini.';
+
+  @override
+  String get monitorPasswordNotSaved =>
+      'Kata sandi sudah diubah di agen, tetapi aplikasi gagal menyimpannya. Perbarui kata sandi Monitor di pengaturan server ini.';
+
+  @override
+  String get firewall => 'Firewall';
+
+  @override
+  String get firewallLinuxOnly =>
+      'Pengelolaan firewall mendukung server Linux dengan ufw atau firewalld.';
+
+  @override
+  String get firewallNeedsRoot =>
+      'Membaca aturan firewall memerlukan root. Masukkan kata sandi sudo untuk melanjutkan.';
+
+  @override
+  String get firewallIncoming => 'Masuk';
+
+  @override
+  String get firewallOutgoing => 'Keluar';
+
+  @override
+  String get firewallRouted => 'Diteruskan';
+
+  @override
+  String get firewallDefaultPolicy => 'Kebijakan bawaan';
+
+  @override
+  String get firewallLogging => 'Pencatatan';
+
+  @override
+  String get firewallRules => 'Aturan';
+
+  @override
+  String get firewallRule => 'Aturan';
+
+  @override
+  String get firewallAddRule => 'Tambah aturan';
+
+  @override
+  String get firewallAnywhere => 'Di mana saja';
+
+  @override
+  String firewallFromFmt(String source) {
+    return 'dari $source';
+  }
+
+  @override
+  String get firewallFrom => 'Dari';
+
+  @override
+  String get firewallTo => 'Ke';
+
+  @override
+  String get firewallProtocol => 'Protokol';
+
+  @override
+  String get firewallInterface => 'Antarmuka';
+
+  @override
+  String get firewallComment => 'Komentar';
+
+  @override
+  String get firewallAppProfile => 'Profil aplikasi';
+
+  @override
+  String get firewallPrepend => 'Letakkan sebelum semua aturan lain';
+
+  @override
+  String get firewallIpv6Off =>
+      'IPv6 nonaktif (IPV6=no): aturan v6 tidak dimuat.';
+
+  @override
+  String get firewallReload => 'Muat ulang';
+
+  @override
+  String get firewallNothingMatched =>
+      'Masukkan port, profil aplikasi, alamat, atau antarmuka.';
+
+  @override
+  String get firewallInvalidPort =>
+      'Port tidak valid. Gunakan 22, 80,443, atau 6000:6010.';
+
+  @override
+  String get firewallTooManyPorts =>
+      'Paling banyak 15 port; satu rentang dihitung dua.';
+
+  @override
+  String get firewallPortsNeedProtocol =>
+      'Daftar atau rentang port memerlukan tcp atau udp.';
+
+  @override
+  String get firewallInvalidAddress =>
+      'Alamat tidak valid. Gunakan alamat IP atau jaringan seperti 192.168.1.0/24.';
+
+  @override
+  String get firewallMixedIpVersions =>
+      'Dari dan Ke harus sama-sama IPv4 atau sama-sama IPv6.';
+
+  @override
+  String get firewallInvalidInterface => 'Nama antarmuka tidak valid.';
+
+  @override
+  String get firewallInvalidComment =>
+      'Komentar tidak boleh berisi \' atau baris baru.';
+
+  @override
+  String get firewallInterfaceIn => 'Antarmuka masuk';
+
+  @override
+  String get firewallInterfaceOut => 'Antarmuka keluar';
+
+  @override
+  String get firewallSourcePort => 'Port sumber';
+
+  @override
+  String get firewallMoreOptions => 'Opsi lainnya';
+
+  @override
+  String get firewallNoneInstalled =>
+      'ufw maupun firewalld tidak terpasang di server ini. Pasang salah satunya dengan pengelola paket sistem, misalnya `apt install ufw` atau `dnf install firewalld`.';
+
+  @override
+  String get firewallKeepAccess =>
+      'Biarkan port aplikasi ini tetap terbuka terlebih dahulu';
+
+  @override
+  String firewallWillRefuseFmt(String access) {
+    return '$access: koneksi baru dari aplikasi ini akan ditolak. Koneksi yang sedang dipakai tetap berjalan sampai terputus.';
+  }
+
+  @override
+  String firewallMayRefuseFmt(String access) {
+    return '$access: koneksi baru dari aplikasi ini mungkin ditolak. Hal itu bergantung pada alamat atau antarmuka yang dilaluinya, yang tidak dapat diketahui aplikasi ini.';
+  }
+
+  @override
+  String firewallRateLimitedFmt(String access) {
+    return '$access: koneksi akan dibatasi lajunya. Alamat yang membuka 6 koneksi atau lebih dalam 30 detik akan ditolak, dan aplikasi ini mungkin menyambung ulang sesering itu.';
+  }
+
+  @override
+  String get firewallConflict =>
+      'ufw dan firewalld sama-sama aktif. Keduanya menulis aturan kernel, dan yang dimuat terakhir menentukan apa yang lolos.';
+
+  @override
+  String get firewallDefaultZone => 'Zone bawaan';
+
+  @override
+  String get firewallZone => 'Zone';
+
+  @override
+  String get firewallTarget => 'Target';
+
+  @override
+  String get firewallMasquerade => 'Masquerade';
+
+  @override
+  String get firewallServices => 'Layanan';
+
+  @override
+  String get firewallPorts => 'Port';
+
+  @override
+  String get firewallSources => 'Sumber';
+
+  @override
+  String get firewallInterfaces => 'Antarmuka';
+
+  @override
+  String get firewallRichRules => 'Rich rules';
+
+  @override
+  String get firewallForwardPorts => 'Port yang diteruskan';
+
+  @override
+  String get firewallRuntimeOnly => 'hanya runtime';
+
+  @override
+  String get firewallPermanentOnly => 'hanya permanent';
+
+  @override
+  String get firewallThisConnection => 'koneksi ini';
+
+  @override
+  String get firewallDefaultTag => 'bawaan';
+
+  @override
+  String get firewallDrift =>
+      'Konfigurasi yang berlaku berbeda dari yang tersimpan. Reload atau boot ulang akan menggantinya dengan konfigurasi tersimpan.';
+
+  @override
+  String firewallDriftLockoutFmt(String access) {
+    return 'Setelah reload atau boot ulang, $access akan ditolak: konfigurasi tersimpan tidak mengizinkannya.';
+  }
+
+  @override
+  String get firewallSaveRuntime => 'Simpan sebagai permanent';
+
+  @override
+  String get firewallReloadLoses =>
+      'Perubahan yang tidak disimpan sebagai permanent akan hilang.';
+
+  @override
+  String get firewallPanic => 'Mode panic aktif: semua paket dibuang.';
+
+  @override
+  String get firewallPanicOff => 'Matikan mode panic';
+
+  @override
+  String get firewallStoppedNote =>
+      'firewalld berhenti. Perubahan disimpan dan berlaku saat dijalankan.';
+
+  @override
+  String get firewallInvalidSource =>
+      'Sumber tidak valid. Gunakan alamat, jaringan seperti 192.168.1.0/24, ipset:NAMA, atau alamat MAC.';
+
+  @override
+  String get firewallInvalidRichRule =>
+      'Rich rule diawali \"rule\" dan hanya satu baris.';
+
+  @override
+  String get firewallInvalidForwardPort =>
+      'Gunakan port=80:proto=tcp:toport=8080, dengan toport, toaddr, atau keduanya.';
+
+  @override
+  String get monitorSyncNeedsServer =>
+      'Pilih server yang agen monitornya menyimpan cadangan.';
+
+  @override
+  String get monitorBackupUnsupported =>
+      'Agen monitor ini tidak dapat menyimpan cadangan. Perbarui agen.';
+
+  @override
+  String get monitorBackupAdminOnly =>
+      'Hanya akun admin agen monitor yang dapat menyimpan cadangan di dalamnya.';
+
+  @override
+  String monitorBackupTooLarge(String max) {
+    return 'Cadangan lebih besar dari yang diterima agen monitor ($max).';
+  }
+
+  @override
+  String get monitorBackupTooMany =>
+      'Agen monitor sudah menyimpan cadangan sebanyak yang diizinkan. Hapus satu terlebih dahulu.';
 }

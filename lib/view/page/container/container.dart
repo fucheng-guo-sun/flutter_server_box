@@ -4,11 +4,9 @@ import 'package:fl_lib/fl_lib.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:server_box/core/extension/context/locale.dart';
-import 'package:server_box/core/extension/context/motion.dart';
 import 'package:server_box/core/route.dart';
 import 'package:server_box/core/utils/refresh_interval.dart';
 import 'package:server_box/data/model/app/error.dart';
-import 'package:server_box/data/model/app/menu/base.dart';
 import 'package:server_box/data/model/app/menu/container.dart';
 import 'package:server_box/data/model/app/menu/image.dart';
 import 'package:server_box/data/model/container/image.dart';
@@ -361,11 +359,17 @@ extension _ContainerPageWidgets on _ContainerPageState {
   Widget _buildImageMoreBtn(ContainerImg image) {
     return IgnorePointer(
       ignoring: _containerActionsBusy,
-      child: PopupMenu<ImageMenu>(
-        items: ImageMenu.items
-            .map((e) => PopMenu.build(e, e.icon, e.toStr))
-            .toList(),
-        onSelected: (item) => _onTapImageMenu(item, image),
+      child: ContextMenuButton(
+        tooltip: libL10n.more,
+        actions: () => [
+          for (final e in ImageMenu.items)
+            ContextMenuAction(
+              text: e.toStr,
+              icon: e.icon,
+              destructive: e == ImageMenu.rm,
+              onTap: () => _onTapImageMenu(e, image),
+            ),
+        ],
       ),
     );
   }
@@ -378,11 +382,17 @@ extension _ContainerPageWidgets on _ContainerPageState {
   Widget _buildMoreBtn(ContainerPs dItem) {
     return IgnorePointer(
       ignoring: _containerActionsBusy,
-      child: PopupMenu(
-        items: ContainerMenu.items(
-          dItem.status,
-        ).map((e) => PopMenu.build(e, e.icon, e.toStr)).toList(),
-        onSelected: (item) => _onTapMoreBtn(item, dItem),
+      child: ContextMenuButton(
+        tooltip: libL10n.more,
+        actions: () => [
+          for (final e in ContainerMenu.items(dItem.status))
+            ContextMenuAction(
+              text: e.toStr,
+              icon: e.icon,
+              destructive: e == ContainerMenu.rm,
+              onTap: () => _onTapMoreBtn(e, dItem),
+            ),
+        ],
       ),
     );
   }

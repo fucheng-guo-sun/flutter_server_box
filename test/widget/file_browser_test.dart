@@ -24,6 +24,7 @@ class _MapBackend implements FileBackend {
     this.failWith,
     this.sudoFallback = false,
     this.roots = const [],
+    this.readOnly = false,
   });
 
   final Map<String, List<FileEntry>> tree;
@@ -33,6 +34,9 @@ class _MapBackend implements FileBackend {
   Object? failWith;
 
   final bool sudoFallback;
+
+  /// A `monitor` agent whose role grants `files` in read mode.
+  final bool readOnly;
 
   /// What the far side says it will serve. Empty is a backend with no such
   /// limit, which is what both real non-agent ones answer.
@@ -49,7 +53,8 @@ class _MapBackend implements FileBackend {
   final renamed = <(String from, String to)>[];
 
   @override
-  FileBackendTraits get traits => FileBackendTraits(sudoFallback: sudoFallback);
+  FileBackendTraits get traits =>
+      FileBackendTraits(sudoFallback: sudoFallback, readOnly: readOnly);
 
   @override
   Future<List<String>> reachableRoots() async => roots;
@@ -185,6 +190,34 @@ final typedField = find.byWidgetPredicate(
 
     expect(find.text('sub'), findsOneWidget);
     expect(find.text('inner.txt'), findsNothing);
+  });
+
+  testWidgets('a slow directory shows a spinner, a quick one does not', (
+    tester,
+  ) async {
+    // Blank until the listing arrived, which read as an empty directory.
+    // Past 100ms it says it is still reading; before, it says nothing, so an
+    // answer that comes at once does not blink an indicator.
+    final backend = _MapBackend({
+      '/': [_dir('sub')],
+      '/sub': [_file('inner.txt')],
+    })
+      ..gatePath = '/sub'
+      ..gate = Completer<void>();
+    final spinner = find.byType(CircularProgressIndicator);
+
+    await pump(tester, backend);
+    await tester.tap(find.text('sub'));
+    await tester.pump(const Duration(milliseconds: 50));
+    expect(spinner, findsNothing);
+
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(spinner, findsOneWidget);
+
+    backend.gate!.complete();
+    await tester.pumpAndSettle();
+    expect(spinner, findsNothing);
+    expect(find.text('inner.txt'), findsOneWidget);
   });
 
   group('a directory that would not open', () {
@@ -448,6 +481,42 @@ final typedField = find.byWidgetPredicate(
     expect(find.text('File'), findsOneWidget);
     // Not an entry's menu: nothing was clicked on.
     expect(find.text('Rename'), findsNothing);
+  });
+
+  testWidgets('a read-only backend offers nothing that writes', (
+    tester,
+  ) async {
+    // An account whose role reads files and no more: the agent would refuse
+    // every one of these, so none is offered — and the bar says why.
+    final backend = _MapBackend({
+      '/': [_file('notes.txt')],
+    }, readOnly: true);
+
+    await pump(tester, backend);
+    expect(find.byIcon(Icons.add), findsNothing);
+    expect(find.byIcon(Icons.lock_outline), findsOneWidget);
+
+    await tester.longPress(find.text('notes.txt'));
+    await tester.pumpAndSettle();
+    expect(find.text('Rename'), findsNothing);
+    expect(find.text('Delete'), findsNothing);
+    // What only reads is still there.
+    expect(find.text('Select'), findsOneWidget);
+  });
+
+  testWidgets('the add button drops its menu from itself', (tester) async {
+    // A menu under the button, as every other `+` in a bar does — it was a
+    // dialog in the middle of the page.
+    final backend = _MapBackend({'/': const []});
+
+    await pump(tester, backend);
+    final button = tester.getRect(find.byIcon(Icons.add));
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(Dialog), findsNothing);
+    expect(find.text('File'), findsOneWidget);
+    expect(tester.getRect(find.text('Folder')).top, greaterThan(button.bottom));
   });
 
   group('picking several out', () {

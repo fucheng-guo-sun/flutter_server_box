@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:server_box/core/extension/context/locale.dart';
-import 'package:server_box/core/extension/context/motion.dart';
 import 'package:server_box/core/route.dart';
 import 'package:server_box/data/model/server/cron.dart';
 import 'package:server_box/data/model/server/cron_schedule.dart';
@@ -23,8 +22,6 @@ const _kPad = 13.0;
 /// How often the page redraws so that "in 4 minutes" stays true. Nothing is
 /// fetched; the next run is worked out here.
 const _kTick = Duration(seconds: 30);
-
-enum _ScheduledTaskAction { edit, delete }
 
 typedef _TaskEdit = ({String schedule, String command, bool enabled});
 
@@ -730,26 +727,29 @@ extension on _ScheduledTasksPageState {
   }
 
   Widget _buildMenu(CronJob job) {
-    return PopupMenu<_ScheduledTaskAction>(
+    return ContextMenuButton(
       // A save is one write of the whole file, and [_save] refuses a second
       // one while it is in flight: left on, this would take an edit through
       // the whole sheet and then drop it without saying so.
       enabled: !_busy,
-      items: [
-        PopupMenuItem(
-          value: _ScheduledTaskAction.edit,
-          child: Text(libL10n.edit),
+      tooltip: libL10n.more,
+      actions: () => [
+        ContextMenuAction(
+          text: libL10n.edit,
+          icon: Icons.edit_outlined,
+          onTap: () => _editTask(job),
         ),
-        PopupMenuItem(
-          value: _ScheduledTaskAction.delete,
-          child: Text(libL10n.delete),
+        ContextMenuAction(
+          text: libL10n.delete,
+          icon: Icons.delete_outline,
+          destructive: true,
+          onTap: () => _deleteTask(job),
         ),
       ],
-      onSelected: (action) => switch (action) {
-        _ScheduledTaskAction.edit => _editTask(job),
-        _ScheduledTaskAction.delete => _deleteTask(job),
-      },
-      child: const Icon(Icons.more_horiz, size: 18),
+      child: const Padding(
+        padding: EdgeInsets.all(7),
+        child: Icon(Icons.more_horiz, size: 18),
+      ),
     );
   }
 

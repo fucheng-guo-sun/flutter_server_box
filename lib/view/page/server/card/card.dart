@@ -3,7 +3,6 @@ import 'dart:ui' show lerpDouble;
 
 import 'package:fl_lib/fl_lib.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:server_box/core/extension/context/motion.dart';
 import 'package:server_box/core/extension/server.dart';
 import 'package:server_box/data/provider/server/single.dart';
 import 'package:server_box/data/res/chart_palette.dart';
@@ -138,7 +137,9 @@ class ServerCard extends StatelessWidget {
     final compact = shaped && openness <= 0;
     final cross = shaped ? _kShapeCross.transform(openness) : 1.0;
     final card = cardColorOf(context);
-    return CardX(
+    return FadingCard(
+      // The outline with it, handed to the blocks — see [blockOutlineAt].
+      outline: openness > 0 ? cardSurfaceAt(openness) : 1,
       // The card's own surface goes as it becomes the page: by then each block
       // inside it is a card in its own right, which is how the page draws
       // them, and one more behind all of them would be a second edge.
@@ -363,6 +364,11 @@ class ServerCard extends StatelessWidget {
     );
 
     final reserved = asideAtEnd * t;
+    // Where the page centres its content, which only a page with readings
+    // does: a notice is laid out across the whole width.
+    final gutter = hasContent
+        ? ServerCardSizes.contentGutter(pageWidth) * t
+        : 0.0;
 
     return Padding(
       // At rest the card's own inset. At the end, what is left of the page's
@@ -381,7 +387,7 @@ class ServerCard extends StatelessWidget {
             ServerCardSizes.openInset,
             t,
           )! +
-          EdgeInsets.only(right: reserved),
+          EdgeInsets.only(left: gutter, right: reserved + gutter),
       // As tall as what is in it, which with nothing to report is the title.
       // It was held to 30, from when a progress line under the title made up
       // the difference; the title is 23, so without that line the other 7 sat
@@ -477,6 +483,7 @@ class ServerCard extends StatelessWidget {
                           selected: selected,
                           onTap: onTap,
                           onPromote: onPromote,
+                          heroId: opensInPlace ? null : srv.spi.id,
                         ),
                       ),
                     ],

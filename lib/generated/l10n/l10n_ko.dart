@@ -9,84 +9,6 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get appearanceSettings => '모양';
-
-  @override
-  String get appearancePreset => '테마 프리셋';
-
-  @override
-  String get appearanceThemeSchemaRange => '지원하는 테마 schema';
-
-  @override
-  String get appearanceThemeInstall => '테마 설치';
-
-  @override
-  String get appearanceThemeStore => '테마 스토어';
-
-  @override
-  String get appearanceInvalidTheme => '유효하지 않은 테마 패키지 또는 카탈로그';
-
-  @override
-  String get themeStoreRefreshFailed => '테마 카탈로그를 읽을 수 없습니다.';
-
-  @override
-  String themeStoreDeleteTheme(String name) {
-    return '“$name”을(를) 삭제할까요? 파일이 이 기기에서 제거됩니다. 사용 중인 테마라면 앱이 기본 테마로 돌아갑니다.';
-  }
-
-  @override
-  String themeStoreUpdatedFmt(String ago) {
-    return '$ago 업데이트';
-  }
-
-  @override
-  String get themeStoreUpdatedJustNow => '방금 업데이트';
-
-  @override
-  String get themeStoreSortInUse => '사용 중 우선';
-
-  @override
-  String themeStoreMakeOwnFmt(String doc) {
-    return '직접 테마를 만들고 싶다면 [테마 제작 안내]($doc)를 확인해 보세요. 기여해 주셔서 감사합니다!';
-  }
-
-  @override
-  String appearanceThemeNeedsNewerApp(String version) {
-    return '최신 버전의 앱이 필요합니다: $version';
-  }
-
-  @override
-  String get appearanceFontFamilies => 'UI 글꼴 목록';
-
-  @override
-  String get appearanceFontFamiliesTip =>
-      '한 줄에 글꼴 이름 하나씩 입력하세요. 위에서부터 순서대로 적용합니다.';
-
-  @override
-  String get appearanceFontImport => 'UI 글꼴 파일 가져오기';
-
-  @override
-  String get appearanceGradient => '그라데이션';
-
-  @override
-  String get appearanceNoBackground => '배경 없음';
-
-  @override
-  String get appearanceIcons => '앱 내 아이콘';
-
-  @override
-  String get appearanceCorners => '모서리';
-
-  @override
-  String get appearanceCardCorners => '카드 모서리';
-
-  @override
-  String get appearanceTileCorners => '타일 모서리';
-
-  @override
-  String get appearanceButtonCorners => '버튼 모서리';
-
-  @override
   String get crashCollect => '진단 데이터';
 
   @override
@@ -150,103 +72,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get askAi => 'AI에게 질문';
 
   @override
-  String get askAiAwaitingResponse => 'AI 응답 대기 중...';
-
-  @override
-  String get askAiEndpointTip => '도메인 또는 전체 URL. 경로는 선택한 프로토콜에 따라 채워집니다.';
-
-  @override
-  String get askAiProtocolTip =>
-      '자동은 Responses를 먼저, 그다음 Chat Completions를 시도합니다.';
-
-  @override
-  String get askAiCommandInserted => '명령어가 터미널에 삽입되었습니다';
-
-  @override
-  String askAiConfigMissing(String fields) {
-    return '설정에서 $fields을(를) 구성해 주세요.';
-  }
-
-  @override
-  String get askAiDisclaimer => 'AI가 부정확할 수 있습니다. 적용 전에 주의 깊게 검토해 주세요.';
-
-  @override
   String get askAiInsertTerminal => '터미널에 삽입';
 
   @override
-  String get askAiNoResponse => '응답 없음';
-
-  @override
   String get remoteDesktop => '원격 데스크톱';
-
-  @override
-  String get askAiAgentWelcome => '이 서버에서 무엇을 할까요?';
-
-  @override
-  String get askAiAgentPromptHint => '에이전트에게 점검이나 수정을 요청하세요...';
-
-  @override
-  String get askAiAnalyzeSelectionPrompt => '선택한 터미널 출력을 분석하고 무슨 일이 있었는지 설명해 줘';
-
-  @override
-  String get askAiTerminalContext => '터미널 컨텍스트';
-
-  @override
-  String get askAiReviewNeeded => '검토 필요';
-
-  @override
-  String get askAiReviewAction => '제안된 명령 검토';
-
-  @override
-  String get askAiReviewBeforeContinuing => '먼저 현재 제안을 검토하거나 거부하세요';
-
-  @override
-  String get askAiApproveRun => '승인 후 실행';
-
-  @override
-  String get askAiDecline => '거부';
-
-  @override
-  String get askAiActionDeclined => '제안된 명령이 거부되었습니다.';
-
-  @override
-  String get askAiInterrupted => '에이전트 응답이 중단되었습니다.';
-
-  @override
-  String get askAiResend => 'Resend';
-
-  @override
-  String get askAiResendTip => '이 메시지 이후의 답변, 명령, 실행 결과는 모두 폐기됩니다.';
-
-  @override
-  String get askAiDeleteTip => '이 메시지와 이후의 답변, 명령, 실행 결과가 모두 삭제됩니다.';
-
-  @override
-  String get askAiModelTable => 'Model table';
-
-  @override
-  String get askAiModelTableTip =>
-      'models.dev에서 가져온 모델별 컨텍스트 크기입니다. App에 기본 목록이 포함되며, 탭하면 최신 목록을 받을 수 있습니다.';
-
-  @override
-  String get askAiContextFallback => '목록에 없음';
-
-  @override
-  String get askAiCompactAt => 'Summarise at';
-
-  @override
-  String get askAiCompactAtTip =>
-      '이전 대화를 요약하기 전까지 모델 컨텍스트를 얼마나 채울지 정합니다. 너무 일찍 요약하면 세부 내용이 빨리 사라지고, 너무 늦게 요약하면 모델이 요청을 거부할 수 있습니다.';
-
-  @override
-  String get askAiContextTokens => 'Context size';
-
-  @override
-  String get askAiContextTokensTip =>
-      '이 모델이 담을 수 있는 token 수입니다. 자동은 모델 이름으로 찾습니다. provider가 모델 기본값보다 짧은 컨텍스트를 제공하면 숫자를 직접 입력하세요.';
-
-  @override
-  String get askAiConversationCompacted => '대화를 계속하기 위해 이전 메시지를 요약했습니다.';
 
   @override
   String get askAiRiskReadOnly => '읽기 전용';
@@ -261,59 +90,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get askAiRiskDestructive => '높은 위험';
 
   @override
-  String get askAiHighRiskConfirmTitle => '위험도가 높은 명령을 실행할까요?';
-
-  @override
-  String get askAiHighRiskConfirmBody =>
-      '이 명령은 되돌리기 어려운 변경을 할 수 있습니다. 잘 확인하세요.';
-
-  @override
-  String get askAiNoCommandOutput => '명령이 출력 없이 끝났습니다.';
-
-  @override
-  String get askAiOutputTruncated => '긴 출력은 에이전트로 되돌리기 전에 잘렸습니다.';
-
-  @override
-  String get askAiAutoApproved => '자동 승인됨';
-
-  @override
   String get askAiAutoRunSafeCommands => '읽기 전용 명령 자동 실행';
 
   @override
   String get askAiAutoRunSafeCommandsTip => '모델과 로컬 검사가 모두 읽기 전용이라고 판단할 때만 실행';
 
   @override
-  String get askAiSendOnEnter => 'Enter로 보내기';
-
-  @override
-  String get askAiSendOnEnterTip =>
-      'Enter로 전송, Shift+Enter로 줄바꿈. 끄면: Enter로 줄바꿈, Cmd/Ctrl+Enter로 전송.';
-
-  @override
-  String get askAiApiKeyOptional => '로컬이거나 인증이 필요 없으면 비워 두세요';
-
-  @override
-  String get askAiAllowInsecure => '평문 HTTP 허용';
-
-  @override
-  String get askAiAllowInsecureTip =>
-      'localhost가 아닌 주소의 자체 호스팅 모델에 http://로 연결할 수 있도록 허용합니다. API 키와 모든 터미널 컨텍스트가 암호화되지 않은 상태로 전송되며 localhost에는 영향을 주지 않습니다.';
-
-  @override
-  String get askAiInsecureEndpoint =>
-      '이 엔드포인트는 http://를 사용합니다. 사용하려면 AI 설정에서 ‘평문 HTTP 허용’을 켜세요.';
-
-  @override
   String get askAiHistory => '대화 기록';
 
   @override
   String get askAiNewConversation => '새 대화';
-
-  @override
-  String get askAiNoHistory => '저장된 대화가 아직 없습니다';
-
-  @override
-  String get askAiNoHistoryMessages => '아직 메시지가 없습니다';
 
   @override
   String get askAiUntitledConversation => '제목 없음';
@@ -326,24 +112,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get askAiDeleteConversationTip => '이 기기에서 삭제합니다. 되돌릴 수 없습니다.';
-
-  @override
-  String get askAiClearHistoryTitle => '이 서버의 에이전트 기록을 지울까요?';
-
-  @override
-  String get askAiClearHistoryTip => '이 서버에 저장된 Agent 대화가 모두 삭제됩니다.';
-
-  @override
-  String get askAiRestoredReview => '이 명령은 기록에서 가져온 것입니다. 다시 검토하세요';
-
-  @override
-  String get agentWelcome => '서버들에서 무엇을 할까요?';
-
-  @override
-  String get agentWelcomeTip => 'Agent에게 문제 진단이나 운영 작업을 맡길 수 있습니다';
-
-  @override
-  String get agentPromptHint => '에이전트에게 서버 점검이나 조작을 요청하세요...';
 
   @override
   String get agentNoHistory => '저장된 전역 에이전트 대화가 없습니다';
@@ -362,14 +130,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get agentToolWriteFile => '파일 쓰기';
-
-  @override
-  String get agentToolFailed => '도구 실행에 실패했습니다.';
-
-  @override
-  String agentToolCallsFmt(int count) {
-    return '도구 호출 $count회';
-  }
 
   @override
   String get floatOverTabs => '다른 탭 위에 띄우기';
@@ -641,9 +401,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get copyPath => '경로 복사';
 
   @override
-  String get cpuViewAsProgressTip => '각 CPU 사용률을 프로그레스 바 형태로 표시합니다 (이전 스타일)';
-
-  @override
   String get customCmd => '사용자 정의 명령어';
 
   @override
@@ -651,9 +408,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get deleteDirRecursive => '폴더와 그 안의 모든 항목 삭제';
-
-  @override
-  String get desktopTerminalTip => 'SSH 세션을 시작할 때 사용할 터미널 에뮬레이터를 여는 명령어입니다.';
 
   @override
   String get dirEmpty => '폴더가 비어 있는지 확인해 주세요.';
@@ -674,9 +428,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get diskHealth => '디스크 상태';
 
   @override
-  String get displayCpuIndex => 'CPU 인덱스 표시';
-
-  @override
   String dl2Local(String fileName) {
     return '$fileName을(를) 로컬에 다운로드하시겠습니까?';
   }
@@ -693,12 +444,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get dockerStatistics => 'Docker 통계';
-
-  @override
-  String get doubleColumnMode => '이중 열 모드';
-
-  @override
-  String get doubleColumnTip => '이 옵션은 기능만 활성화하며, 실제 적용 여부는 기기의 너비에 따라 다릅니다';
 
   @override
   String get editVirtKeys => '가상 키';
@@ -908,13 +653,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get noConnectionMethod => 'SSH, monitor 또는 둘 다 설정하세요';
 
   @override
-  String get preferredTransport => '우선 사용';
-
-  @override
-  String get preferredTransportTip =>
-      '상태를 읽어오는 쪽과 명령이 먼저 여는 연결입니다. 다른 쪽도 계속 사용됩니다.';
-
-  @override
   String get keepForeground => '앱을 포그라운드에 유지해 주세요!';
 
   @override
@@ -957,27 +695,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get maxRetryCount => '서버 재연결 횟수';
 
   @override
-  String mismatchSystem(String system) {
-    return '시스템이 일치하지 않습니다: $system';
-  }
-
-  @override
   String get mirror => '미러';
 
   @override
   String get needRestart => '앱을 다시 시작해야 합니다';
 
   @override
-  String get netViewType => '네트워크 뷰 유형';
-
-  @override
   String get newContainer => '새 컨테이너';
 
   @override
   String get noConnectionStatsData => '연결 통계 데이터가 없습니다';
-
-  @override
-  String get noLineChart => '꺾은선 그래프 사용 안 함';
 
   @override
   String get noPrivateKeyTip => '개인 키가 존재하지 않습니다. 삭제되었거나 설정 오류일 수 있습니다.';
@@ -993,9 +720,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get parseContainerStatsTip => 'Docker 점유 상태 파싱이 비교적 느립니다.';
-
-  @override
-  String get preferDiskAmount => '디스크 용량 우선 표시';
 
   @override
   String get privateKey => '개인 키';
@@ -1241,6 +965,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get serverOrder => '서버 순서';
 
   @override
+  String get serverOverview => '서버 개요';
+
+  @override
+  String get serverOverviewTip => '서버 목록 상단에 개요를, 열린 서버 위에 서버 전환 막대를 표시합니다';
+
+  @override
   String get serverTabEmpty => '아직 서버가 없습니다';
 
   @override
@@ -1355,16 +1085,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String sshConfigAllExist(int duplicateCount) {
     return '모든 서버가 이미 존재합니다 (중복 $duplicateCount개 발견)';
   }
-
-  @override
-  String get sshConnectionModeTip =>
-      '내장: 앱의 터미널을 사용합니다. 시스템 SSH: 외부 터미널에서 시스템 ssh 명령을 실행합니다.';
-
-  @override
-  String get sshConnectionModeUseBuiltin => '내장 터미널 사용';
-
-  @override
-  String get sshConnectionModeUseSystem => '시스템 SSH 사용';
 
   @override
   String sshConfigDuplicatesSkipped(int duplicateCount) {
@@ -1489,9 +1209,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get used => '사용됨';
-
-  @override
-  String get view => '보기';
 
   @override
   String get viewDetails => '상세 보기';
@@ -1628,13 +1345,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get tmuxSessionName => '세션 이름';
 
   @override
-  String get tmuxExistingSessions => '기존 세션';
-
-  @override
   String get tmuxNewSession => '새 세션';
-
-  @override
-  String get tmuxWindows => '창';
 
   @override
   String get tmuxNewWindow => '새 창';
@@ -1653,30 +1364,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String tmuxPaneCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '페인 $count개',
-    );
-    return '$_temp0';
-  }
-
-  @override
   String get tmuxAttached => '연결됨';
-
-  @override
-  String get tmuxActive => '활성';
-
-  @override
-  String tmuxActiveAt(String time) {
-    return '활성: $time';
-  }
-
-  @override
-  String tmuxAttachedAt(String time) {
-    return '연결: $time';
-  }
 
   @override
   String get tmuxSkip => '건너뛰기';
@@ -1927,9 +1615,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get bmcStaleWrite => '쓰는 동안 BMC가 변경되었습니다. 다시 시도하세요.';
-
-  @override
-  String get send => '보내기';
 
   @override
   String get privacyBlur => '백그라운드 개인정보 보호';
@@ -2258,6 +1943,20 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String funcNeedsAgentGrant(String func, String setting) {
+    return '$func을(를) 사용하려면 Monitor agent의 $setting을(를) 켜야 합니다.';
+  }
+
+  @override
+  String funcNeedsAgentUpdate(String func) {
+    return '$func을(를) 사용하려면 Monitor agent를 업데이트해야 합니다.';
+  }
+
+  @override
+  String get portForwardRemoteNeedsAgent =>
+      'Monitor agent를 통한 원격 전달에는 더 최신 agent가 필요합니다. 서버에서 업데이트하세요.';
+
+  @override
   String get rangeLive => '실시간';
 
   @override
@@ -2295,6 +1994,64 @@ class AppLocalizationsKo extends AppLocalizations {
   String agentRetentionFmt(String kept) {
     return 'agent 보관 기간 $kept';
   }
+
+  @override
+  String get agentServerTools => '서버 도구';
+
+  @override
+  String get agentServerToolsTip =>
+      '서버에서 명령을 실행하고 파일을 읽고 쓰며, SSH로 다른 호스트에 연결하고 ServerBox 자체 기능을 사용합니다.';
+
+  @override
+  String get agentTerminalTools => '터미널';
+
+  @override
+  String get agentTerminalToolsTip =>
+      '터미널 자체 채팅에서: 터미널에 표시된 내용을 읽고 해당 서버에서 명령을 실행합니다.';
+
+  @override
+  String get agentToolTerminalScreen => '화면 읽기';
+
+  @override
+  String get agentProviders => '제공자';
+
+  @override
+  String get agentProvidersTip => 'API 키, 모델, 새 채팅에 쓰는 모델';
+
+  @override
+  String get agentTools => '도구';
+
+  @override
+  String get agentToolsTip => 'Agent가 쓸 수 있는 도구와 MCP 서버';
+
+  @override
+  String get agentSnippetToolsTip => 'snippet 목록 보기, 추가, 수정, 삭제. 변경 시 확인합니다.';
+
+  @override
+  String get agentVirtToolsTip => '가상화 탭이 불러온 VM과 컨테이너를 읽습니다.';
+
+  @override
+  String get agentBenchmarkToolsTip => '벤치마크 결과를 읽고, 승인 후 벤치마크를 실행하거나 중지합니다.';
+
+  @override
+  String get agentRemoteDesktopToolsTip =>
+      '원격 데스크톱 프로필을 보고, 승인 후 연결하거나 연결을 끊습니다.';
+
+  @override
+  String get agentSkills => 'Skills';
+
+  @override
+  String get agentSkillsTip => '특정 작업을 위한 지침, GitHub 또는 링크에서 설치';
+
+  @override
+  String get agentPermissions => '권한';
+
+  @override
+  String get agentEmptyHint => '서버에 대해 묻거나 Agent에게 서버에서 할 일을 요청하세요.';
+
+  @override
+  String get agentTerminalEmptyHint =>
+      '이 서버에 대해 물어보세요. Agent는 이 터미널을 읽고 여기에서 명령을 실행할 수 있습니다.';
 
   @override
   String oldestSampleFmt(String time) {
@@ -2489,32 +2246,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get connectionTip => '둘 다 동시에 켤 수 있습니다. 순서가 곧 연결을 시도하는 순서입니다.';
 
   @override
-  String transportOrderFmt(String first, String second) {
-    return '끌어서 순서를 바꿉니다. $first을(를) 먼저 시도하고, 응답이 없으면 $second이(가) 세션을 단독으로 맡습니다.';
-  }
-
-  @override
-  String transportOnlyFmt(String name) {
-    return '$name만 켜져 있어 대체할 것이 없습니다.';
-  }
-
-  @override
   String get transportNoneOn => '둘 다 꺼져 있습니다 — 이 서버에는 연결할 수 없습니다.';
-
-  @override
-  String get transportOffKept => '꺼짐 — 설정은 보관되며 연결하지 않음';
-
-  @override
-  String get transportDialledFirst => '먼저 시도';
-
-  @override
-  String get transportFallback => '대체';
-
-  @override
-  String get transportOnlyMethod => '유일한 방법';
-
-  @override
-  String get transportOff => '꺼짐';
 
   @override
   String get thisDevice => '이 기기';
@@ -2560,9 +2292,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get optional => '선택';
-
-  @override
-  String get optionalTip => '여기 있는 것은 연결에 필요하지 않습니다. 하나를 열면 그 항목이 양식을 대신합니다.';
 
   @override
   String get sshAdvanced => 'SSH 고급';
@@ -2958,6 +2687,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get remoteDesktopFullScreen => '전체 화면';
 
   @override
+  String get remoteDesktopExitFullScreen => '전체 화면 종료';
+
+  @override
   String get remoteDesktopCloseSession => '세션 닫기';
 
   @override
@@ -3054,6 +2786,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get remoteDesktopUsernameRequired => 'RDP 사용자 이름을 입력하세요.';
 
   @override
+  String get remoteDesktopNameInvalid => '프로필 이름은 64자 이하이며 줄바꿈을 쓸 수 없습니다.';
+
+  @override
+  String get remoteDesktopHostInvalid => '대상 호스트에는 공백이나 줄바꿈을 쓸 수 없습니다.';
+
+  @override
+  String get remoteDesktopCredentialInvalid =>
+      '사용자 이름과 도메인은 256자 이하이며 줄바꿈을 쓸 수 없습니다.';
+
+  @override
   String get remoteDesktopVncPasswordAscii =>
       '클래식 VNC 비밀번호는 ASCII 문자만 포함할 수 있습니다.';
 
@@ -3111,11 +2853,6 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String remoteDesktopCertificateValidity(String start, String end) {
     return '유효 기간: $start – $end';
-  }
-
-  @override
-  String appearanceThemeModeLocked(String mode) {
-    return '이 테마는 $mode만 지원합니다. 모드를 변경하려면 다른 테마를 선택하세요.';
   }
 
   @override
@@ -3369,9 +3106,6 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get reopen => '다시 열기';
-
-  @override
   String get virtSnapshots => '스냅샷';
 
   @override
@@ -3533,9 +3267,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get virtCreateNameTaken => '같은 이름의 게스트가 있습니다.';
-
-  @override
-  String get virtCreateVmidInvalid => '100에서 999999999까지.';
 
   @override
   String get virtCreateVmidTaken => '이 VMID는 사용 중입니다.';
@@ -4022,9 +3753,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get virtHwEfiStorage => 'EFI 변수 저장 위치';
-
-  @override
-  String get virtHwTpmStorage => 'TPM 상태 저장 위치';
 
   @override
   String virtHwSwitchFirmwareAsk(String guest, String firmware) {
@@ -4629,9 +4357,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get virtSnapshotFormInternal => '내부(이미지 안)';
 
   @override
-  String get virtSnapshotForm => '종류';
-
-  @override
   String get virtSnapshotOverlayPool => '오버레이 풀';
 
   @override
@@ -4659,11 +4384,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get virtSnapshotChainBase => '기본 이미지';
 
   @override
-  String virtSnapshotChainRaw(String format) {
-    return '외부 스냅샷에는 qcow2 디스크가 필요합니다. 이 디스크는 $format입니다.';
-  }
-
-  @override
   String get virtSnapshotNoSupport => '게스트의 스토리지가 스냅샷을 지원하지 않아 만들 수 없습니다.';
 
   @override
@@ -4681,9 +4401,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get virtSnapshotDiffShow => '현재와 비교';
-
-  @override
-  String get virtSnapshotDiffGroup => '변경됨';
 
   @override
   String get virtSnapshotDiffGroupCpu => '프로세서';
@@ -4762,19 +4479,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get virtTemplateTip => '템플릿은 복제한 뒤에야 실행됩니다.';
 
   @override
-  String get virtCloneStorage => '대상 스토리지';
-
-  @override
   String get virtCloneStorageSame => '원본과 동일';
 
   @override
-  String get virtCloneNode => '대상 노드';
-
-  @override
   String get virtCloneNodeSame => '원본과 동일';
-
-  @override
-  String get virtClonePool => '대상 풀';
 
   @override
   String get virtCloneStorageContent => '이 스토리지는 VM 디스크를 담지 않습니다.';
@@ -4797,9 +4505,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get virtBackupJobNew => '새 작업';
-
-  @override
-  String get virtBackupJobEdit => '작업 편집';
 
   @override
   String get virtBackupJobRun => '지금 실행';
@@ -4852,12 +4557,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get virtBackupMail => '알림';
 
   @override
-  String get virtBackupMailAlways => '항상';
-
-  @override
-  String get virtBackupMailFailure => '실패 시';
-
-  @override
   String get virtBackupNotesTemplate => '백업 메모';
 
   @override
@@ -4871,9 +4570,6 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get virtBackupPruneTip =>
       'PVE 보존 옵션, 예: keep-last=7,keep-daily=4. 비우면 스토리지나 노드 설정을 따릅니다.';
-
-  @override
-  String get virtBackupNextRun => '다음 실행';
 
   @override
   String get virtBackupJobNode => '노드';
@@ -4908,9 +4604,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get virtBackupRestoreStorageSame => '백업과 동일';
-
-  @override
-  String get virtBackupModeSnapshotTip => 'snapshot · 무중단';
 
   @override
   String get virtCloneStorageMissing => '이 노드에는 VM 디스크를 담는 스토리지가 없습니다.';
@@ -5088,4 +4781,359 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get copyLink => '링크 복사';
+
+  @override
+  String funcNeedsAgentPermission(String func) {
+    return '이 Monitor agent의 계정에는 $func 권한이 없습니다. agent 관리자에게 요청하세요.';
+  }
+
+  @override
+  String funcNeedsAgentHttps(String func) {
+    return '$func에는 이 Monitor agent로의 HTTPS 연결 또는 agent와 이 앱 모두에서 HTTP 허용이 필요합니다.';
+  }
+
+  @override
+  String funcNeedsAgentSetup(String func) {
+    return '이 Monitor agent에는 $func이(가) 설정되어 있지 않습니다. 운영자가 설정해야 합니다.';
+  }
+
+  @override
+  String get monitorFilesReadOnly =>
+      '읽기 전용: 이 계정은 agent의 파일을 볼 수 있지만 변경할 수는 없습니다.';
+
+  @override
+  String get monitorAccess => '접근';
+
+  @override
+  String get monitorAccounts => '계정';
+
+  @override
+  String get monitorRoles => '역할';
+
+  @override
+  String get monitorRole => '역할';
+
+  @override
+  String get monitorChangePassword => '비밀번호 변경';
+
+  @override
+  String get monitorNewPassword => '새 비밀번호';
+
+  @override
+  String get monitorCurrentPassword => '현재 비밀번호';
+
+  @override
+  String get monitorReauthTip => '접근 권한을 변경하려면 비밀번호를 다시 입력해야 합니다.';
+
+  @override
+  String get monitorPasswordTooShort => '8자 이상';
+
+  @override
+  String get monitorPasswordMismatch => '비밀번호가 일치하지 않습니다';
+
+  @override
+  String get monitorErrReauth => '비밀번호가 틀렸습니다.';
+
+  @override
+  String get monitorErrLastAdmin => 'agent에는 관리자 계정이 하나 이상 있어야 합니다.';
+
+  @override
+  String get monitorErrConflict => '이미 존재하거나 아직 사용 중입니다.';
+
+  @override
+  String get monitorErrForbidden => '관리자만 할 수 있습니다.';
+
+  @override
+  String get monitorRoleNameRule => '소문자, 숫자, - 및 _, 최대 32자';
+
+  @override
+  String get monitorGrantShell => '셸과 명령';
+
+  @override
+  String get monitorGrantShellTip =>
+      '터미널, 프로세스, 서비스, 컨테이너, 스니펫, 전원 — agent 계정으로 실행';
+
+  @override
+  String get monitorGrantSshTerminal => 'SSH를 통한 패널 터미널';
+
+  @override
+  String get monitorGrantVirt => '가상화';
+
+  @override
+  String get monitorGrantVirtTip => '에이전트 웹 패널에서 연결하는 Proxmox VE, libvirt, BMC';
+
+  @override
+  String get monitorGrantFiles => '파일';
+
+  @override
+  String get monitorGrantConnect => '외부 연결';
+
+  @override
+  String get monitorGrantConnectTip => '로컬 및 동적 포트 전달, 원격 데스크톱';
+
+  @override
+  String get monitorGrantConnectAllow =>
+      '허용된 대상 (IP 또는 CIDR, 선택적으로 :포트 또는 :시작-끝; 한 줄에 하나, 비우면 제한 없음)';
+
+  @override
+  String get monitorGrantListen => '서버에서 수신 대기';
+
+  @override
+  String get monitorGrantListenTip => '원격 포트 전달';
+
+  @override
+  String get monitorGrantListenPublic => 'loopback이 아닌 주소';
+
+  @override
+  String get monitorGrantPorts => '포트 범위 (비우면 제한 없음)';
+
+  @override
+  String get monitorGrantOff => '끔';
+
+  @override
+  String get monitorBuiltin => '기본 제공';
+
+  @override
+  String get monitorAdminRoleTip => '계정, 역할 및 agent 설정을 관리합니다';
+
+  @override
+  String get monitorYou => '나';
+
+  @override
+  String get monitorNoAccessToSettings => '관리자만 이 agent의 설정을 변경할 수 있습니다.';
+
+  @override
+  String get monitorPasswordNotSaved =>
+      'agent의 비밀번호는 변경되었지만 앱에 저장하지 못했습니다. 이 서버 설정에서 Monitor 비밀번호를 업데이트하세요.';
+
+  @override
+  String get firewall => '방화벽';
+
+  @override
+  String get firewallLinuxOnly =>
+      '방화벽 관리는 ufw 또는 firewalld가 설치된 Linux 서버를 지원합니다.';
+
+  @override
+  String get firewallNeedsRoot =>
+      '방화벽 규칙을 읽으려면 root 권한이 필요합니다. 계속하려면 sudo 비밀번호를 입력하세요.';
+
+  @override
+  String get firewallIncoming => '수신';
+
+  @override
+  String get firewallOutgoing => '발신';
+
+  @override
+  String get firewallRouted => '전달';
+
+  @override
+  String get firewallDefaultPolicy => '기본 정책';
+
+  @override
+  String get firewallLogging => '로깅';
+
+  @override
+  String get firewallRules => '규칙';
+
+  @override
+  String get firewallRule => '규칙';
+
+  @override
+  String get firewallAddRule => '규칙 추가';
+
+  @override
+  String get firewallAnywhere => '모든 곳';
+
+  @override
+  String firewallFromFmt(String source) {
+    return '출발지 $source';
+  }
+
+  @override
+  String get firewallFrom => '출발지';
+
+  @override
+  String get firewallTo => '목적지';
+
+  @override
+  String get firewallProtocol => '프로토콜';
+
+  @override
+  String get firewallInterface => '인터페이스';
+
+  @override
+  String get firewallComment => '설명';
+
+  @override
+  String get firewallAppProfile => '앱 프로필';
+
+  @override
+  String get firewallPrepend => '다른 모든 규칙보다 앞에 두기';
+
+  @override
+  String get firewallIpv6Off => 'IPv6가 꺼져 있습니다(IPV6=no). v6 규칙은 로드되지 않습니다.';
+
+  @override
+  String get firewallReload => '다시 불러오기';
+
+  @override
+  String get firewallNothingMatched => '포트, 앱 프로필, 주소 또는 인터페이스를 입력하세요.';
+
+  @override
+  String get firewallInvalidPort =>
+      '잘못된 포트입니다. 22, 80,443 또는 6000:6010 형식을 사용하세요.';
+
+  @override
+  String get firewallTooManyPorts => '포트는 최대 15개이며, 범위는 2개로 계산됩니다.';
+
+  @override
+  String get firewallPortsNeedProtocol => '포트 목록이나 범위에는 tcp 또는 udp가 필요합니다.';
+
+  @override
+  String get firewallInvalidAddress =>
+      '잘못된 주소입니다. IP 주소나 192.168.1.0/24 같은 네트워크를 사용하세요.';
+
+  @override
+  String get firewallMixedIpVersions => '출발지와 목적지는 모두 IPv4이거나 모두 IPv6이어야 합니다.';
+
+  @override
+  String get firewallInvalidInterface => '잘못된 인터페이스 이름입니다.';
+
+  @override
+  String get firewallInvalidComment => '설명에는 \' 또는 줄바꿈을 넣을 수 없습니다.';
+
+  @override
+  String get firewallInterfaceIn => '수신 인터페이스';
+
+  @override
+  String get firewallInterfaceOut => '발신 인터페이스';
+
+  @override
+  String get firewallSourcePort => '출발지 포트';
+
+  @override
+  String get firewallMoreOptions => '추가 옵션';
+
+  @override
+  String get firewallNoneInstalled =>
+      '이 서버에는 ufw도 firewalld도 설치되어 있지 않습니다. 시스템 패키지 관리자로 둘 중 하나를 설치하세요(예: `apt install ufw`, `dnf install firewalld`).';
+
+  @override
+  String get firewallKeepAccess => '먼저 이 앱의 포트를 열어 두기';
+
+  @override
+  String firewallWillRefuseFmt(String access) {
+    return '$access: 이 앱의 새 연결이 거부됩니다. 사용 중인 연결은 끊기기 전까지 유지됩니다.';
+  }
+
+  @override
+  String firewallMayRefuseFmt(String access) {
+    return '$access: 이 앱의 새 연결이 거부될 수 있습니다. 연결이 들어오는 주소나 인터페이스에 따라 다르며, 앱에서는 이를 알 수 없습니다.';
+  }
+
+  @override
+  String firewallRateLimitedFmt(String access) {
+    return '$access: 연결 속도가 제한됩니다. 30초 안에 6번 이상 연결하는 주소는 거부되며, 이 앱은 그만큼 자주 다시 연결할 수 있습니다.';
+  }
+
+  @override
+  String get firewallConflict =>
+      'ufw와 firewalld가 모두 켜져 있습니다. 둘 다 커널 규칙을 쓰며, 마지막에 로드된 쪽이 통과 여부를 결정합니다.';
+
+  @override
+  String get firewallDefaultZone => '기본 zone';
+
+  @override
+  String get firewallZone => 'Zone';
+
+  @override
+  String get firewallTarget => 'Target';
+
+  @override
+  String get firewallMasquerade => 'Masquerade';
+
+  @override
+  String get firewallServices => '서비스';
+
+  @override
+  String get firewallPorts => '포트';
+
+  @override
+  String get firewallSources => '출발지';
+
+  @override
+  String get firewallInterfaces => '인터페이스';
+
+  @override
+  String get firewallRichRules => 'Rich rules';
+
+  @override
+  String get firewallForwardPorts => '포트 전달';
+
+  @override
+  String get firewallRuntimeOnly => 'runtime 전용';
+
+  @override
+  String get firewallPermanentOnly => 'permanent 전용';
+
+  @override
+  String get firewallThisConnection => '현재 연결';
+
+  @override
+  String get firewallDefaultTag => '기본';
+
+  @override
+  String get firewallDrift =>
+      '현재 적용 중인 설정이 저장된 설정과 다릅니다. reload 또는 재부팅하면 저장된 설정으로 바뀝니다.';
+
+  @override
+  String firewallDriftLockoutFmt(String access) {
+    return 'reload 또는 재부팅 후 $access이(가) 거부됩니다. 저장된 설정이 허용하지 않습니다.';
+  }
+
+  @override
+  String get firewallSaveRuntime => 'permanent로 저장';
+
+  @override
+  String get firewallReloadLoses => 'permanent로 저장하지 않은 변경 사항은 사라집니다.';
+
+  @override
+  String get firewallPanic => 'panic 모드가 켜져 있습니다. 모든 패킷이 버려집니다.';
+
+  @override
+  String get firewallPanicOff => 'panic 모드 끄기';
+
+  @override
+  String get firewallStoppedNote =>
+      'firewalld가 중지되어 있습니다. 변경 사항은 저장되며 시작될 때 적용됩니다.';
+
+  @override
+  String get firewallInvalidSource =>
+      '잘못된 출발지입니다. 주소, 192.168.1.0/24 같은 네트워크, ipset:이름 또는 MAC 주소를 사용하세요.';
+
+  @override
+  String get firewallInvalidRichRule => 'rich rule은 \"rule\"로 시작하고 한 줄이어야 합니다.';
+
+  @override
+  String get firewallInvalidForwardPort =>
+      'port=80:proto=tcp:toport=8080 형식을 사용하고 toport, toaddr 또는 둘 다 지정하세요.';
+
+  @override
+  String get monitorSyncNeedsServer => '백업을 저장할 Monitor 에이전트의 서버를 선택하세요.';
+
+  @override
+  String get monitorBackupUnsupported =>
+      '이 Monitor 에이전트는 백업을 저장할 수 없습니다. 에이전트를 업데이트하세요.';
+
+  @override
+  String get monitorBackupAdminOnly => 'Monitor 에이전트의 관리자 계정만 백업을 저장할 수 있습니다.';
+
+  @override
+  String monitorBackupTooLarge(String max) {
+    return '백업이 Monitor 에이전트가 허용하는 크기($max)보다 큽니다.';
+  }
+
+  @override
+  String get monitorBackupTooMany =>
+      'Monitor 에이전트에 저장된 백업 수가 한도에 도달했습니다. 먼저 하나를 삭제하세요.';
 }

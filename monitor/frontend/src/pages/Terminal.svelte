@@ -8,15 +8,18 @@
   /// xterm.js is loaded on demand — it is by far the heaviest thing the panel
   /// could ship, and most visits never open a terminal.
 
-  import { onDestroy } from 'svelte'
+  import { onDestroy, untrack } from 'svelte'
   import { Unplug } from '@lucide/svelte'
   import { Button, Card, IconButton, Input, Spinner } from '@serverbox/webui'
   import PageHeader from '../components/PageHeader.svelte'
   import { LL } from '../i18n/i18n-svelte'
+  import { isAdmin, terminalAccess, whyText } from '../lib/access'
   import { api } from '../lib/api'
   import { capabilitiesStore } from '../lib/capabilities.svelte'
   import { layout } from '../lib/layout.svelte'
   import { servers } from '../lib/servers.svelte'
+  import { snippetRun } from '../lib/snippetRun.svelte'
+  import { runSteps } from '../lib/snippetSteps'
   import { theme } from '../lib/theme.svelte'
   import { TerminalSession, type Credential, type Renderer } from '../lib/terminal.svelte'
 
@@ -214,6 +217,9 @@
 
   onDestroy(() => {
     resizeObserver?.disconnect()
+    // Leaving the terminal abandons a snippet not yet typed: the Run press
+    // opened this page for it, so closing the page is the answer.
+    snippetRun.clear()
     session.dispose()
     term?.dispose()
   })
@@ -223,21 +229,23 @@
   )
   const showForm = $derived(session.phase === 'idle' || session.phase === 'closed')
 
+  const caps = $derived(capabilitiesStore.byServer[servers.currentId])
+  /// Which terminals this account can open here — see `terminalAccess`.
+  const access = $derived(terminalAccess(caps))
+
   /// The dashboard only offers the entry point when the agent reports the
   /// terminal available, but a cached capability or a stale tab can still land
   /// here — better to explain why than to present a form that can't connect.
-  const available = $derived(
-    capabilitiesStore.byServer[servers.currentId]?.remote_access?.terminal !== false,
-  )
+  const available = $derived(access.available)
 
   /// Set once this session has turned it off, so the UI updates before the
   /// capabilities cache is refetched. The agent's answer stays the source of
   /// truth — the panel can narrow it, never widen it.
   let turnedOff = $state(false)
-  const fullAccess = $derived(
-    !turnedOff &&
-      capabilitiesStore.byServer[servers.currentId]?.remote_access?.full_access === true,
-  )
+  const fullAccess = $derived(!turnedOff && access.direct)
+  /// Turning it off is an administrator's request: with roles it takes the
+  /// shell away from every role, not just this session's.
+  const canTurnOff = $derived(isAdmin(caps) !== false)
 
   /// Shown the first time access without SSH is on offer, once per
   /// browser: it changes what the panel password is worth, and silently
@@ -275,6 +283,49 @@
     const renderer = await ensureTerminal()
     await session.start(renderer, '', { kind: 'local' })
   }
+
+  /// The snippet being typed, and whether the operator stopped it. One object:
+  /// a stop belongs to the run in flight.
+  let typing = $state<{ name: string; stopped: boolean } | null>(null)
+  /// A snippet whose Run press landed here before there was a shell.
+  const queuedName = $derived(snippetRun.waiting?.name ?? '')
+
+  $effect(() => {
+    // `waiting` is the trigger too, so a Run while a shell is up types at once.
+    const queued = snippetRun.waiting
+    if (session.phase !== 'running' || !queued || typing) return
+    untrack(() => void typeQueued())
+  })
+
+  /// Types what the snippets page queued. Taken rather than read, so nothing
+  /// types it twice. The steps are the agent's (`/snippets/plan`); this sends
+  /// bytes and decides nothing about what they mean.
+  async function typeQueued() {
+    const taken = snippetRun.take()
+    if (!taken) return
+    typing = { name: taken.name, stopped: false }
+    const run = typing
+    try {
+      await runSteps(
+        taken.steps,
+        (text) => session.input(text),
+        undefined,
+        // The shell it started on is still the one on screen, and the
+        // operator has not stopped it. A reconnect stops it too: the rest of
+        // a script waiting on `${sleep}` was not written for an outage.
+        () => !run.stopped && session.phase === 'running',
+      )
+    } finally {
+      typing = null
+    }
+  }
+
+  /// Drops a queued snippet, or stops the one being typed — between steps, so
+  /// a keystroke in flight lands and the next does not.
+  function stopTyping() {
+    if (typing) typing.stopped = true
+    else snippetRun.clear()
+  }
 </script>
 
 <PageHeader
@@ -301,9 +352,30 @@
 <main
   class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-4 flex flex-col min-h-[calc(100vh-4rem)]"
 >
+  <!-- Said, because keystrokes that arrive unasked would otherwise look like a
+       fault. -->
+  {#if typing || queuedName}
+    <Card class="flex flex-wrap items-center justify-between gap-3">
+      <p class="text-sm text-fg">
+        {#if typing}
+          {$LL.snippetTyping({ name: typing.name })}
+        {:else}
+          {$LL.snippetWaiting({ name: queuedName })}
+        {/if}
+      </p>
+      <Button variant="secondary" onclick={stopTyping}>
+        {typing ? $LL.snippetStop() : $LL.snippetDiscard()}
+      </Button>
+    </Card>
+  {/if}
+
   {#if !available}
     <Card>
-      <p class="text-sm text-muted-fg">{$LL.terminalUnavailable()}</p>
+      <!-- With roles the agent says why; before them, the one reason there
+           was is the config switch. -->
+      <p class="text-sm text-muted-fg">
+        {caps?.grants ? whyText(access.why, $LL) : $LL.terminalUnavailable()}
+      </p>
     </Card>
   {:else if showForm}
     {#if showNotice}
@@ -311,15 +383,19 @@
         <h2 class="text-base font-semibold font-display text-fg-strong">
           {$LL.terminalPasswordlessNoticeTitle()}
         </h2>
-        <p class="text-sm text-muted-fg">{$LL.terminalPasswordlessNoticeBody()}</p>
+        <p class="text-sm text-muted-fg">
+          {caps?.grants ? $LL.terminalPasswordlessNoticeBodyRoles() : $LL.terminalPasswordlessNoticeBody()}
+        </p>
         <div class="flex flex-wrap gap-2">
           <Button variant="secondary" onclick={acknowledgeNotice}>
             {$LL.terminalPasswordlessKeep()}
           </Button>
-          <Button variant="danger" onclick={disablePasswordless} disabled={disabling}>
-            {#if disabling}<Spinner class="w-4 h-4" />{/if}
-            {$LL.terminalPasswordlessDisable()}
-          </Button>
+          {#if canTurnOff}
+            <Button variant="danger" onclick={disablePasswordless} disabled={disabling}>
+              {#if disabling}<Spinner class="w-4 h-4" />{/if}
+              {$LL.terminalPasswordlessDisable()}
+            </Button>
+          {/if}
         </div>
       </Card>
     {/if}
@@ -334,6 +410,7 @@
       </Card>
     {/if}
 
+    {#if access.ssh}
     <Card class="space-y-4">
       <p class="text-sm text-muted-fg">{$LL.terminalCredentialsHint()}</p>
 
@@ -401,6 +478,7 @@
         {/if}
       </div>
     </Card>
+    {/if}
   {/if}
 
   {#if session.phase === 'prompting'}

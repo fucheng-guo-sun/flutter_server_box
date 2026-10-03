@@ -8,7 +8,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:server_box/core/extension/context/locale.dart';
-import 'package:server_box/core/extension/context/motion.dart';
 import 'package:server_box/data/model/file/browse_path.dart';
 import 'package:server_box/data/model/file/file_backend.dart';
 import 'package:server_box/data/model/file/file_issue.dart';
@@ -18,6 +17,7 @@ import 'package:server_box/data/provider/file_transfer.dart';
 import 'package:server_box/data/res/store.dart';
 import 'package:server_box/view/page/storage/send_to.dart';
 import 'package:server_box/view/page/storage/transfer_announce.dart';
+import 'package:server_box/view/widget/delayed_loading.dart';
 import 'package:server_box/view/widget/unix_perm.dart';
 
 /// What an injected action is allowed to do to the browser it sits in.
@@ -620,6 +620,9 @@ class _FileBrowserPageState extends ConsumerState<FileBrowserPage>
 
   /// Opens what a plain click means for this entry: enter it, pick it, or
   /// hand it to the backend's own opener.
+  /// Nothing here can be changed — see [FileBackendTraits.readOnly].
+  bool get _readOnly => backend.traits.readOnly;
+
   void _open(FileEntry entry, String full) {
     if (entry.isDir) {
       _go(() => _path.enter(entry.name));
@@ -693,11 +696,11 @@ class _FileBrowserPageState extends ConsumerState<FileBrowserPage>
       // The three that mutate or select are guarded rather than the whole
       // handler: moving the cursor, entering a directory, going up and
       // clearing are what a picker is *for*, and stay.
-      case LogicalKeyboardKey.f2 when !_isPicking:
+      case LogicalKeyboardKey.f2 when !_isPicking && !_readOnly:
         final entry = _cursorOrOnlySelected;
         if (entry == null) return KeyEventResult.ignored;
         _rename(entry);
-      case LogicalKeyboardKey.delete when !_isPicking:
+      case LogicalKeyboardKey.delete when !_isPicking && !_readOnly:
         final targets = _selecting
             ? _selectedEntries
             : [?_cursorEntry];
@@ -1020,17 +1023,19 @@ class _FileBrowserPageState extends ConsumerState<FileBrowserPage>
       text: libL10n.select,
       onTap: () => _toggle(entry),
     ),
-    ContextMenuAction(
-      icon: Icons.abc,
-      text: libL10n.rename,
-      onTap: () => _rename(entry),
-    ),
-    ContextMenuAction(
-      icon: Icons.delete,
-      text: libL10n.delete,
-      destructive: true,
-      onTap: () => _delete(entry),
-    ),
+    if (!_readOnly) ...[
+      ContextMenuAction(
+        icon: Icons.abc,
+        text: libL10n.rename,
+        onTap: () => _rename(entry),
+      ),
+      ContextMenuAction(
+        icon: Icons.delete,
+        text: libL10n.delete,
+        destructive: true,
+        onTap: () => _delete(entry),
+      ),
+    ],
     ContextMenuAction(
       icon: MingCute.copy_line,
       text: l10n.copyPath,
@@ -1039,7 +1044,7 @@ class _FileBrowserPageState extends ConsumerState<FileBrowserPage>
         Toast.success(libL10n.success);
       },
     ),
-    if (backend.traits.permissions)
+    if (backend.traits.permissions && !_readOnly)
       ContextMenuAction(
         icon: Icons.security,
         text: libL10n.permission,
@@ -1106,11 +1111,26 @@ class _FileBrowserPageState extends ConsumerState<FileBrowserPage>
       // reachable only by secondary tap, which a phone does not have, so on
       // every mobile build the one visible `+` in this tab belonged to the
       // *server* list and adding a file had no button at all.
-      if (!widget.args.isPickFile && !widget.args.isPickDir)
+      // Said where the `+` would be, so its absence is explained.
+      if (_readOnly)
         Btn.icon(
-          text: libL10n.add,
-          icon: const Icon(Icons.add, size: 18),
-          onTap: () => showContextMenu(context, _createActions),
+          text: l10n.monitorFilesReadOnly,
+          icon: const Icon(Icons.lock_outline, size: 18),
+          onTap: () => Toast.show(l10n.monitorFilesReadOnly),
+        )
+      else if (!widget.args.isPickFile && !widget.args.isPickDir)
+        // Its own context, so the menu drops from this button rather than
+        // opening as a dialog in the middle of the page.
+        Builder(
+          builder: (ctx) => Btn.icon(
+            text: libL10n.add,
+            icon: const Icon(Icons.add, size: 18),
+            onTap: () => showContextMenu(
+              ctx,
+              _createActions,
+              at: contextMenuAnchorBelow(ctx),
+            ),
+          ),
         ),
       _buildViewBtn(),
       Btn.icon(text: libL10n.search, icon: const Icon(Icons.search, size: 18), onTap: _search.start),
@@ -1143,7 +1163,7 @@ class _FileBrowserPageState extends ConsumerState<FileBrowserPage>
                   // entry. An entry's own menu sits in front of this one and
                   // wins, so this is what is left: the directory itself.
                 .onSecondary(
-                  widget.args.isPickFile || widget.args.isPickDir
+                  widget.args.isPickFile || widget.args.isPickDir || _readOnly
                       ? null
                       : (at) => showContextMenu(
                           context,
@@ -1434,11 +1454,12 @@ class _FileBrowserPageState extends ConsumerState<FileBrowserPage>
                 onPressed: () => _sendAll(entries, refOf),
                 icon: const Icon(Icons.drive_file_move_outline),
               ),
-            IconButton(
-              tooltip: libL10n.delete,
-              onPressed: () => _deleteAll(entries),
-              icon: Icon(Icons.delete, color: UIs.textRed.color),
-            ),
+            if (!_readOnly)
+              IconButton(
+                tooltip: libL10n.delete,
+                onPressed: () => _deleteAll(entries),
+                icon: Icon(Icons.delete, color: UIs.textRed.color),
+              ),
           ],
         ),
       ),
@@ -1474,7 +1495,7 @@ class _FileBrowserPageState extends ConsumerState<FileBrowserPage>
   /// Only where the browser can say what a path here is called: without
   /// [FileBrowserArgs.refOf] there is no destination to name.
   Widget _wrapDropTarget(Widget child) {
-    if (widget.args.refOf == null || _isPicking) return child;
+    if (widget.args.refOf == null || _isPicking || _readOnly) return child;
     return DropTarget(
       onDragDone: (details) => _onDropped(details.files),
       onDragEntered: (_) => _dropping.value = true,
@@ -1522,7 +1543,10 @@ class _FileBrowserPageState extends ConsumerState<FileBrowserPage>
   Widget _buildList() {
     return FutureWidget(
       future: _entries,
-      loading: UIs.placeholder,
+      // Nothing for a directory that answers at once, a spinner for one that
+      // does not: a slow listing was a blank pane until it arrived, which read
+      // as an empty directory.
+      loading: const DelayedLoading(),
       error: (e, _) => _buildError(e),
       success: (entries) => ListenBuilder(
         listenable: Listenable.merge([_sort, _search]),
@@ -1807,69 +1831,39 @@ class _FileBrowserPageState extends ConsumerState<FileBrowserPage>
   Widget _buildViewBtn() {
     return _sort.listenVal((value) {
       final hidden = Stores.setting.showHiddenFiles.fetch();
-      return PopupMenuButton<Object>(
+      return ContextMenuButton(
         tooltip: libL10n.sort,
-        padding: EdgeInsets.zero,
+        actions: () => [
+          for (final by in _SortBy.values)
+            ContextMenuAction(
+              text: by.i18n,
+              // The direction, on the one that is doing the sorting. Tapping
+              // it again is what flips it, so it has to be visible there.
+              note: by == value.by ? (value.reversed ? '↓' : '↑') : null,
+              checked: by == value.by,
+              onTap: () => _sort.value = by == value.by
+                  ? _SortOption(by: by, reversed: !value.reversed)
+                  : _SortOption(by: by, reversed: value.reversed),
+            ),
+          ContextMenuAction(
+            text: l10n.showHiddenFiles,
+            icon: hidden ? Icons.check_box : Icons.check_box_outline_blank,
+            onTap: () {
+              Stores.setting.showHiddenFiles.put(!hidden);
+              // The setting is read while sorting, so the list has to be
+              // asked to sort again — nothing about the listing changed.
+              _sort.notify();
+            },
+          ),
+        ],
         child: const Padding(
           padding: EdgeInsets.all(7),
           child: Icon(Icons.sort, size: 18),
         ),
-        itemBuilder: (_) => [
-          for (final by in _SortBy.values)
-            PopupMenuItem(
-              value: by,
-              child: Text(
-                // The direction, on the one that is doing the sorting. Tapping
-                // it again is what flips it, so it has to be visible there.
-                by == value.by
-                    ? '${by.i18n} (${value.reversed ? '-' : '+'})'
-                    : by.i18n,
-                style: TextStyle(
-                  color: by == value.by ? UIs.primaryColor : null,
-                  fontWeight: by == value.by ? FontWeight.bold : null,
-                ),
-              ),
-            ),
-          const PopupMenuDivider(),
-          PopupMenuItem(
-            value: _kToggleHidden,
-            child: Row(
-              spacing: 7,
-              children: [
-                Icon(
-                  hidden ? Icons.check_box : Icons.check_box_outline_blank,
-                  size: 18,
-                ),
-                // Expanded, because this label is a translation: 17 characters
-                // in English and 28 in French and Indonesian, in a menu whose
-                // width is decided by the longest of the three sort names
-                // above it. Unwrapped, the longer locales run off the right.
-                Expanded(child: Text(l10n.showHiddenFiles)),
-              ],
-            ),
-          ),
-        ],
-        onSelected: (selected) {
-          if (selected == _kToggleHidden) {
-            Stores.setting.showHiddenFiles.put(!hidden);
-            // The setting is read while sorting, so the list has to be asked
-            // to sort again — nothing about the listing itself changed.
-            _sort.notify();
-            return;
-          }
-          final by = selected as _SortBy;
-          final old = _sort.value;
-          _sort.value = by == old.by
-              ? _SortOption(by: old.by, reversed: !old.reversed)
-              : _SortOption(by: by, reversed: old.reversed);
-        },
       );
     });
   }
 }
-
-/// Not a [_SortBy], so the menu can carry one entry that is not a sort order.
-const _kToggleHidden = 'toggle-hidden';
 
 @immutable
 class _SortOption {
@@ -1891,7 +1885,7 @@ enum _SortBy {
   size,
   time;
 
-  /// Ascending, always, so that the `+` and `-` the menu shows mean the same
+  /// Ascending, always, so that the arrow the menu shows means the same
   /// thing whichever of the three is chosen.
   int compare(FileEntry a, FileEntry b) => switch (this) {
     name => a.name.toLowerCase().compareTo(b.name.toLowerCase()),

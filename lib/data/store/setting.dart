@@ -1,18 +1,14 @@
 import 'dart:convert';
 
 import 'package:fl_lib/fl_lib.dart';
-import 'package:server_box/data/model/app/ask_ai_config.dart';
-import 'package:server_box/data/model/app/builtin_theme.dart';
+import 'package:fl_lib/theme.dart';
 import 'package:server_box/data/model/app/diagnostics_level.dart';
 import 'package:server_box/data/model/app/float_shell_config.dart';
 import 'package:server_box/data/model/app/linux_distro.dart';
 import 'package:server_box/data/model/app/menu/server_func.dart';
 import 'package:server_box/data/model/app/motion.dart';
-import 'package:server_box/data/model/app/net_view.dart';
 import 'package:server_box/data/model/app/server_sort.dart';
 import 'package:server_box/data/model/app/tab.dart';
-import 'package:server_box/data/model/app/theme_sort.dart';
-import 'package:server_box/data/model/app/theme_style.dart';
 import 'package:server_box/data/model/app/tray.dart';
 import 'package:server_box/data/model/ssh/virtual_key.dart';
 import 'package:server_box/data/res/default.dart';
@@ -30,7 +26,7 @@ import 'package:server_box/data/store/schema.dart';
 List<String> _virtKeyNames(Object? raw) =>
     raw is List ? raw.whereType<String>().toList() : const [];
 
-class SettingStore extends SqliteStore {
+class SettingStore extends SqliteStore with ThemeSettings {
   SettingStore([super.storeName = 'setting']);
 
   static final instance = SettingStore();
@@ -41,107 +37,10 @@ class SettingStore extends SqliteStore {
   /// Whether to remember previously opened SFTP paths.
   late final recordHistory = propertyDefault('recordHistory', true);
 
-  /// Whether the disk view prefers usage amounts over I/O metrics.
-  late final serverTabPreferDiskAmount = propertyDefault(
-    'serverTabPreferDiskAmount',
-    false,
-  );
-
   /// UI scale factor. `1.0` means 100%.
   ///
   /// Large values may cause layout issues.
   late final textFactor = propertyDefault('textFactor', 1.0);
-
-  /// Seed color used to generate the color scheme.
-  late final colorSeed = propertyDefault('primaryColor', 4287106639);
-
-  /// Built-in, installed, or custom image theme currently selected.
-  late final appThemePreset = propertyDefault(
-    'appThemePreset',
-    BuiltinTheme.defaultTheme.id,
-  );
-
-  /// Last custom theme, so selecting a built-in preset does not discard it.
-  late final appCustomTheme = propertyDefault('appCustomTheme', '');
-
-  /// Hash of the installed theme whose image/icon assets are active.
-  late final appThemePackage = propertyDefault('appThemePackage', '');
-  late final appThemePaletteEnabled = propertyDefault(
-    'appThemePaletteEnabled',
-    true,
-  );
-
-  /// How the theme store's list is ordered, by [ThemeSort.name].
-  late final themeStoreSort = propertyDefault(
-    'themeStoreSort',
-    ThemeSort.inUse.name,
-  );
-
-  /// The theme store's last answer, as the JSON it was read from.
-  ///
-  /// Held so a page can open on the themes it showed last time instead of on a
-  /// spinner. A map rather than a decoded model, because the shape is the theme
-  /// service's business and this directory does not import it: the service
-  /// writes [ThemeStore.toJson] and reads it back with [ThemeStore.fromJson],
-  /// and the store only owns the key.
-  ///
-  /// A map rather than a string holding one, which is what a second `jsonEncode`
-  /// on the way in would make it — see `setting_value_shape_test.dart`.
-  ///
-  /// Not a user edit, so it does not stamp the store's last-modified time — a
-  /// refresh is the app re-reading a catalog, and a sync that took it for a
-  /// change would push one device's cache at every other device. It is also
-  /// device-local, so a backup does not carry it: a list of what a catalog
-  /// offered when one phone last looked is not something to restore onto
-  /// another, which would show it as what the catalog offers now.
-  late final themeStoreCache = propertyDefault<Map<String, dynamic>>(
-    'themeStoreCache',
-    const {},
-    updateLastModified: false,
-  );
-
-  /// App-wide icon family. The launcher icon is selected by the platform.
-  ///
-  /// Stored as the enum's name, which is what was stored before it was one, so
-  /// an install that wrote the string reads back unchanged.
-  late final appIconStyle = propertyDefault(
-    'appIconStyle',
-    IconStyle.classic,
-    fromObj: IconStyle.parse,
-    toObj: (style) => style?.name,
-  );
-
-  /// Component shapes can be edited in the custom image theme.
-  late final appCardRadius = propertyDefault('appCardRadius', 13.0);
-  late final appTileRadius = propertyDefault('appTileRadius', 9.0);
-  late final appButtonRadius = propertyDefault('appButtonRadius', 30.0);
-
-  /// A device-local image behind the app's surfaces.
-  late final appBackgroundStyle = propertyDefault(
-    'appBackgroundStyle',
-    BackgroundStyle.none,
-    fromObj: BackgroundStyle.parse,
-    toObj: (style) => style?.name,
-  );
-  late final appBackgroundPath = propertyDefault('appBackgroundPath', '');
-  late final appCustomBackgroundPath = propertyDefault(
-    'appCustomBackgroundPath',
-    '',
-  );
-  late final appBackgroundOpacity = propertyDefault(
-    'appBackgroundOpacity',
-    0.18,
-  );
-  late final appBackgroundBlur = propertyDefault('appBackgroundBlur', 0.0);
-
-  /// The logical width the background image repeats at; 0 draws it once,
-  /// `cover`-fitted. Set by a theme package, never by the settings page.
-  late final appBackgroundTile = propertyDefault('appBackgroundTile', 0.0);
-
-  /// Font names are tried in order; the platform's default follows the list.
-  late final appFontFamilies = listProperty<String>('appFontFamilies');
-  late final appImportedFontPath = propertyDefault('appImportedFontPath', '');
-  late final appImportedFontName = propertyDefault('appImportedFontName', '');
 
   late final serverStatusUpdateInterval = propertyDefault(
     'serverStatusUpdateInterval',
@@ -150,9 +49,6 @@ class SettingStore extends SqliteStore {
 
   // Maximum number of server connection retries.
   late final maxRetryCount = propertyDefault('maxRetryCount', 2);
-
-  // ThemeMode: 0 -> system, 1 -> light, 2 -> dark.
-  late final themeMode = propertyDefault('themeMode', 0);
 
   /// Whether the app moves less than it would, over what the device asks —
   /// see [MotionPref]. Full motion unless the user turns it down here: the
@@ -322,13 +218,6 @@ class SettingStore extends SqliteStore {
     fromObj: _virtKeyNames,
   );
 
-  late final netViewType = propertyDefault(
-    'netViewType',
-    NetViewType.speed,
-    fromObj: (val) => NetViewType.values.firstWhereOrNull((e) => e.name == val),
-    toObj: (type) => type?.name,
-  );
-
   // Only valid on iOS
   late final autoUpdateHomeWidget = propertyDefault(
     'autoUpdateHomeWidget',
@@ -395,14 +284,6 @@ class SettingStore extends SqliteStore {
   /// choice. iOS only.
   late final watchExcludedServerIds = listProperty<String>(
     'watchExcludedServerIds',
-  );
-
-  /// The bundled store themes already installed once, by manifest id, so one
-  /// the user removed is not installed again at the next launch.
-  late final bundledThemesSeeded = listProperty<String>(
-    'bundledThemesSeeded',
-    // Written by the app, not the user.
-    updateLastModified: false,
   );
 
   /// Raw Go-compat `/status` URLs typed by hand in builds before the watch
@@ -519,12 +400,6 @@ class SettingStore extends SqliteStore {
   /// Whether use `rm -r` to delete directory on SFTP
   late final sftpRmrDir = propertyDefault('sftpRmrDir', false);
 
-  /// Whether use system's primary color as the app's primary color
-  late final useSystemPrimaryColor = propertyDefault(
-    'useSystemPrimaryColor',
-    false,
-  );
-
   /// Only valid on iOS / Android / Windows
   late final useBioAuth = propertyDefault('useBioAuth', false);
 
@@ -557,95 +432,10 @@ class SettingStore extends SqliteStore {
   /// Whether collapse UI items by default
   late final collapseUIDefault = propertyDefault('collapseUIDefault', true);
 
-  /// Terminal AI helper configuration, as one row.
-  ///
-  /// Six keys before this. See [AskAiConfig] for what moved and why; the
-  /// per-field names below are [FieldProp]s onto it, so a caller reads and
-  /// writes one field with one field's type and hears about one field's
-  /// changes.
-  ///
-  /// One row is also one entry in `lastUpdateTs`, and sync resolves per entry.
-  /// So two devices editing *different* fields between syncs no longer both
-  /// win: the later write takes the whole object, and the other device's field
-  /// goes back to what this one had. That was per field before, and it is the
-  /// price of the grouping. It is the same trade [agentShell] makes, and the
-  /// reason to accept it is that these are provider settings changed on one
-  /// device at a time, not records edited in parallel.
-  late final askAi = propertyDefault<AskAiConfig>(
-    'askAi',
-    const AskAiConfig(),
-    fromObj: (raw) => raw is Map
-        ? AskAiConfig.fromJson(Map<String, dynamic>.from(raw))
-        : null,
-    toObj: (val) => val?.toJson(),
-  );
-
-  late final askAiBaseUrl = FieldProp<AskAiConfig, String>(
-    askAi,
-    'baseUrl',
-    read: (c) => c.baseUrl,
-    write: (c, v) => c.copyWith(baseUrl: v),
-  );
-  late final askAiApiKey = FieldProp<AskAiConfig, String>(
-    askAi,
-    'apiKey',
-    read: (c) => c.apiKey,
-    write: (c, v) => c.copyWith(apiKey: v),
-  );
-  late final askAiModel = FieldProp<AskAiConfig, String>(
-    askAi,
-    'model',
-    read: (c) => c.model,
-    write: (c, v) => c.copyWith(model: v),
-  );
-  late final askAiProtocol = FieldProp<AskAiConfig, String>(
-    askAi,
-    'protocol',
-    read: (c) => c.protocol,
-    write: (c, v) => c.copyWith(protocol: v),
-  );
-  late final askAiAutoRunSafeCommands = FieldProp<AskAiConfig, bool>(
-    askAi,
-    'autoRunSafeCommands',
-    read: (c) => c.autoRunSafeCommands,
-    write: (c, v) => c.copyWith(autoRunSafeCommands: v),
-  );
-
-  /// Enter sends the prompt and Shift+Enter starts a line. Off swaps them: a
-  /// line break is the plain key, and sending is the modifier or the button.
-  late final askAiSendOnEnter = FieldProp<AskAiConfig, bool>(
-    askAi,
-    'sendOnEnter',
-    read: (c) => c.sendOnEnter,
-    write: (c, v) => c.copyWith(sendOnEnter: v),
-  );
-
-  /// Percentage of the model's context at which the conversation is
-  /// summarised. See [AskAiConfig.compactAtPercent].
-  late final askAiCompactAtPercent = FieldProp<AskAiConfig, int>(
-    askAi,
-    'compactAtPercent',
-    read: (c) => c.compactAtPercent,
-    write: (c, v) => c.copyWith(compactAtPercent: v),
-  );
-
-  /// What a model holds, where the shipped table is wrong about it, keyed by
-  /// endpoint and model. See [AskAiConfig.contextOverrides].
-  late final askAiContextOverrides = FieldProp<AskAiConfig, Map<String, int>>(
-    askAi,
-    'contextOverrides',
-    read: (c) => c.contextOverrides,
-    write: (c, v) => c.copyWith(contextOverrides: v),
-  );
-
-  /// Whether [askAiBaseUrl] may be plain `http` to something other than
-  /// loopback. See [AskAiConfig.allowInsecure].
-  late final askAiAllowInsecure = FieldProp<AskAiConfig, bool>(
-    askAi,
-    'allowInsecure',
-    read: (c) => c.allowInsecure,
-    write: (c, v) => c.copyWith(allowInsecure: v),
-  );
+  /// Whether a command the Agent proposes may run on a *server* without being
+  /// asked, when it is clearly read-only — see `AskAiCommand.canAutoRun`.
+  /// Running on this device is [agentLocalExec], and never runs unasked.
+  late final agentAutoRunSafe = propertyDefault('agentAutoRunSafe', false);
 
   /// Whether the Agent may run commands on this device.
   ///
@@ -654,13 +444,11 @@ class SettingStore extends SqliteStore {
   /// stores, private keys and keychain live, and nobody opted into a model
   /// touching those by adding a server.
   ///
-  /// Auto-running stays off here whatever [askAiAutoRunSafeCommands] says —
-  /// that setting is about servers. See `AskAiCommand.canAutoRun`.
+  /// Auto-running stays off here whatever [agentAutoRunSafe] says — that
+  /// setting is about servers. See `AskAiCommand.canAutoRun`.
   ///
-  /// Its own key, and outside [askAi] on purpose: that group is which provider
-  /// to talk to, and this is what the app will let the answer do to this
-  /// machine. A restore that carried a provider's configuration across should
-  /// not carry that with it.
+  /// Device-local — see [deviceLocalKeys]: this is what the app will let a
+  /// model do to this machine, and a restore should not carry it.
   late final agentLocalExec = propertyDefault('agentLocalExec', false);
 
   /// Settings that describe *this device* rather than a preference worth
@@ -764,11 +552,9 @@ class SettingStore extends SqliteStore {
     true,
   );
 
-  /// Whether to use a two-column server page on desktop.
-  late final doubleColumnServersPage = propertyDefault(
-    'doubleColumnServersPage',
-    true,
-  );
+  /// Whether the strip above the server list is shown: the overview over the
+  /// grid, and the row of servers it turns into over an open one.
+  late final serverOverview = propertyDefault('serverOverview', true);
 
   /// Remerber pwd in memory
   /// Used for [DialogX.showPwdDialog]
@@ -809,11 +595,6 @@ class SettingStore extends SqliteStore {
 
   /// Hide title bar on desktop
   late final hideTitleBar = propertyDefault('hideTitleBar', isDesktop);
-
-  /// Whether to display CPU usage with the legacy progress-bar view.
-  late final cpuViewAsProgress = propertyDefault('cpuViewAsProgress', false);
-
-  late final displayCpuIndex = propertyDefault('displayCpuIndex', true);
 
   late final editorSoftWrap = propertyDefault('editorSoftWrap', isIOS);
 
@@ -887,23 +668,6 @@ class SettingStore extends SqliteStore {
   /// Remote editor command used in the SSH terminal, such as `$EDITOR` or
   /// `vim`. Leave empty to use the local GUI editor.
   late final sftpEditor = propertyDefault('sftpEditor', '');
-
-  /// Preferred terminal emulator command on desktop.
-  late final desktopTerminal = propertyDefault(
-    'desktopTerminal',
-    'x-terminal-emulator',
-  );
-
-  /// Whether to copy the login password before launching a desktop SSH client.
-  late final desktopSshAutoCopyPassword = propertyDefault(
-    'desktopSshAutoCopyPassword',
-    false,
-  );
-
-  /// SSH connection mode on desktop.
-  /// false = built-in (dartssh2 + xterm)
-  /// true = system SSH (launch ssh command in external terminal)
-  late final sshConnectionMode = propertyDefault('sshConnectionMode', false);
 
   // `fgService` was here: a second switch for the Android foreground service,
   // whose tile was commented out of the settings page long before that page
@@ -1245,6 +1009,20 @@ class SettingStore extends SqliteStore {
       'geoShards',
       'geoShardEndpoint',
       'geoCacheLimit',
+      // Server page options the current cards and detail page no longer read
+      // (the per-core CPU bars went with the last two).
+      'netViewType',
+      'serverTabPreferDiskAmount',
+      'doubleColumnServersPage',
+      'cpuViewAsProgress',
+      'displayCpuIndex',
+      // Opening a terminal in the system's own `ssh` instead of this app's:
+      // the switch, the password copied for it, and the Linux emulator it ran
+      // in. `SettingsFixupsMigration` still converts the first from an int,
+      // which is harmless once this has dropped it.
+      'sshConnectionMode',
+      'desktopSshAutoCopyPassword',
+      'desktopTerminal',
     ]) {
       remove(key, updateLastUpdateTsOnRemove: false);
     }
@@ -1294,7 +1072,8 @@ final class FloatShellProps {
     : mode = FieldProp<FloatShellConfig, String>(
         config,
         'mode',
-        read: (c) => c.mode,
+        // Empty for a panel never opened or closed.
+        read: (c) => c.mode ?? '',
         write: (c, v) => c.copyWith(mode: v),
       ),
       left = FieldProp<FloatShellConfig, double>(

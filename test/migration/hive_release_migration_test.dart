@@ -301,9 +301,9 @@ void main() {
           ]);
           expect(Stores.setting.detailCardDisabled.get(), ['temperature']);
 
-          // Stored by name in 1466 and still read by name — an index would have
-          // changed meaning silently.
-          expect(Stores.setting.netViewType.get().name, 'speed');
+          // Retired since: the value that release wrote is not carried into
+          // the new store, where a backup would keep exporting it.
+          expect(Stores.setting.get<Object>('netViewType'), isNull);
 
           // Still a setting, which is the only place anything reads them from.
           // Re-keyed onto the ids m004 hands out, so a fingerprint filed under
@@ -485,27 +485,21 @@ void main() {
       });
 
       test(
-        'the agent conversations come across when the release had them',
+        'the agent conversations are dropped, the Agent being fl_pi_llm now',
         () async {
           await Stores.init();
           await SchemaVersion.migrate(kSchemaMigrations);
-          final had = version == '1491';
-          final convs = Stores.agentConversation.fetchForServer('srv-key');
-          expect(
-            convs.length,
-            had ? 1 : 0,
-            reason: had
-                ? '1491 shipped the box, so its rows must arrive'
-                : 'the box does not exist in this release',
+          // 1491 shipped the box; m004 no longer carries it over and m031
+          // drops the tables it used to go to — see both.
+          final kv = SqliteDb.instance.select(
+            "SELECT count(*) AS n FROM kv WHERE store = 'agent_conversation';",
           );
-          if (had) {
-            expect(convs.single.title, '磁盘快满了');
-            expect(convs.single.items.length, 2);
-            expect(
-              Stores.agentConversation.activeConversationId('srv-key'),
-              'conv-1',
-            );
-          }
+          expect(kv.single['n'], 0);
+          final tables = SqliteDb.instance.select(
+            "SELECT name FROM sqlite_master WHERE type = 'table' "
+            "AND name LIKE 'agent_%conversation';",
+          );
+          expect(tables, isEmpty);
         },
       );
     });

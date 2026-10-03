@@ -9,86 +9,6 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
-  String get appearanceSettings => 'Aspetto';
-
-  @override
-  String get appearancePreset => 'Tema predefinito';
-
-  @override
-  String get appearanceThemeSchemaRange => 'Schema del tema supportato';
-
-  @override
-  String get appearanceThemeInstall => 'Installa tema';
-
-  @override
-  String get appearanceThemeStore => 'Negozio temi';
-
-  @override
-  String get appearanceInvalidTheme => 'Pacchetto tema o catalogo non valido';
-
-  @override
-  String get themeStoreRefreshFailed =>
-      'Impossibile leggere il catalogo dei temi.';
-
-  @override
-  String themeStoreDeleteTheme(String name) {
-    return 'Eliminare «$name»? I suoi file vengono rimossi da questo dispositivo. Se è il tema in uso, l\'app torna al tema predefinito.';
-  }
-
-  @override
-  String themeStoreUpdatedFmt(String ago) {
-    return 'aggiornato $ago';
-  }
-
-  @override
-  String get themeStoreUpdatedJustNow => 'aggiornato adesso';
-
-  @override
-  String get themeStoreSortInUse => 'In uso per primi';
-
-  @override
-  String themeStoreMakeOwnFmt(String doc) {
-    return 'Vuoi creare il tuo tema? Vedi [come crearne uno]($doc) — grazie per il tuo contributo!';
-  }
-
-  @override
-  String appearanceThemeNeedsNewerApp(String version) {
-    return 'È necessaria una versione più recente dell’app: $version';
-  }
-
-  @override
-  String get appearanceFontFamilies => 'Famiglie di caratteri dell’interfaccia';
-
-  @override
-  String get appearanceFontFamiliesTip =>
-      'Un nome per riga; i caratteri vengono provati in ordine.';
-
-  @override
-  String get appearanceFontImport =>
-      'Importa file di caratteri per l’interfaccia';
-
-  @override
-  String get appearanceGradient => 'Sfumatura';
-
-  @override
-  String get appearanceNoBackground => 'Nessuno sfondo';
-
-  @override
-  String get appearanceIcons => 'Icone nell’app';
-
-  @override
-  String get appearanceCorners => 'Angoli';
-
-  @override
-  String get appearanceCardCorners => 'Angoli delle schede';
-
-  @override
-  String get appearanceTileCorners => 'Angoli degli elementi';
-
-  @override
-  String get appearanceButtonCorners => 'Angoli dei pulsanti';
-
-  @override
   String get crashCollect => 'Dati diagnostici';
 
   @override
@@ -154,110 +74,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get askAi => 'Chiedi all\'IA';
 
   @override
-  String get askAiAwaitingResponse => 'In attesa della risposta dell\'IA...';
-
-  @override
-  String get askAiEndpointTip =>
-      'Un dominio o un URL completo. Il percorso viene completato dal protocollo scelto.';
-
-  @override
-  String get askAiProtocolTip => 'Auto prova Responses, poi Chat Completions.';
-
-  @override
-  String get askAiCommandInserted => 'Comando inserito nel terminale';
-
-  @override
-  String askAiConfigMissing(String fields) {
-    return 'Configura $fields in Impostazioni.';
-  }
-
-  @override
-  String get askAiDisclaimer =>
-      'L\'IA potrebbe essere errata. Rivedi attentamente prima di applicare.';
-
-  @override
   String get askAiInsertTerminal => 'Inserisci nel terminale';
 
   @override
-  String get askAiNoResponse => 'Nessuna risposta';
-
-  @override
   String get remoteDesktop => 'Desktop remoto';
-
-  @override
-  String get askAiAgentWelcome => 'Cosa facciamo su questo server?';
-
-  @override
-  String get askAiAgentPromptHint =>
-      'Chiedi all\'Agente di esaminare o sistemare qualcosa...';
-
-  @override
-  String get askAiAnalyzeSelectionPrompt =>
-      'Analizza l’output selezionato del terminale e spiega cosa è successo';
-
-  @override
-  String get askAiTerminalContext => 'Contesto del terminale';
-
-  @override
-  String get askAiReviewNeeded => 'Da rivedere';
-
-  @override
-  String get askAiReviewAction => 'Rivedi il comando proposto';
-
-  @override
-  String get askAiReviewBeforeContinuing =>
-      'Prima esamina o rifiuta il suggerimento attuale';
-
-  @override
-  String get askAiApproveRun => 'Approva ed esegui';
-
-  @override
-  String get askAiDecline => 'Rifiuta';
-
-  @override
-  String get askAiActionDeclined => 'Il comando proposto è stato rifiutato.';
-
-  @override
-  String get askAiInterrupted => 'La risposta dell\'Agente è stata interrotta.';
-
-  @override
-  String get askAiResend => 'Invia di nuovo';
-
-  @override
-  String get askAiResendTip =>
-      'Tutto ciò che segue questo messaggio verrà eliminato: risposte, comandi e relativi risultati.';
-
-  @override
-  String get askAiDeleteTip =>
-      'Questo messaggio e tutto ciò che lo segue verranno eliminati: risposte, comandi e relativi risultati.';
-
-  @override
-  String get askAiModelTable => 'Tabella dei modelli';
-
-  @override
-  String get askAiModelTableTip =>
-      'Dimensioni del contesto per nome del modello, da models.dev. Una tabella è inclusa nell\'app; tocca per scaricarne una più recente.';
-
-  @override
-  String get askAiContextFallback => 'non presente nella tabella';
-
-  @override
-  String get askAiCompactAt => 'Riassumi al';
-
-  @override
-  String get askAiCompactAtTip =>
-      'Quanto può riempirsi il contesto del modello prima che i turni precedenti vengano riassunti. Un valore più basso fa perdere prima i dettagli; uno più alto aumenta il rischio che il modello rifiuti una richiesta.';
-
-  @override
-  String get askAiContextTokens => 'Dimensioni del contesto';
-
-  @override
-  String get askAiContextTokensTip =>
-      'Il numero di token che questo modello può contenere. La modalità automatica lo cerca per nome; imposta un numero se il provider offre una finestra più breve di quella supportata dal modello.';
-
-  @override
-  String get askAiConversationCompacted =>
-      'I messaggi precedenti sono stati riassunti per poter continuare la conversazione.';
 
   @override
   String get askAiRiskReadOnly => 'Sola lettura';
@@ -272,24 +92,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get askAiRiskDestructive => 'Rischio alto';
 
   @override
-  String get askAiHighRiskConfirmTitle =>
-      'Eseguire un comando ad alto rischio?';
-
-  @override
-  String get askAiHighRiskConfirmBody =>
-      'Questo comando può fare modifiche difficili da annullare. Controllalo bene.';
-
-  @override
-  String get askAiNoCommandOutput => 'Il comando è terminato senza output.';
-
-  @override
-  String get askAiOutputTruncated =>
-      'L\'output lungo è stato troncato prima di essere restituito all\'Agente.';
-
-  @override
-  String get askAiAutoApproved => 'Approvato automaticamente';
-
-  @override
   String get askAiAutoRunSafeCommands =>
       'Esegui automaticamente i comandi di sola lettura';
 
@@ -298,38 +100,10 @@ class AppLocalizationsIt extends AppLocalizations {
       'Viene eseguito solo se modello e controllo locale lo dicono di sola lettura';
 
   @override
-  String get askAiSendOnEnter => 'Invio invia';
-
-  @override
-  String get askAiSendOnEnterTip =>
-      'Invio invia, Maiusc+Invio a capo. Disattivato: Invio a capo, Cmd/Ctrl+Invio invia.';
-
-  @override
-  String get askAiApiKeyOptional =>
-      'Lascia vuoto per locale o senza autenticazione';
-
-  @override
-  String get askAiAllowInsecure => 'Consenti HTTP non crittografato';
-
-  @override
-  String get askAiAllowInsecureTip =>
-      'Consente connessioni http:// ai modelli self-hosted su indirizzi diversi da localhost. La chiave API e l’eventuale contesto del terminale vengono inviati senza crittografia; localhost non è interessato.';
-
-  @override
-  String get askAiInsecureEndpoint =>
-      'Questo endpoint usa http://. Attiva «Consenti HTTP non crittografato» nelle impostazioni AI per utilizzarlo.';
-
-  @override
   String get askAiHistory => 'Cronologia conversazioni';
 
   @override
   String get askAiNewConversation => 'Nuova conversazione';
-
-  @override
-  String get askAiNoHistory => 'Nessuna conversazione salvata';
-
-  @override
-  String get askAiNoHistoryMessages => 'Ancora nessun messaggio';
 
   @override
   String get askAiUntitledConversation => 'Senza titolo';
@@ -343,29 +117,6 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get askAiDeleteConversationTip =>
       'La elimina da questo dispositivo. Non annullabile.';
-
-  @override
-  String get askAiClearHistoryTitle =>
-      'Cancellare la cronologia dell\'Agente di questo server?';
-
-  @override
-  String get askAiClearHistoryTip =>
-      'Tutte le conversazioni Agent salvate per questo server saranno eliminate.';
-
-  @override
-  String get askAiRestoredReview =>
-      'Questo comando viene dalla cronologia. Riesaminalo';
-
-  @override
-  String get agentWelcome => 'Cosa facciamo sui tuoi server?';
-
-  @override
-  String get agentWelcomeTip =>
-      'Lascia che l’Agent diagnostichi un problema o svolga un’attività';
-
-  @override
-  String get agentPromptHint =>
-      'Chiedi all\'Agente di esaminare o gestire i tuoi server...';
 
   @override
   String get agentNoHistory =>
@@ -387,14 +138,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get agentToolWriteFile => 'Scrivi file';
-
-  @override
-  String get agentToolFailed => 'Esecuzione dello strumento non riuscita.';
-
-  @override
-  String agentToolCallsFmt(int count) {
-    return '$count chiamate di strumento';
-  }
 
   @override
   String get floatOverTabs => 'In sovrimpressione sulle altre schede';
@@ -679,10 +422,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get copyPath => 'Copia percorso';
 
   @override
-  String get cpuViewAsProgressTip =>
-      'Visualizza l\'utilizzo di ogni CPU in stile barra di avanzamento (stile vecchio)';
-
-  @override
   String get customCmd => 'Comandi personalizzati';
 
   @override
@@ -691,10 +430,6 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get deleteDirRecursive =>
       'Elimina la cartella e tutto il suo contenuto';
-
-  @override
-  String get desktopTerminalTip =>
-      'Comando utilizzato per aprire l\'emulatore di terminale quando si avviano sessioni SSH.';
 
   @override
   String get dirEmpty => 'Assicurati che la cartella sia vuota.';
@@ -715,9 +450,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get diskHealth => 'Salute disco';
 
   @override
-  String get displayCpuIndex => 'Mostra indice CPU';
-
-  @override
   String dl2Local(String fileName) {
     return 'Scaricare $fileName in locale?';
   }
@@ -735,13 +467,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get dockerStatistics => 'Statistiche Docker';
-
-  @override
-  String get doubleColumnMode => 'Modalità a doppia colonna';
-
-  @override
-  String get doubleColumnTip =>
-      'Questa opzione abilita solo la funzione, se può essere effettivamente abilitata dipende dalla larghezza del dispositivo';
 
   @override
   String get editVirtKeys => 'Tasti virtuali';
@@ -962,13 +687,6 @@ class AppLocalizationsIt extends AppLocalizations {
       'Configura SSH, un agente monitor, o entrambi';
 
   @override
-  String get preferredTransport => 'Prova per prima';
-
-  @override
-  String get preferredTransportTip =>
-      'Da dove viene letto lo stato e quale connessione apre per prima un comando. L\'altra resta disponibile.';
-
-  @override
   String get keepForeground => 'Mantieni l\'app in primo piano!';
 
   @override
@@ -1013,18 +731,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get maxRetryCount => 'Numero di riconnessioni del server';
 
   @override
-  String mismatchSystem(String system) {
-    return 'Sistema non corrispondente: $system';
-  }
-
-  @override
   String get mirror => 'Mirror';
 
   @override
   String get needRestart => 'L\'app deve essere riavviata';
-
-  @override
-  String get netViewType => 'Tipo di visualizzazione rete';
 
   @override
   String get newContainer => 'Nuovo container';
@@ -1032,9 +742,6 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get noConnectionStatsData =>
       'Nessun dato di statistiche di connessione';
-
-  @override
-  String get noLineChart => 'Non usare grafici a linee';
 
   @override
   String get noPrivateKeyTip =>
@@ -1053,9 +760,6 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get parseContainerStatsTip =>
       'L\'analisi dello stato di occupazione di Docker è relativamente lenta.';
-
-  @override
-  String get preferDiskAmount => 'Priorità visualizzazione capacità disco';
 
   @override
   String get privateKey => 'Chiave privata';
@@ -1313,6 +1017,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get serverOrder => 'Ordine server';
 
   @override
+  String get serverOverview => 'Panoramica dei server';
+
+  @override
+  String get serverOverviewTip =>
+      'Mostra il riepilogo in cima all\'elenco dei server e la barra dei server sopra un server aperto';
+
+  @override
   String get serverTabEmpty => 'Ancora nessun server';
 
   @override
@@ -1438,16 +1149,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String sshConfigAllExist(int duplicateCount) {
     return 'Tutti i server esistono già ($duplicateCount duplicati trovati)';
   }
-
-  @override
-  String get sshConnectionModeTip =>
-      'Integrato: usa il terminale dell\'app. SSH di sistema: avvia il comando ssh di sistema in un terminale esterno.';
-
-  @override
-  String get sshConnectionModeUseBuiltin => 'Usa il terminale integrato';
-
-  @override
-  String get sshConnectionModeUseSystem => 'Usa l\'SSH di sistema';
 
   @override
   String sshConfigDuplicatesSkipped(int duplicateCount) {
@@ -1582,9 +1283,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get used => 'Usato';
-
-  @override
-  String get view => 'Visualizza';
 
   @override
   String get viewDetails => 'Visualizza dettagli';
@@ -1731,13 +1429,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tmuxSessionName => 'Nome della sessione';
 
   @override
-  String get tmuxExistingSessions => 'Sessioni esistenti';
-
-  @override
   String get tmuxNewSession => 'Nuova sessione';
-
-  @override
-  String get tmuxWindows => 'Finestre';
 
   @override
   String get tmuxNewWindow => 'Nuova finestra';
@@ -1757,31 +1449,7 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String tmuxPaneCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count riquadri',
-      one: '1 riquadro',
-    );
-    return '$_temp0';
-  }
-
-  @override
   String get tmuxAttached => 'Collegata';
-
-  @override
-  String get tmuxActive => 'Attiva';
-
-  @override
-  String tmuxActiveAt(String time) {
-    return 'attiva: $time';
-  }
-
-  @override
-  String tmuxAttachedAt(String time) {
-    return 'collegata: $time';
-  }
 
   @override
   String get tmuxSkip => 'Salta';
@@ -2068,9 +1736,6 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get bmcStaleWrite =>
       'Il BMC è cambiato durante la scrittura. Riprova.';
-
-  @override
-  String get send => 'Invia';
 
   @override
   String get privacyBlur => 'Privacy in background';
@@ -2414,6 +2079,20 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String funcNeedsAgentGrant(String func, String setting) {
+    return '$func richiede di attivare $setting nel Monitor agent.';
+  }
+
+  @override
+  String funcNeedsAgentUpdate(String func) {
+    return '$func richiede un Monitor agent più recente.';
+  }
+
+  @override
+  String get portForwardRemoteNeedsAgent =>
+      'Gli inoltri remoti tramite il Monitor agent richiedono una versione più recente: aggiornalo sul server.';
+
+  @override
   String get rangeLive => 'Dal vivo';
 
   @override
@@ -2451,6 +2130,70 @@ class AppLocalizationsIt extends AppLocalizations {
   String agentRetentionFmt(String kept) {
     return 'L\'agent conserva $kept';
   }
+
+  @override
+  String get agentServerTools => 'Strumenti server';
+
+  @override
+  String get agentServerToolsTip =>
+      'Eseguire comandi e leggere o scrivere file sui tuoi server, collegarsi ad altri host via SSH e usare le azioni di ServerBox.';
+
+  @override
+  String get agentTerminalTools => 'Terminale';
+
+  @override
+  String get agentTerminalToolsTip =>
+      'Nelle chat del terminale: leggere ciò che mostra ed eseguire comandi sul suo server.';
+
+  @override
+  String get agentToolTerminalScreen => 'Leggi lo schermo';
+
+  @override
+  String get agentProviders => 'Provider';
+
+  @override
+  String get agentProvidersTip =>
+      'Chiavi API, modelli e il modello di una nuova chat';
+
+  @override
+  String get agentTools => 'Strumenti';
+
+  @override
+  String get agentToolsTip => 'Cosa può usare l\'Agent e i suoi server MCP';
+
+  @override
+  String get agentSnippetToolsTip =>
+      'Elencare, aggiungere, modificare ed eliminare gli snippet. Le modifiche vengono chieste.';
+
+  @override
+  String get agentVirtToolsTip =>
+      'Leggere le VM e i container caricati dalla scheda Virtualizzazione.';
+
+  @override
+  String get agentBenchmarkToolsTip =>
+      'Leggere i risultati dei benchmark e, con la tua approvazione, avviarne o fermarne uno.';
+
+  @override
+  String get agentRemoteDesktopToolsTip =>
+      'Elencare i profili desktop remoto e, con la tua approvazione, connettere o disconnettere.';
+
+  @override
+  String get agentSkills => 'Skills';
+
+  @override
+  String get agentSkillsTip =>
+      'Istruzioni per compiti specifici, installate da GitHub o da un link';
+
+  @override
+  String get agentPermissions => 'Permessi';
+
+  @override
+  String get agentEmptyHint =>
+      'Chiedi dei tuoi server, o chiedi all\'Agent di fare qualcosa su di essi.';
+
+  @override
+  String get agentTerminalEmptyHint =>
+      'Chiedi di questo server. L\'Agent può leggere questo terminale ed eseguire comandi qui.';
 
   @override
   String oldestSampleFmt(String time) {
@@ -2653,34 +2396,8 @@ class AppLocalizationsIt extends AppLocalizations {
       'Possono essere attivi entrambi. L\'ordine è l\'ordine in cui vengono contattati.';
 
   @override
-  String transportOrderFmt(String first, String second) {
-    return 'Trascina per cambiare l\'ordine. $first viene contattato per primo; se non risponde, $second porta avanti la sessione da solo.';
-  }
-
-  @override
-  String transportOnlyFmt(String name) {
-    return 'È attivo solo $name, quindi non c\'è nulla su cui ripiegare.';
-  }
-
-  @override
   String get transportNoneOn =>
       'Sono entrambi disattivati: questo server non può essere connesso.';
-
-  @override
-  String get transportOffKept =>
-      'disattivato — impostazioni conservate, mai contattato';
-
-  @override
-  String get transportDialledFirst => 'contattato per primo';
-
-  @override
-  String get transportFallback => 'ripiego';
-
-  @override
-  String get transportOnlyMethod => 'unico metodo';
-
-  @override
-  String get transportOff => 'disattivato';
 
   @override
   String get thisDevice => 'Questo dispositivo';
@@ -2728,10 +2445,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get optional => 'Facoltativo';
-
-  @override
-  String get optionalTip =>
-      'Nulla qui serve per connettersi. Aprine uno e i suoi campi prendono il posto del modulo.';
 
   @override
   String get sshAdvanced => 'SSH avanzate';
@@ -3145,6 +2858,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get remoteDesktopFullScreen => 'Schermo intero';
 
   @override
+  String get remoteDesktopExitFullScreen => 'Esci da schermo intero';
+
+  @override
   String get remoteDesktopCloseSession => 'Chiudi sessione';
 
   @override
@@ -3242,6 +2958,18 @@ class AppLocalizationsIt extends AppLocalizations {
   String get remoteDesktopUsernameRequired => 'Inserisci il nome utente RDP.';
 
   @override
+  String get remoteDesktopNameInvalid =>
+      'Il nome del profilo può avere al massimo 64 caratteri e non può contenere a capo.';
+
+  @override
+  String get remoteDesktopHostInvalid =>
+      'L’host di destinazione non può contenere spazi o a capo.';
+
+  @override
+  String get remoteDesktopCredentialInvalid =>
+      'Nome utente e dominio possono avere al massimo 256 caratteri e non possono contenere a capo.';
+
+  @override
   String get remoteDesktopVncPasswordAscii =>
       'Le password VNC classiche possono contenere solo caratteri ASCII.';
 
@@ -3303,11 +3031,6 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String remoteDesktopCertificateValidity(String start, String end) {
     return 'Valido: $start – $end';
-  }
-
-  @override
-  String appearanceThemeModeLocked(String mode) {
-    return 'Questo tema supporta solo $mode. Seleziona un altro tema per cambiare modalità.';
   }
 
   @override
@@ -3577,9 +3300,6 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get reopen => 'Riapri';
-
-  @override
   String get virtSnapshots => 'Snapshot';
 
   @override
@@ -3752,9 +3472,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get virtCreateNameTaken => 'Esiste già un guest con questo nome.';
-
-  @override
-  String get virtCreateVmidInvalid => 'Da 100 a 999999999.';
 
   @override
   String get virtCreateVmidTaken => 'Questo VMID è occupato.';
@@ -4260,9 +3977,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get virtHwEfiStorage => 'Dove vanno le variabili EFI';
-
-  @override
-  String get virtHwTpmStorage => 'Dove va lo stato TPM';
 
   @override
   String virtHwSwitchFirmwareAsk(String guest, String firmware) {
@@ -4914,9 +4628,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get virtSnapshotFormInternal => 'Interna (nell\'immagine)';
 
   @override
-  String get virtSnapshotForm => 'Tipo';
-
-  @override
   String get virtSnapshotOverlayPool => 'Pool overlay';
 
   @override
@@ -4944,11 +4655,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get virtSnapshotChainBase => 'Immagine di base';
 
   @override
-  String virtSnapshotChainRaw(String format) {
-    return 'Uno snapshot esterno richiede un disco qcow2. Questo è $format.';
-  }
-
-  @override
   String get virtSnapshotNoSupport =>
       'Lo storage del guest non supporta gli snapshot, quindi non se ne può creare nessuno.';
 
@@ -4969,9 +4675,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get virtSnapshotDiffShow => 'Confronta con ora';
-
-  @override
-  String get virtSnapshotDiffGroup => 'Modificato';
 
   @override
   String get virtSnapshotDiffGroupCpu => 'Processore';
@@ -5053,19 +4756,10 @@ class AppLocalizationsIt extends AppLocalizations {
       'Un modello viene eseguito solo dopo essere stato clonato.';
 
   @override
-  String get virtCloneStorage => 'Storage di destinazione';
-
-  @override
   String get virtCloneStorageSame => 'Come l\'origine';
 
   @override
-  String get virtCloneNode => 'Nodo di destinazione';
-
-  @override
   String get virtCloneNodeSame => 'Come l\'origine';
-
-  @override
-  String get virtClonePool => 'Pool di destinazione';
 
   @override
   String get virtCloneStorageContent =>
@@ -5091,9 +4785,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get virtBackupJobNew => 'Nuova attività';
-
-  @override
-  String get virtBackupJobEdit => 'Modifica attività';
 
   @override
   String get virtBackupJobRun => 'Esegui ora';
@@ -5147,12 +4838,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get virtBackupMail => 'Notifica';
 
   @override
-  String get virtBackupMailAlways => 'Sempre';
-
-  @override
-  String get virtBackupMailFailure => 'In caso di errore';
-
-  @override
   String get virtBackupNotesTemplate => 'Note del backup';
 
   @override
@@ -5166,9 +4851,6 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get virtBackupPruneTip =>
       'Le opzioni di conservazione di PVE, es. keep-last=7,keep-daily=4. Vuoto: quelle dello storage o del nodo.';
-
-  @override
-  String get virtBackupNextRun => 'Prossima esecuzione';
 
   @override
   String get virtBackupJobNode => 'Nodo';
@@ -5203,9 +4885,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get virtBackupRestoreStorageSame => 'Come nel backup';
-
-  @override
-  String get virtBackupModeSnapshotTip => 'snapshot · senza fermo';
 
   @override
   String get virtCloneStorageMissing =>
@@ -5395,4 +5074,378 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get copyLink => 'Copia link';
+
+  @override
+  String funcNeedsAgentPermission(String func) {
+    return 'Il tuo account su questo Monitor agent non ha il permesso per $func. Chiedi all\'amministratore dell\'agent.';
+  }
+
+  @override
+  String funcNeedsAgentHttps(String func) {
+    return '$func richiede HTTPS verso questo Monitor agent, oppure HTTP consentito sia sull\'agent sia in questa app.';
+  }
+
+  @override
+  String funcNeedsAgentSetup(String func) {
+    return '$func non è configurato su questo Monitor agent; deve configurarlo il suo gestore.';
+  }
+
+  @override
+  String get monitorFilesReadOnly =>
+      'Sola lettura: questo account può sfogliare i file dell\'agent ma non modificarli.';
+
+  @override
+  String get monitorAccess => 'Accesso';
+
+  @override
+  String get monitorAccounts => 'Account';
+
+  @override
+  String get monitorRoles => 'Ruoli';
+
+  @override
+  String get monitorRole => 'Ruolo';
+
+  @override
+  String get monitorChangePassword => 'Cambia password';
+
+  @override
+  String get monitorNewPassword => 'Nuova password';
+
+  @override
+  String get monitorCurrentPassword => 'La tua password attuale';
+
+  @override
+  String get monitorReauthTip =>
+      'Modificare gli accessi richiede di nuovo la tua password.';
+
+  @override
+  String get monitorPasswordTooShort => 'Almeno 8 caratteri';
+
+  @override
+  String get monitorPasswordMismatch => 'Le password non coincidono';
+
+  @override
+  String get monitorErrReauth => 'La password era errata.';
+
+  @override
+  String get monitorErrLastAdmin =>
+      'L\'agent ha bisogno di almeno un account amministratore.';
+
+  @override
+  String get monitorErrConflict => 'Esiste già o è ancora in uso.';
+
+  @override
+  String get monitorErrForbidden => 'Solo un amministratore può farlo.';
+
+  @override
+  String get monitorRoleNameRule =>
+      'Lettere minuscole, cifre, - e _, fino a 32 caratteri';
+
+  @override
+  String get monitorGrantShell => 'Shell e comandi';
+
+  @override
+  String get monitorGrantShellTip =>
+      'Terminale, processi, servizi, container, snippet, alimentazione — con l\'account dell\'agent';
+
+  @override
+  String get monitorGrantSshTerminal => 'Terminale del pannello via SSH';
+
+  @override
+  String get monitorGrantVirt => 'Virtualizzazione';
+
+  @override
+  String get monitorGrantVirtTip =>
+      'Proxmox VE, libvirt e BMC raggiunti dall’agente, nel suo pannello web';
+
+  @override
+  String get monitorGrantFiles => 'File';
+
+  @override
+  String get monitorGrantConnect => 'Connessioni in uscita';
+
+  @override
+  String get monitorGrantConnectTip =>
+      'Inoltri di porte locali e dinamici, desktop remoto';
+
+  @override
+  String get monitorGrantConnectAllow =>
+      'Destinazioni consentite (IP o CIDR, opzionalmente :porta o :da-a; una per riga, vuoto = ovunque)';
+
+  @override
+  String get monitorGrantListen => 'Ascolta sul server';
+
+  @override
+  String get monitorGrantListenTip => 'Inoltri di porte remoti';
+
+  @override
+  String get monitorGrantListenPublic => 'Indirizzi non loopback';
+
+  @override
+  String get monitorGrantPorts => 'Intervallo di porte (vuoto = qualsiasi)';
+
+  @override
+  String get monitorGrantOff => 'Disattivato';
+
+  @override
+  String get monitorBuiltin => 'Predefinito';
+
+  @override
+  String get monitorAdminRoleTip =>
+      'Gestisce account, ruoli e impostazioni dell\'agent';
+
+  @override
+  String get monitorYou => 'Tu';
+
+  @override
+  String get monitorNoAccessToSettings =>
+      'Solo un amministratore può modificare le impostazioni di questo agent.';
+
+  @override
+  String get monitorPasswordNotSaved =>
+      'La password è stata cambiata sull\'agent, ma l\'app non è riuscita a salvarla. Aggiorna la password Monitor nelle impostazioni di questo server.';
+
+  @override
+  String get firewall => 'Firewall';
+
+  @override
+  String get firewallLinuxOnly =>
+      'La gestione del firewall supporta i server Linux con ufw o firewalld.';
+
+  @override
+  String get firewallNeedsRoot =>
+      'Leggere le regole del firewall richiede root. Inserisci la password di sudo per continuare.';
+
+  @override
+  String get firewallIncoming => 'In entrata';
+
+  @override
+  String get firewallOutgoing => 'In uscita';
+
+  @override
+  String get firewallRouted => 'Inoltrato';
+
+  @override
+  String get firewallDefaultPolicy => 'Criterio predefinito';
+
+  @override
+  String get firewallLogging => 'Registrazione';
+
+  @override
+  String get firewallRules => 'Regole';
+
+  @override
+  String get firewallRule => 'Regola';
+
+  @override
+  String get firewallAddRule => 'Aggiungi regola';
+
+  @override
+  String get firewallAnywhere => 'Ovunque';
+
+  @override
+  String firewallFromFmt(String source) {
+    return 'da $source';
+  }
+
+  @override
+  String get firewallFrom => 'Da';
+
+  @override
+  String get firewallTo => 'A';
+
+  @override
+  String get firewallProtocol => 'Protocollo';
+
+  @override
+  String get firewallInterface => 'Interfaccia';
+
+  @override
+  String get firewallComment => 'Commento';
+
+  @override
+  String get firewallAppProfile => 'Profilo applicazione';
+
+  @override
+  String get firewallPrepend => 'Metti prima di tutte le altre regole';
+
+  @override
+  String get firewallIpv6Off =>
+      'IPv6 è disattivato (IPV6=no): le regole v6 non vengono caricate.';
+
+  @override
+  String get firewallReload => 'Ricarica';
+
+  @override
+  String get firewallNothingMatched =>
+      'Inserisci una porta, un profilo applicazione, un indirizzo o un\'interfaccia.';
+
+  @override
+  String get firewallInvalidPort =>
+      'Porta non valida. Usa 22, 80,443 o 6000:6010.';
+
+  @override
+  String get firewallTooManyPorts =>
+      'Al massimo 15 porte; un intervallo conta come due.';
+
+  @override
+  String get firewallPortsNeedProtocol =>
+      'Un elenco o un intervallo di porte richiede tcp o udp.';
+
+  @override
+  String get firewallInvalidAddress =>
+      'Indirizzo non valido. Usa un indirizzo IP o una rete come 192.168.1.0/24.';
+
+  @override
+  String get firewallMixedIpVersions =>
+      'Da e A devono essere entrambi IPv4 o entrambi IPv6.';
+
+  @override
+  String get firewallInvalidInterface => 'Nome dell\'interfaccia non valido.';
+
+  @override
+  String get firewallInvalidComment =>
+      'Il commento non può contenere \' o interruzioni di riga.';
+
+  @override
+  String get firewallInterfaceIn => 'Interfaccia in entrata';
+
+  @override
+  String get firewallInterfaceOut => 'Interfaccia in uscita';
+
+  @override
+  String get firewallSourcePort => 'Porta di origine';
+
+  @override
+  String get firewallMoreOptions => 'Altre opzioni';
+
+  @override
+  String get firewallNoneInstalled =>
+      'Né ufw né firewalld sono installati su questo server. Installane uno con il gestore di pacchetti del sistema, ad esempio `apt install ufw` o `dnf install firewalld`.';
+
+  @override
+  String get firewallKeepAccess =>
+      'Mantieni prima aperte le porte di questa app';
+
+  @override
+  String firewallWillRefuseFmt(String access) {
+    return '$access: le nuove connessioni di questa app verranno rifiutate. La connessione in uso resta attiva finché non cade.';
+  }
+
+  @override
+  String firewallMayRefuseFmt(String access) {
+    return '$access: le nuove connessioni di questa app potrebbero essere rifiutate. Dipende dall\'indirizzo o dall\'interfaccia da cui arrivano, che questa app non può conoscere.';
+  }
+
+  @override
+  String firewallRateLimitedFmt(String access) {
+    return '$access: le connessioni saranno limitate. Un indirizzo che ne apre 6 o più in 30 secondi viene rifiutato, e questa app può riconnettersi con quella frequenza.';
+  }
+
+  @override
+  String get firewallConflict =>
+      'ufw e firewalld sono entrambi attivi. Entrambi scrivono le regole del kernel, e l\'ultimo caricato decide cosa passa.';
+
+  @override
+  String get firewallDefaultZone => 'Zona predefinita';
+
+  @override
+  String get firewallZone => 'Zona';
+
+  @override
+  String get firewallTarget => 'Target';
+
+  @override
+  String get firewallMasquerade => 'Masquerade';
+
+  @override
+  String get firewallServices => 'Servizi';
+
+  @override
+  String get firewallPorts => 'Porte';
+
+  @override
+  String get firewallSources => 'Origini';
+
+  @override
+  String get firewallInterfaces => 'Interfacce';
+
+  @override
+  String get firewallRichRules => 'Rich rules';
+
+  @override
+  String get firewallForwardPorts => 'Porte inoltrate';
+
+  @override
+  String get firewallRuntimeOnly => 'solo runtime';
+
+  @override
+  String get firewallPermanentOnly => 'solo permanent';
+
+  @override
+  String get firewallThisConnection => 'questa connessione';
+
+  @override
+  String get firewallDefaultTag => 'predefinita';
+
+  @override
+  String get firewallDrift =>
+      'Ciò che è in vigore differisce da ciò che è salvato. Un reload o un riavvio lo sostituisce con la configurazione salvata.';
+
+  @override
+  String firewallDriftLockoutFmt(String access) {
+    return 'Dopo un reload o un riavvio, $access verrà rifiutato: la configurazione salvata non lo lascia passare.';
+  }
+
+  @override
+  String get firewallSaveRuntime => 'Salva come permanent';
+
+  @override
+  String get firewallReloadLoses =>
+      'Le modifiche non salvate come permanent andranno perse.';
+
+  @override
+  String get firewallPanic =>
+      'La modalità panic è attiva: ogni pacchetto viene scartato.';
+
+  @override
+  String get firewallPanicOff => 'Disattiva la modalità panic';
+
+  @override
+  String get firewallStoppedNote =>
+      'firewalld è fermo. Le modifiche vengono salvate e si applicano al suo avvio.';
+
+  @override
+  String get firewallInvalidSource =>
+      'Origine non valida. Usa un indirizzo, una rete come 192.168.1.0/24, ipset:NOME o un indirizzo MAC.';
+
+  @override
+  String get firewallInvalidRichRule =>
+      'Una rich rule inizia con \"rule\" e occupa una sola riga.';
+
+  @override
+  String get firewallInvalidForwardPort =>
+      'Usa port=80:proto=tcp:toport=8080, con toport, toaddr o entrambi.';
+
+  @override
+  String get monitorSyncNeedsServer =>
+      'Scegli il server il cui agente monitor conserva il backup.';
+
+  @override
+  String get monitorBackupUnsupported =>
+      'Questo agente monitor non può conservare backup. Aggiorna l\'agente.';
+
+  @override
+  String get monitorBackupAdminOnly =>
+      'Solo un account amministratore dell\'agente monitor può conservare backup su di esso.';
+
+  @override
+  String monitorBackupTooLarge(String max) {
+    return 'Il backup supera la dimensione accettata dall\'agente monitor ($max).';
+  }
+
+  @override
+  String get monitorBackupTooMany =>
+      'L\'agente monitor contiene già il numero massimo di backup consentito. Eliminane prima uno.';
 }

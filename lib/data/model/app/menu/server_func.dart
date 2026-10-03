@@ -3,6 +3,9 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:server_box/core/extension/context/locale.dart';
 import 'package:server_box/data/model/server/capabilities.dart';
+import 'package:server_box/data/model/server/monitor_grants.dart';
+import 'package:server_box/data/model/server/monitor_remote_access.dart';
+import 'package:server_box/data/model/server/server_private_info.dart';
 import 'package:server_box/data/res/store.dart';
 
 enum ServerFuncBtn {
@@ -22,7 +25,8 @@ enum ServerFuncBtn {
   power(1491),
   users(1579),
   scheduledTasks(1579),
-  remoteDesktop(1617);
+  remoteDesktop(1617),
+  firewall(1719);
 
   /// The last released build that did not contain this entry.
   ///
@@ -78,6 +82,7 @@ enum ServerFuncBtn {
     users,
     scheduledTasks,
     remoteDesktop,
+    firewall,
   ].map((e) => e.name).toList();
 
   /// The entry a stored row names.
@@ -201,6 +206,7 @@ enum ServerFuncBtn {
     users => Icons.manage_accounts_outlined,
     scheduledTasks => Icons.schedule,
     remoteDesktop => Icons.desktop_windows_outlined,
+    firewall => Icons.shield_outlined,
   };
 
   /// Whether a connection with [caps] can actually do what this entry opens.
@@ -212,19 +218,80 @@ enum ServerFuncBtn {
     // All three end in the terminal — snippets and iperf hand it a command to
     // start with, and nothing else.
     terminal || snippet || iperf => caps.terminal,
-    container || process || systemd || power || users || scheduledTasks =>
-      caps.shell,
+    container ||
+    process ||
+    systemd ||
+    power ||
+    users ||
+    scheduledTasks ||
+    firewall => caps.shell,
     // Browsing files is its own question: a transport could grow a file API
     // without growing a stream this app can point anywhere.
     files => caps.files,
-    // A forwarded connection and a remote desktop are both one TCP connection
-    // to an address this app names, but only the remote desktop can take it
-    // from either transport: the forward page still opens through the SSH
-    // client, so it asks the narrower question until it is moved onto the same
-    // dialer.
-    portForward => caps.byteStream,
+    // A local or dynamic forward is a TCP connection to an address this app
+    // names per connection, as a remote desktop is; a remote one has the
+    // server listen. Either is enough to open the page, which offers the kinds
+    // that are there. Asked of [ServerCapabilities.forwardsOf] — see
+    // [availableOn].
+    portForward => caps.tcpRelay || caps.remoteListen,
     remoteDesktop => caps.tcpRelay,
   };
+
+  /// [availableWith] for [spi], asked of the capabilities this entry runs on:
+  /// a port forward only of the transport it goes through when the agent
+  /// leads (see [ServerCapabilities.forwardsOf]), everything else of the
+  /// server's union.
+  bool availableOn(Spi spi, MonitorRemoteAccess? granted) => availableWith(
+    this == portForward
+        ? ServerCapabilities.forwardsOf(spi, granted: granted)
+        : ServerCapabilities.ofSpi(spi, granted: granted),
+  );
+
+  /// Why this is not [availableWith] a server — what would make it so, where
+  /// that is something its agent's operator can change.
+  ///
+  /// Only a server reached through its agent alone gets an answer of its own:
+  /// with SSH there is nothing the agent could add, and this device's answer
+  /// is this app's.
+  String unavailableReason(Spi spi, MonitorRemoteAccess? granted) {
+    final generic = l10n.funcUnavailableFmt(toStr);
+    // A forward on a server whose agent leads goes through the agent alone,
+    // SSH or not, so the agent is what would have to change.
+    final agentOnly =
+        spi.sshOn == null ||
+        (this == portForward && spi.transport == ServerTransport.monitorHttp);
+    if (!agentOnly || spi.monitorOn == null || granted == null) {
+      return generic;
+    }
+    // An agent with roles says which grant and why, for this account.
+    if (granted.grants case final grants?) {
+      // A forward is either grant's — see [availableWith] — so the reason is
+      // `connect`'s, or `listen`'s where that one says more.
+      if (this == portForward) {
+        return monitorGrantReason(toStr, grants.connect) ??
+            monitorGrantReason(toStr, grants.listen) ??
+            generic;
+      }
+      final grant = switch (this) {
+        files => grants.files,
+        remoteDesktop => grants.connect,
+        _ => grants.shell,
+      };
+      return monitorGrantReason(toStr, grant) ?? generic;
+    }
+    final grant = switch (this) {
+      files => '[remote_access.fs]',
+      // The relay is granted with `full_access`: one that has it and still
+      // does not relay is an agent from before the endpoint.
+      portForward || remoteDesktop when granted.fullAccess => null,
+      terminal || snippet || iperf when granted.fullAccess =>
+        '[remote_access.terminal]',
+      _ => 'full_access',
+    };
+    return grant == null
+        ? l10n.funcNeedsAgentUpdate(toStr)
+        : l10n.funcNeedsAgentGrant(toStr, grant);
+  }
 
   String get toStr => switch (this) {
     // Named after what it opens, not after the protocol that used to be the
@@ -241,5 +308,16 @@ enum ServerFuncBtn {
     users => l10n.systemUsers,
     scheduledTasks => l10n.scheduledTasks,
     remoteDesktop => l10n.remoteDesktop,
+    firewall => l10n.firewall,
   };
 }
+
+/// Why [func] cannot be had through a `monitor` agent that answered [grant],
+/// or null when it says nothing a person could act on.
+String? monitorGrantReason(String func, MonitorGrant grant) =>
+    switch (grant.why) {
+      MonitorGrantWhy.notGranted => l10n.funcNeedsAgentPermission(func),
+      MonitorGrantWhy.insecureTransport => l10n.funcNeedsAgentHttps(func),
+      MonitorGrantWhy.notConfigured => l10n.funcNeedsAgentSetup(func),
+      MonitorGrantWhy.unknown || null => null,
+    };

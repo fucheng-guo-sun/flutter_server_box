@@ -1,18 +1,17 @@
+import 'package:fl_lib/fl_lib.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:server_box/core/extension/context/locale.dart';
 import 'package:server_box/data/model/app/float_shell.dart';
-import 'package:server_box/data/provider/ai/agent_session.dart';
 import 'package:server_box/data/provider/ai/agent_shell.dart';
 import 'package:server_box/view/page/agent/history.dart';
 import 'package:server_box/view/page/agent/view.dart';
-import 'package:server_box/view/widget/float_shell.dart';
 import 'package:server_box/view/widget/pane_settings.dart';
 
 /// The Agent tab.
 ///
-/// It owns no part of the conversation — that is [agentSessionProvider], and
-/// the floating shell shows the same one. All this page adds is the history
+/// It owns no part of the conversation — that is `AgentChats`, and the
+/// floating shell shows the same one. All this page adds is the history
 /// column, which only a full tab is wide enough for.
 class AgentPage extends ConsumerStatefulWidget {
   const AgentPage({super.key});
@@ -61,25 +60,25 @@ class _AgentPageState extends ConsumerState<AgentPage>
 }
 
 /// Sends this conversation floating, so it stays reachable from the other
-/// tabs. Off by default: most of the time the tab is where you want it, and a
-/// window over every other page would be in the way.
+/// tabs, or stops it. On by default, but the window only comes along once
+/// there is a chat to follow — see `AgentChats.engaged`.
 class _FloatToggle extends ConsumerWidget {
   const _FloatToggle();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final floating = ref.watch(agentShellProvider) != FloatShellMode.hidden;
-    return IconButton(
-      tooltip: context.l10n.floatOverTabs,
-      isSelected: floating,
-      onPressed: ref.read(agentShellProvider.notifier).toggle,
-      icon: const Icon(
-        Icons.picture_in_picture_alt_outlined,
-        size: floatHeaderIconSize,
-      ),
-      selectedIcon: const Icon(
-        Icons.picture_in_picture_alt,
-        size: floatHeaderIconSize,
+    // The tab's bar, so the 18pt `Btn.icon` the other tabs' bars use — on in
+    // the accent, as the server tab's globe toggle is.
+    return Btn.icon(
+      text: context.l10n.floatOverTabs,
+      onTap: ref.read(agentShellProvider.notifier).toggle,
+      icon: Icon(
+        floating
+            ? Icons.picture_in_picture_alt
+            : Icons.picture_in_picture_alt_outlined,
+        size: 18,
+        color: floating ? Theme.of(context).colorScheme.primary : null,
       ),
     );
   }

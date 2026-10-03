@@ -6,14 +6,14 @@ import 'dart:ui';
 
 import 'package:dartssh2/dartssh2.dart';
 import 'package:fl_lib/fl_lib.dart';
+import 'package:fl_pi_llm_ui/fl_pi_llm_ui.dart' show Composer;
 import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:server_box/core/extension/context/locale.dart';
-import 'package:server_box/core/extension/context/motion.dart';
+import 'package:server_box/core/llm/scope.dart';
 import 'package:server_box/core/utils/sudo_password.dart';
-import 'package:server_box/data/model/ai/agent_conversation.dart';
 import 'package:server_box/data/model/ai/ask_ai_models.dart';
 import 'package:server_box/data/model/app/error.dart';
 import 'package:server_box/data/model/app/tab.dart';
@@ -21,8 +21,6 @@ import 'package:server_box/data/model/server/server_private_info.dart';
 import 'package:server_box/data/model/server/shell_backend.dart';
 import 'package:server_box/data/model/server/snippet.dart';
 import 'package:server_box/data/model/ssh/virtual_key.dart';
-import 'package:server_box/data/provider/ai/agent_scope.dart';
-import 'package:server_box/data/provider/ai/agent_session.dart';
 import 'package:server_box/data/provider/app/session_requests.dart';
 import 'package:server_box/data/provider/app/terminal_shell.dart';
 import 'package:server_box/data/provider/snippet.dart';
@@ -34,23 +32,21 @@ import 'package:server_box/data/ssh/session_manager.dart';
 import 'package:server_box/data/ssh/terminal_session.dart';
 import 'package:server_box/data/ssh/terminal_source.dart';
 import 'package:server_box/data/ssh/tmux/tmux_export.dart';
-import 'package:server_box/view/page/agent/history.dart';
+import 'package:server_box/data/ssh/tmux/tmux_ids.dart';
+import 'package:server_box/view/page/agent/view.dart';
 import 'package:server_box/view/page/ssh/ask_ai_layout.dart';
+import 'package:server_box/view/page/ssh/page/tmux_page_controller.dart';
 import 'package:server_box/view/page/ssh/page/virt_key_intro.dart';
 import 'package:server_box/view/page/ssh/present_server.dart';
 import 'package:server_box/view/page/storage/server_file.dart';
 import 'package:server_box/view/page/storage/sftp.dart';
-import 'package:server_box/view/widget/agent_common.dart';
-import 'package:server_box/view/widget/agent_entry_appear.dart';
-import 'package:server_box/view/widget/agent_proposal_pager.dart';
-import 'package:server_box/view/widget/agent_user_bubble.dart';
 import 'package:server_box/view/widget/terminal_connection_progress.dart';
-import 'package:server_box/view/widget/tmux_session_selector.dart';
+import 'package:server_box/view/widget/tmux_session_picker_sheet.dart';
+import 'package:server_box/view/widget/tmux_window_bar.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:xterm/core.dart';
 import 'package:xterm/ui.dart' hide TerminalThemes;
 
-part 'agent_history.dart';
 part 'ask_ai.dart';
 part 'init.dart';
 part 'keyboard.dart';
@@ -201,22 +197,6 @@ class SSHPageState extends ConsumerState<SSHPage>
         AutomaticKeepAliveClientMixin,
         AfterLayoutMixin,
         WidgetsBindingObserver {
-  /// The tmux session this page attached to, kept for the reconnect that
-  /// rebuilds the launch plan and reads it again.
-  ///
-  /// Plain fields. They were `Restorable*`, which in this app is the same
-  /// thing with extra ceremony: `restoreState` runs, registration succeeds,
-  /// and a relaunch has nothing, because the route `MaterialApp.home` builds
-  /// hands its subtree no bucket — `test/widget/restoration_bucket_test.dart`. What
-  /// they did in practice was hold this within one page across a reconnect,
-  /// which is what these still do.
-  ///
-  /// What survives a relaunch is the tab's own record, in
-  /// `Stores.history.sshTabs`. A third field held the server id and was only
-  /// ever written.
-  String? _tmuxSessionState;
-  int? _tmuxWindowState;
-
   /// The terminal and the shell behind it. Handed in when this page is
   /// continuing a session that started elsewhere, and made here otherwise.
   late final TerminalSession _sess =
@@ -224,6 +204,15 @@ class SSHPageState extends ConsumerState<SSHPage>
       (TerminalSession(source: widget.args.source)
         ..reenter = widget.args.reenter ? widget.args.initCmd : null
         ..answersSudo = widget.args.initCmdSudo);
+
+  late final TmuxPageController _tmuxPageController = TmuxPageController(
+    onSnapshot: (_) => widget.args.onTmuxStateChanged?.call(),
+    onPhaseChanged: (_) => redrawTmuxWindowBar(),
+  );
+
+  TmuxControlClient? get _tmuxControl => _tmuxPageController.client;
+  String? get _tmuxCurrentSession => _tmuxPageController.currentSessionName;
+  int? get _tmuxCurrentWindow => _tmuxPageController.currentWindowIndex;
 
   /// Whether the session arrived already running, and so must not be started
   /// a second time.
@@ -299,6 +288,15 @@ class SSHPageState extends ConsumerState<SSHPage>
     });
   }
 
+  /// Redraws after the native tmux window bar appears or disappears.
+  ///
+  /// The same protected-`setState` rule as [setIntroStep]: the tmux lifecycle
+  /// lives in an extension, but only this class can ask Flutter to redraw it.
+  void redrawTmuxWindowBar() {
+    if (!mounted) return;
+    setState(() {});
+  }
+
   bool _isDark = false;
   Timer? _virtKeyLongPressTimer;
 
@@ -352,6 +350,10 @@ class SSHPageState extends ConsumerState<SSHPage>
   TerminalConnectionStep _connectionStep = TerminalConnectionStep.connecting;
   String? _connectionFailureDetail;
   bool _openingTerminal = false;
+
+  /// Whether the tmux key's switcher is running. Two overlapping ones would
+  /// each open a client, and the slower would replace the faster's foreground.
+  bool _switchingTmux = false;
   bool _retryInitialConnectionOnResume = false;
   bool _keyboardHandlerReady = false;
   bool _keyboardHandlerAttached = false;
@@ -384,9 +386,6 @@ class SSHPageState extends ConsumerState<SSHPage>
     });
   }
 
-  String? _tmuxCurrentSession;
-  int? _tmuxCurrentWindow;
-
   /// Current tmux session name (for state restoration)
   String? get tmuxCurrentSession => _tmuxCurrentSession;
 
@@ -400,8 +399,7 @@ class SSHPageState extends ConsumerState<SSHPage>
 
   Future<void> pickSnippetFromToolbar() => _pickSnippet();
 
-  Future<void> openAgentFromToolbar() =>
-      _showAskAiPanel(autoStart: false);
+  Future<void> openAgentFromToolbar() => _showAskAiPanel();
 
   @override
   void deactivate() {
@@ -442,6 +440,7 @@ class SSHPageState extends ConsumerState<SSHPage>
     if (aiCommandSession != null) {
       unawaited(_terminateAiCommandSession(aiCommandSession));
     }
+    unawaited(_tmuxPageController.dispose());
     _terminalController.dispose();
     _virtKeyPage.dispose();
     _discontinuityTimer?.cancel();
@@ -598,9 +597,7 @@ class SSHPageState extends ConsumerState<SSHPage>
     // far side a `SIGWINCH` for every one — so this one stands down rather
     // than drawing a second copy nobody is looking at.
     final floating = ref.watch(
-      terminalShellProvider.select(
-        (shell) => identical(shell?.session, _sess),
-      ),
+      terminalShellProvider.select((shell) => identical(shell?.session, _sess)),
     );
     if (floating) return _buildFloatedAway();
 
@@ -785,25 +782,39 @@ class SSHPageState extends ConsumerState<SSHPage>
       ],
     );
 
+    Widget terminalContent = terminalWithProgress;
     final step = _introStep;
     final steps = _introSteps;
-    if (step == null || steps == null || step >= steps.length) {
-      return terminalWithProgress;
-    }
-    // Over the terminal and no further: the keys the walkthrough is pointing
-    // at are the `Scaffold`'s bottom bar, outside this body, and so stay lit
-    // while everything it says to look at is dimmed.
-    return Stack(
-      children: [
-        terminalWithProgress,
-        Positioned.fill(
-          child: GuideView(
-            steps: [for (final step in steps) step.guide],
-            step: step,
-            onStep: setIntroStep,
-            onDone: _endVirtKeyIntro,
+    if (step != null && steps != null && step < steps.length) {
+      // Over the terminal and no further: the keys the walkthrough is pointing
+      // at are the `Scaffold`'s bottom bar, outside this body, and so stay lit
+      // while everything it says is below the tmux window bar.
+      terminalContent = Stack(
+        children: [
+          terminalWithProgress,
+          Positioned.fill(
+            child: GuideView(
+              steps: [for (final step in steps) step.guide],
+              step: step,
+              onStep: setIntroStep,
+              onDone: _endVirtKeyIntro,
+            ),
           ),
+        ],
+      );
+    }
+
+    return Column(
+      children: [
+        TmuxWindowBar(
+          client: _tmuxControl,
+          onSelectWindow: (window) => unawaited(_selectTmuxWindow(window.id)),
+          onSelectPane: (pane) => unawaited(_selectTmuxPane(pane.id)),
+          onNewWindow: _createTmuxWindow,
+          onCloseWindow: (window) => unawaited(_closeTmuxWindow(window.id)),
+          onClosePane: (pane) => unawaited(_closeTmuxPane(pane.id)),
         ),
+        Expanded(child: terminalContent),
       ],
     );
   }
@@ -922,9 +933,7 @@ class SSHPageState extends ConsumerState<SSHPage>
         tags: tags.vn,
         itemsBuilder: (tag) {
           if (tag == TagSwitcher.kDefaultTag) return snippets;
-          return snippets
-              .where((e) => e.tags?.contains(tag) ?? false)
-              .toList();
+          return snippets.where((e) => e.tags?.contains(tag) ?? false).toList();
         },
         display: (snippet) => snippet.name,
       );
@@ -1096,9 +1105,7 @@ class SSHPageState extends ConsumerState<SSHPage>
                 width: i == current ? 13 : 5,
                 height: 3,
                 decoration: BoxDecoration(
-                  color: i == current
-                      ? scheme.primary
-                      : scheme.outlineVariant,
+                  color: i == current ? scheme.primary : scheme.outlineVariant,
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -1349,10 +1356,7 @@ class SSHPageState extends ConsumerState<SSHPage>
     }
     return [
       for (var at = 0; at < _virtKeysList.length; at += perPage)
-        _virtKeysList.sublist(
-          at,
-          math.min(at + perPage, _virtKeysList.length),
-        ),
+        _virtKeysList.sublist(at, math.min(at + perPage, _virtKeysList.length)),
     ];
   }
 

@@ -9,83 +9,6 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appearanceSettings => '外观';
-
-  @override
-  String get appearancePreset => '主题方案';
-
-  @override
-  String get appearanceThemeSchemaRange => '支持的主题 schema';
-
-  @override
-  String get appearanceThemeInstall => '安装主题';
-
-  @override
-  String get appearanceThemeStore => '主题商店';
-
-  @override
-  String get appearanceInvalidTheme => '主题包或目录无效';
-
-  @override
-  String get themeStoreRefreshFailed => '无法读取主题目录。';
-
-  @override
-  String themeStoreDeleteTheme(String name) {
-    return '删除“$name”？其文件将从本机移除。如果它正在使用中，应用将返回默认主题。';
-  }
-
-  @override
-  String themeStoreUpdatedFmt(String ago) {
-    return '$ago更新';
-  }
-
-  @override
-  String get themeStoreUpdatedJustNow => '刚刚更新';
-
-  @override
-  String get themeStoreSortInUse => '在用优先';
-
-  @override
-  String themeStoreMakeOwnFmt(String doc) {
-    return '如果你想制作自己的主题，欢迎查看[主题制作指南]($doc)，感谢你的贡献！';
-  }
-
-  @override
-  String appearanceThemeNeedsNewerApp(String version) {
-    return '需要更新版本的 App：$version';
-  }
-
-  @override
-  String get appearanceFontFamilies => '界面字体列表';
-
-  @override
-  String get appearanceFontFamiliesTip => '每行一个字体名称，按顺序 fallback。';
-
-  @override
-  String get appearanceFontImport => '导入界面字体文件';
-
-  @override
-  String get appearanceGradient => '渐变';
-
-  @override
-  String get appearanceNoBackground => '无背景';
-
-  @override
-  String get appearanceIcons => 'App 内图标';
-
-  @override
-  String get appearanceCorners => '圆角';
-
-  @override
-  String get appearanceCardCorners => '卡片圆角';
-
-  @override
-  String get appearanceTileCorners => 'Tile 圆角';
-
-  @override
-  String get appearanceButtonCorners => '按钮圆角';
-
-  @override
   String get crashCollect => '诊断信息';
 
   @override
@@ -148,103 +71,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get askAi => '问 AI';
 
   @override
-  String get askAiAwaitingResponse => '等待 AI 响应...';
-
-  @override
-  String get askAiEndpointTip =>
-      '需要带上 API 版本号，如 /v1；智谱是 /api/paas/v4。只会按所选协议补上 /chat/completions 或 /responses。';
-
-  @override
-  String get askAiProtocolTip => '自动模式会尝试 Responses / Chat Completions。';
-
-  @override
-  String get askAiCommandInserted => '命令已插入终端';
-
-  @override
-  String askAiConfigMissing(String fields) {
-    return '请前往设置配置 $fields';
-  }
-
-  @override
-  String get askAiDisclaimer => 'AI 可能会犯错，请谨慎使用。';
-
-  @override
   String get askAiInsertTerminal => '插入终端';
 
   @override
-  String get askAiNoResponse => '无回复内容';
-
-  @override
   String get remoteDesktop => '远程桌面';
-
-  @override
-  String get askAiAgentWelcome => '想在这台服务器上做什么？';
-
-  @override
-  String get askAiAgentPromptHint => '让 Agent 检查或修复问题……';
-
-  @override
-  String get askAiAnalyzeSelectionPrompt => '分析选中的终端内容，解释发生了什么';
-
-  @override
-  String get askAiTerminalContext => '终端上下文';
-
-  @override
-  String get askAiReviewNeeded => '待审核';
-
-  @override
-  String get askAiReviewAction => '审核建议命令';
-
-  @override
-  String get askAiReviewBeforeContinuing => '请先审核或拒绝当前建议';
-
-  @override
-  String get askAiApproveRun => '批准并执行';
-
-  @override
-  String get askAiDecline => '拒绝';
-
-  @override
-  String get askAiActionDeclined => '已拒绝建议命令。';
-
-  @override
-  String get askAiInterrupted => '已中断 Agent 回复。';
-
-  @override
-  String get askAiResend => '重新发送';
-
-  @override
-  String get askAiResendTip => '这条消息之后的内容会被丢弃——包括回复、命令及其结果。';
-
-  @override
-  String get askAiDeleteTip => '这条消息及其之后的内容都会被删除——包括回复、命令及其结果。';
-
-  @override
-  String get askAiModelTable => '模型数据表';
-
-  @override
-  String get askAiModelTableTip =>
-      '来自 models.dev 的模型上下文长度对照表。App 内置一份，点击可获取更新。';
-
-  @override
-  String get askAiContextFallback => '表中没有该模型';
-
-  @override
-  String get askAiCompactAt => '压缩阈值';
-
-  @override
-  String get askAiCompactAtTip =>
-      '上下文占用达到该比例时，把较早的对话压缩为摘要。设得低会更早丢失细节，设得高可能导致请求被模型拒绝。';
-
-  @override
-  String get askAiContextTokens => '上下文长度';
-
-  @override
-  String get askAiContextTokensTip =>
-      '该模型能容纳的 token 数。自动表示按模型名查表；当服务商提供的长度短于模型本身时，填写具体数值。';
-
-  @override
-  String get askAiConversationCompacted => '较早的消息已压缩为摘要，以便对话继续。';
 
   @override
   String get askAiRiskReadOnly => '只读';
@@ -259,57 +89,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get askAiRiskDestructive => '高风险';
 
   @override
-  String get askAiHighRiskConfirmTitle => '执行高风险命令？';
-
-  @override
-  String get askAiHighRiskConfirmBody => '此命令可能造成难以撤销的更改，请仔细检查。';
-
-  @override
-  String get askAiNoCommandOutput => '命令已完成，没有输出。';
-
-  @override
-  String get askAiOutputTruncated => '输出过长，回传给 Agent 前已被截断。';
-
-  @override
-  String get askAiAutoApproved => '已自动批准';
-
-  @override
   String get askAiAutoRunSafeCommands => '自动执行只读命令';
 
   @override
   String get askAiAutoRunSafeCommandsTip => '仅当模型与本地安全检查都判定命令为只读时自动执行';
 
   @override
-  String get askAiSendOnEnter => 'Enter 发送';
-
-  @override
-  String get askAiSendOnEnterTip =>
-      'Enter 发送消息，Shift+Enter 换行。关闭后：Enter 换行，Cmd/Ctrl+Enter 发送。';
-
-  @override
-  String get askAiApiKeyOptional => '本地或无需认证可留空';
-
-  @override
-  String get askAiAllowInsecure => '允许明文 HTTP';
-
-  @override
-  String get askAiAllowInsecureTip =>
-      '允许通过 http:// 连接 localhost 以外地址上的自建模型。API Key 和终端上下文将以明文发送；localhost 不受影响。';
-
-  @override
-  String get askAiInsecureEndpoint => '该地址使用 http://。请在 AI 设置中开启「允许明文 HTTP」。';
-
-  @override
   String get askAiHistory => '对话历史';
 
   @override
   String get askAiNewConversation => '新建对话';
-
-  @override
-  String get askAiNoHistory => '还没有已保存的对话';
-
-  @override
-  String get askAiNoHistoryMessages => '暂无消息';
 
   @override
   String get askAiUntitledConversation => '新对话';
@@ -322,24 +111,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get askAiDeleteConversationTip => '从本机删除该对话，无法撤销。';
-
-  @override
-  String get askAiClearHistoryTitle => '清空这台服务器的 Agent 历史？';
-
-  @override
-  String get askAiClearHistoryTip => '这台服务器保存的所有 Agent 对话都会被删除。';
-
-  @override
-  String get askAiRestoredReview => '此命令来自历史记录，请重新审核';
-
-  @override
-  String get agentWelcome => '想对你的服务器做些什么？';
-
-  @override
-  String get agentWelcomeTip => '可以让 Agent 诊断问题或执行运维任务';
-
-  @override
-  String get agentPromptHint => '让 Agent 检查或操作你的服务器……';
 
   @override
   String get agentNoHistory => '暂无全局 Agent 对话';
@@ -358,14 +129,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get agentToolWriteFile => '写入文件';
-
-  @override
-  String get agentToolFailed => '工具执行失败。';
-
-  @override
-  String agentToolCallsFmt(int count) {
-    return '$count 次工具调用';
-  }
 
   @override
   String get floatOverTabs => '在其他标签页上悬浮';
@@ -629,9 +392,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get copyPath => '复制路径';
 
   @override
-  String get cpuViewAsProgressTip => '以进度条样式显示每个 CPU 的使用率（旧版样式）';
-
-  @override
   String get customCmd => '自定义命令';
 
   @override
@@ -639,9 +399,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get deleteDirRecursive => '连同文件夹里的所有内容一起删除';
-
-  @override
-  String get desktopTerminalTip => '启动 SSH 连接所用的终端模拟器命令';
 
   @override
   String get dirEmpty => '请确保目录为空';
@@ -662,9 +419,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get diskHealth => '磁盘健康';
 
   @override
-  String get displayCpuIndex => '显示 CPU 索引';
-
-  @override
   String dl2Local(String fileName) {
     return '下载 $fileName 到本地？';
   }
@@ -681,12 +435,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get dockerStatistics => 'Docker 统计';
-
-  @override
-  String get doubleColumnMode => '双列模式';
-
-  @override
-  String get doubleColumnTip => '此选项仅用于启用该功能，是否生效取决于设备宽度';
 
   @override
   String get editVirtKeys => '虚拟按键';
@@ -893,12 +641,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noConnectionMethod => '请配置 SSH、Monitor 或两者';
 
   @override
-  String get preferredTransport => '优先使用';
-
-  @override
-  String get preferredTransportTip => '状态从哪一侧读取，命令优先走哪条连接。另一条仍然可用。';
-
-  @override
   String get keepForeground => '请将应用保持在前台运行';
 
   @override
@@ -940,27 +682,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get maxRetryCount => '服务器尝试重连次数';
 
   @override
-  String mismatchSystem(String system) {
-    return '系统不匹配：$system';
-  }
-
-  @override
   String get mirror => '镜像';
 
   @override
   String get needRestart => '需要重启 App';
 
   @override
-  String get netViewType => '网络视图类型';
-
-  @override
   String get newContainer => '新建容器';
 
   @override
   String get noConnectionStatsData => '暂无连接统计数据';
-
-  @override
-  String get noLineChart => '不使用折线图';
 
   @override
   String get noPrivateKeyTip => '私钥不存在，可能已被删除/配置错误';
@@ -976,9 +707,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get parseContainerStatsTip => 'Docker 解析占用状态较为缓慢';
-
-  @override
-  String get preferDiskAmount => '优先显示硬盘容量';
 
   @override
   String get privateKey => '私钥';
@@ -1220,6 +948,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get serverOrder => '服务器顺序';
 
   @override
+  String get serverOverview => '服务器总览';
+
+  @override
+  String get serverOverviewTip => '在服务器列表顶部显示总览，并在打开的服务器上方显示服务器切换栏';
+
+  @override
   String get serverTabEmpty => '还没有服务器';
 
   @override
@@ -1332,15 +1066,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String sshConfigAllExist(int duplicateCount) {
     return '所有服务器已存在（发现 $duplicateCount 个重复项）';
   }
-
-  @override
-  String get sshConnectionModeTip => '内置终端：使用应用自带的终端。系统 SSH：在外部终端中调用系统 ssh 命令。';
-
-  @override
-  String get sshConnectionModeUseBuiltin => '使用内置终端';
-
-  @override
-  String get sshConnectionModeUseSystem => '使用系统 SSH';
 
   @override
   String sshConfigDuplicatesSkipped(int duplicateCount) {
@@ -1460,9 +1185,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get used => '已用';
-
-  @override
-  String get view => '视图';
 
   @override
   String get viewDetails => '查看详情';
@@ -1596,13 +1318,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tmuxSessionName => '会话名称';
 
   @override
-  String get tmuxExistingSessions => '现有会话';
-
-  @override
   String get tmuxNewSession => '新建会话';
-
-  @override
-  String get tmuxWindows => '窗口';
 
   @override
   String get tmuxNewWindow => '新建窗口';
@@ -1616,25 +1332,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String tmuxPaneCount(int count) {
-    return '$count 个窗格';
-  }
-
-  @override
   String get tmuxAttached => '已附加';
-
-  @override
-  String get tmuxActive => '活动中';
-
-  @override
-  String tmuxActiveAt(String time) {
-    return '活动：$time';
-  }
-
-  @override
-  String tmuxAttachedAt(String time) {
-    return '附加：$time';
-  }
 
   @override
   String get tmuxSkip => '跳过';
@@ -1880,9 +1578,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bmcStaleWrite => 'BMC 上的内容在写入期间被改动过，请重试。';
-
-  @override
-  String get send => '发送';
 
   @override
   String get privacyBlur => '后台隐私保护';
@@ -2206,6 +1901,20 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String funcNeedsAgentGrant(String func, String setting) {
+    return '$func需要在 Monitor agent 中开启 $setting。';
+  }
+
+  @override
+  String funcNeedsAgentUpdate(String func) {
+    return '$func需要更新 Monitor agent。';
+  }
+
+  @override
+  String get portForwardRemoteNeedsAgent =>
+      '通过 Monitor agent 进行远程转发需要更新版本的 agent，请在服务器上更新。';
+
+  @override
   String get rangeLive => '实时';
 
   @override
@@ -2242,6 +1951,61 @@ class AppLocalizationsZh extends AppLocalizations {
   String agentRetentionFmt(String kept) {
     return 'agent 保留 $kept';
   }
+
+  @override
+  String get agentServerTools => '服务器工具';
+
+  @override
+  String get agentServerToolsTip =>
+      '在服务器上执行命令、读写文件，通过 SSH 连接其他主机，并使用 ServerBox 自身的操作。';
+
+  @override
+  String get agentTerminalTools => '终端';
+
+  @override
+  String get agentTerminalToolsTip => '在终端自己的对话中：读取终端显示的内容，并在其服务器上执行命令。';
+
+  @override
+  String get agentToolTerminalScreen => '读取屏幕';
+
+  @override
+  String get agentProviders => '提供商';
+
+  @override
+  String get agentProvidersTip => 'API Key、模型，以及新对话使用的模型';
+
+  @override
+  String get agentTools => '工具';
+
+  @override
+  String get agentToolsTip => 'Agent 可以使用的工具，以及 MCP 服务器';
+
+  @override
+  String get agentSnippetToolsTip => '列出、新增、修改和删除 snippet；修改前会询问。';
+
+  @override
+  String get agentVirtToolsTip => '读取虚拟化标签页已加载的虚拟机和容器。';
+
+  @override
+  String get agentBenchmarkToolsTip => '读取性能测试结果；经你批准后运行或停止测试。';
+
+  @override
+  String get agentRemoteDesktopToolsTip => '列出远程桌面配置；经你批准后连接或断开。';
+
+  @override
+  String get agentSkills => 'Skills';
+
+  @override
+  String get agentSkillsTip => '特定任务的操作说明，可从 GitHub 或链接安装';
+
+  @override
+  String get agentPermissions => '权限';
+
+  @override
+  String get agentEmptyHint => '询问你的服务器，或让 Agent 在服务器上完成某项操作。';
+
+  @override
+  String get agentTerminalEmptyHint => '询问这台服务器。Agent 可以读取当前终端，并在这里执行命令。';
 
   @override
   String oldestSampleFmt(String time) {
@@ -2435,32 +2199,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get connectionTip => '两个可以同时开启。顺序就是拨号的顺序。';
 
   @override
-  String transportOrderFmt(String first, String second) {
-    return '拖动可调整顺序。先拨 $first；它不应答时，$second 独自承担会话。';
-  }
-
-  @override
-  String transportOnlyFmt(String name) {
-    return '只开启了 $name，没有可回落的对象。';
-  }
-
-  @override
   String get transportNoneOn => '两个都关闭了 —— 这台服务器无法连接。';
-
-  @override
-  String get transportOffKept => '已关闭 —— 设置保留，不会拨号';
-
-  @override
-  String get transportDialledFirst => '先拨';
-
-  @override
-  String get transportFallback => '回落';
-
-  @override
-  String get transportOnlyMethod => '唯一方式';
-
-  @override
-  String get transportOff => '已关闭';
 
   @override
   String get thisDevice => '本机';
@@ -2506,9 +2245,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get optional => '可选';
-
-  @override
-  String get optionalTip => '这里的东西都不是连接所必需的。展开一项，它的字段会接管表单。';
 
   @override
   String get sshAdvanced => 'SSH 高级';
@@ -2902,6 +2638,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get remoteDesktopFullScreen => '全屏';
 
   @override
+  String get remoteDesktopExitFullScreen => '退出全屏';
+
+  @override
   String get remoteDesktopCloseSession => '关闭会话';
 
   @override
@@ -2992,6 +2731,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get remoteDesktopUsernameRequired => '请输入 RDP 用户名。';
 
   @override
+  String get remoteDesktopNameInvalid => '配置名称最多 64 个字符，不能换行。';
+
+  @override
+  String get remoteDesktopHostInvalid => '目标主机不能包含空格或换行。';
+
+  @override
+  String get remoteDesktopCredentialInvalid => '用户名和域最多 256 个字符，不能换行。';
+
+  @override
   String get remoteDesktopVncPasswordAscii => '传统 VNC 密码只能包含 ASCII 字符。';
 
   @override
@@ -3048,11 +2796,6 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String remoteDesktopCertificateValidity(String start, String end) {
     return '有效期：$start – $end';
-  }
-
-  @override
-  String appearanceThemeModeLocked(String mode) {
-    return '此主题仅支持$mode。如需切换模式，请选择其他主题。';
   }
 
   @override
@@ -3303,9 +3046,6 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get reopen => '重新打开';
-
-  @override
   String get virtSnapshots => '快照';
 
   @override
@@ -3466,9 +3206,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get virtCreateNameTaken => '已有同名虚拟机。';
-
-  @override
-  String get virtCreateVmidInvalid => '范围为 100 到 999999999。';
 
   @override
   String get virtCreateVmidTaken => '这个 VMID 已被占用。';
@@ -3949,9 +3686,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get virtHwEfiStorage => 'EFI 变量存放在';
-
-  @override
-  String get virtHwTpmStorage => 'TPM 状态存放在';
 
   @override
   String virtHwSwitchFirmwareAsk(String guest, String firmware) {
@@ -4548,9 +4282,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get virtSnapshotFormInternal => '内部（镜像内）';
 
   @override
-  String get virtSnapshotForm => '类型';
-
-  @override
   String get virtSnapshotOverlayPool => '覆盖层存储池';
 
   @override
@@ -4577,11 +4308,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get virtSnapshotChainBase => '基础镜像';
 
   @override
-  String virtSnapshotChainRaw(String format) {
-    return '外部快照需要 qcow2 磁盘，而这块是 $format。';
-  }
-
-  @override
   String get virtSnapshotNoSupport => '虚拟机的存储不支持快照，无法创建。';
 
   @override
@@ -4599,9 +4325,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get virtSnapshotDiffShow => '与当前比较';
-
-  @override
-  String get virtSnapshotDiffGroup => '已变更';
 
   @override
   String get virtSnapshotDiffGroupCpu => '处理器';
@@ -4679,19 +4402,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get virtTemplateTip => '模板只有在克隆后才能运行。';
 
   @override
-  String get virtCloneStorage => '目标存储';
-
-  @override
   String get virtCloneStorageSame => '与源相同';
 
   @override
-  String get virtCloneNode => '目标节点';
-
-  @override
   String get virtCloneNodeSame => '与源相同';
-
-  @override
-  String get virtClonePool => '目标存储池';
 
   @override
   String get virtCloneStorageContent => '该存储不存放虚拟机磁盘。';
@@ -4713,9 +4427,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get virtBackupJobNew => '新建任务';
-
-  @override
-  String get virtBackupJobEdit => '编辑任务';
 
   @override
   String get virtBackupJobRun => '立即运行';
@@ -4768,12 +4479,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get virtBackupMail => '通知';
 
   @override
-  String get virtBackupMailAlways => '总是';
-
-  @override
-  String get virtBackupMailFailure => '失败时';
-
-  @override
   String get virtBackupNotesTemplate => '备份备注';
 
   @override
@@ -4787,9 +4492,6 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get virtBackupPruneTip =>
       'PVE 的保留选项，例如 keep-last=7,keep-daily=4。留空则用存储或节点自身的设置。';
-
-  @override
-  String get virtBackupNextRun => '下次运行';
 
   @override
   String get virtBackupJobNode => '节点';
@@ -4823,9 +4525,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get virtBackupRestoreStorageSame => '与备份一致';
-
-  @override
-  String get virtBackupModeSnapshotTip => 'snapshot · 不停机';
 
   @override
   String get virtCloneStorageMissing => '该节点上没有存放虚拟机磁盘的存储。';
@@ -4999,88 +4698,356 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get copyLink => '复制链接';
+
+  @override
+  String funcNeedsAgentPermission(String func) {
+    return '你在此 Monitor agent 上的账号没有 $func 的权限，请联系该 agent 的管理员。';
+  }
+
+  @override
+  String funcNeedsAgentHttps(String func) {
+    return '$func 需要通过 HTTPS 连接此 Monitor agent，或在 agent 和本 App 中同时允许 HTTP。';
+  }
+
+  @override
+  String funcNeedsAgentSetup(String func) {
+    return '此 Monitor agent 尚未配置 $func，需要由其运维人员配置。';
+  }
+
+  @override
+  String get monitorFilesReadOnly => '只读：此账号可以浏览 agent 上的文件，但不能修改。';
+
+  @override
+  String get monitorAccess => '访问';
+
+  @override
+  String get monitorAccounts => '账号';
+
+  @override
+  String get monitorRoles => '角色';
+
+  @override
+  String get monitorRole => '角色';
+
+  @override
+  String get monitorChangePassword => '修改密码';
+
+  @override
+  String get monitorNewPassword => '新密码';
+
+  @override
+  String get monitorCurrentPassword => '你当前的密码';
+
+  @override
+  String get monitorReauthTip => '修改访问权限需要再次输入你的密码。';
+
+  @override
+  String get monitorPasswordTooShort => '至少 8 个字符';
+
+  @override
+  String get monitorPasswordMismatch => '两次输入的密码不一致';
+
+  @override
+  String get monitorErrReauth => '密码错误。';
+
+  @override
+  String get monitorErrLastAdmin => 'agent 至少需要一个管理员账号。';
+
+  @override
+  String get monitorErrConflict => '已存在，或仍在使用中。';
+
+  @override
+  String get monitorErrForbidden => '只有管理员可以执行此操作。';
+
+  @override
+  String get monitorRoleNameRule => '小写字母、数字、- 和 _，最多 32 个字符';
+
+  @override
+  String get monitorGrantShell => 'Shell 和命令';
+
+  @override
+  String get monitorGrantShellTip => '终端、进程、服务、容器、代码片段、电源 —— 以 agent 的系统账号运行';
+
+  @override
+  String get monitorGrantSshTerminal => '面板 SSH 终端';
+
+  @override
+  String get monitorGrantVirt => '虚拟化';
+
+  @override
+  String get monitorGrantVirtTip => 'agent 网页面板中连接的 Proxmox VE、libvirt 和 BMC';
+
+  @override
+  String get monitorGrantFiles => '文件';
+
+  @override
+  String get monitorGrantConnect => '出站连接';
+
+  @override
+  String get monitorGrantConnectTip => '本地和动态端口转发、远程桌面';
+
+  @override
+  String get monitorGrantConnectAllow =>
+      '允许的目标（IP 或 CIDR，可带 :端口 或 :起-止；每行一个，留空表示任意）';
+
+  @override
+  String get monitorGrantListen => '在服务器上监听';
+
+  @override
+  String get monitorGrantListenTip => '远程端口转发';
+
+  @override
+  String get monitorGrantListenPublic => '非 loopback 地址';
+
+  @override
+  String get monitorGrantPorts => '端口范围（留空表示任意）';
+
+  @override
+  String get monitorGrantOff => '关闭';
+
+  @override
+  String get monitorBuiltin => '内置';
+
+  @override
+  String get monitorAdminRoleTip => '管理账号、角色和 agent 的设置';
+
+  @override
+  String get monitorYou => '你';
+
+  @override
+  String get monitorNoAccessToSettings => '只有管理员可以修改此 agent 的设置。';
+
+  @override
+  String get monitorPasswordNotSaved =>
+      'agent 上的密码已修改，但 App 未能保存新密码。请在这台服务器的设置中更新 Monitor 密码。';
+
+  @override
+  String get firewall => '防火墙';
+
+  @override
+  String get firewallLinuxOnly => '防火墙管理支持装有 ufw 或 firewalld 的 Linux 服务器。';
+
+  @override
+  String get firewallNeedsRoot => '读取防火墙规则需要 root 权限。请输入 sudo 密码以继续。';
+
+  @override
+  String get firewallIncoming => '入站';
+
+  @override
+  String get firewallOutgoing => '出站';
+
+  @override
+  String get firewallRouted => '转发';
+
+  @override
+  String get firewallDefaultPolicy => '默认策略';
+
+  @override
+  String get firewallLogging => '日志';
+
+  @override
+  String get firewallRules => '规则';
+
+  @override
+  String get firewallRule => '规则';
+
+  @override
+  String get firewallAddRule => '添加规则';
+
+  @override
+  String get firewallAnywhere => '任意';
+
+  @override
+  String firewallFromFmt(String source) {
+    return '来自 $source';
+  }
+
+  @override
+  String get firewallFrom => '来源';
+
+  @override
+  String get firewallTo => '目标';
+
+  @override
+  String get firewallProtocol => '协议';
+
+  @override
+  String get firewallInterface => '网络接口';
+
+  @override
+  String get firewallComment => '备注';
+
+  @override
+  String get firewallAppProfile => '应用配置';
+
+  @override
+  String get firewallPrepend => '置于所有规则之前';
+
+  @override
+  String get firewallIpv6Off => 'IPv6 已关闭（IPV6=no），不加载 v6 规则。';
+
+  @override
+  String get firewallReload => '重新加载';
+
+  @override
+  String get firewallNothingMatched => '请填写端口、应用配置、地址或网络接口。';
+
+  @override
+  String get firewallInvalidPort => '端口无效。格式如 22、80,443 或 6000:6010。';
+
+  @override
+  String get firewallTooManyPorts => '最多 15 个端口，一个范围计为 2 个。';
+
+  @override
+  String get firewallPortsNeedProtocol => '端口列表或范围需要指定 tcp 或 udp。';
+
+  @override
+  String get firewallInvalidAddress => '地址无效。请填写 IP 地址或网段，例如 192.168.1.0/24。';
+
+  @override
+  String get firewallMixedIpVersions => '来源与目标必须同为 IPv4 或同为 IPv6。';
+
+  @override
+  String get firewallInvalidInterface => '网络接口名称无效。';
+
+  @override
+  String get firewallInvalidComment => '备注不能包含 \' 或换行。';
+
+  @override
+  String get firewallInterfaceIn => '入站网络接口';
+
+  @override
+  String get firewallInterfaceOut => '出站网络接口';
+
+  @override
+  String get firewallSourcePort => '来源端口';
+
+  @override
+  String get firewallMoreOptions => '更多选项';
+
+  @override
+  String get firewallNoneInstalled =>
+      '此服务器未安装 ufw 或 firewalld。可用系统的包管理器安装其中一个，例如 `apt install ufw` 或 `dnf install firewalld`。';
+
+  @override
+  String get firewallKeepAccess => '先保持本 App 使用的端口开放';
+
+  @override
+  String firewallWillRefuseFmt(String access) {
+    return '$access：本 App 的新连接将被拒绝。当前连接在断开前不受影响。';
+  }
+
+  @override
+  String firewallMayRefuseFmt(String access) {
+    return '$access：本 App 的新连接可能被拒绝，取决于连接来源地址或进入的网络接口，本 App 无法判断。';
+  }
+
+  @override
+  String firewallRateLimitedFmt(String access) {
+    return '$access：连接将被限速。同一地址 30 秒内建立 6 个及以上连接会被拒绝，本 App 可能达到这个频率。';
+  }
+
+  @override
+  String get firewallConflict =>
+      'ufw 和 firewalld 同时开启。两者都会写入内核规则，最后加载的一方决定放行什么。';
+
+  @override
+  String get firewallDefaultZone => '默认 zone';
+
+  @override
+  String get firewallZone => 'Zone';
+
+  @override
+  String get firewallTarget => 'Target';
+
+  @override
+  String get firewallMasquerade => 'Masquerade';
+
+  @override
+  String get firewallServices => '服务';
+
+  @override
+  String get firewallPorts => '端口';
+
+  @override
+  String get firewallSources => '来源';
+
+  @override
+  String get firewallInterfaces => '网络接口';
+
+  @override
+  String get firewallRichRules => 'Rich rules';
+
+  @override
+  String get firewallForwardPorts => '端口转发';
+
+  @override
+  String get firewallRuntimeOnly => '仅 runtime';
+
+  @override
+  String get firewallPermanentOnly => '仅 permanent';
+
+  @override
+  String get firewallThisConnection => '当前连接';
+
+  @override
+  String get firewallDefaultTag => '默认';
+
+  @override
+  String get firewallDrift => '当前生效的配置与已保存的不一致。reload 或重启后将改为已保存的配置。';
+
+  @override
+  String firewallDriftLockoutFmt(String access) {
+    return 'reload 或重启后，$access 将被拒绝：已保存的配置没有放行它。';
+  }
+
+  @override
+  String get firewallSaveRuntime => '保存为 permanent';
+
+  @override
+  String get firewallReloadLoses => '未保存为 permanent 的改动将丢失。';
+
+  @override
+  String get firewallPanic => 'panic 模式已开启：所有数据包都会被丢弃。';
+
+  @override
+  String get firewallPanicOff => '关闭 panic 模式';
+
+  @override
+  String get firewallStoppedNote => 'firewalld 已停止。改动会保存，启动后生效。';
+
+  @override
+  String get firewallInvalidSource =>
+      '来源无效。请填写地址、网段（如 192.168.1.0/24）、ipset:名称 或 MAC 地址。';
+
+  @override
+  String get firewallInvalidRichRule => 'rich rule 必须以 \"rule\" 开头，且只能有一行。';
+
+  @override
+  String get firewallInvalidForwardPort =>
+      '格式为 port=80:proto=tcp:toport=8080，需包含 toport、toaddr 或两者。';
+
+  @override
+  String get monitorSyncNeedsServer => '请选择存放备份的服务器（使用其 Monitor 代理）。';
+
+  @override
+  String get monitorBackupUnsupported => '此 Monitor 代理不支持存放备份，请更新代理。';
+
+  @override
+  String get monitorBackupAdminOnly => '只有 Monitor 代理的管理员账户可以在其上存放备份。';
+
+  @override
+  String monitorBackupTooLarge(String max) {
+    return '备份超过了 Monitor 代理允许的大小（$max）。';
+  }
+
+  @override
+  String get monitorBackupTooMany => 'Monitor 代理存放的备份数量已达上限，请先删除一个。';
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
 class AppLocalizationsZhTw extends AppLocalizationsZh {
   AppLocalizationsZhTw() : super('zh_TW');
-
-  @override
-  String get appearanceSettings => '外觀';
-
-  @override
-  String get appearancePreset => '主題方案';
-
-  @override
-  String get appearanceThemeSchemaRange => '支援的主題 schema';
-
-  @override
-  String get appearanceThemeInstall => '安裝主題';
-
-  @override
-  String get appearanceThemeStore => '主題商店';
-
-  @override
-  String get appearanceInvalidTheme => '主題套件或目錄無效';
-
-  @override
-  String get themeStoreRefreshFailed => '無法讀取主題目錄。';
-
-  @override
-  String themeStoreDeleteTheme(String name) {
-    return '刪除「$name」？其檔案將從本機移除。如果它正在使用中，應用程式將回到預設主題。';
-  }
-
-  @override
-  String themeStoreUpdatedFmt(String ago) {
-    return '$ago更新';
-  }
-
-  @override
-  String get themeStoreUpdatedJustNow => '剛剛更新';
-
-  @override
-  String get themeStoreSortInUse => '在用優先';
-
-  @override
-  String themeStoreMakeOwnFmt(String doc) {
-    return '如果你想製作自己的主題，歡迎查看[主題製作指南]($doc)，感謝你的貢獻！';
-  }
-
-  @override
-  String appearanceThemeNeedsNewerApp(String version) {
-    return '需要較新版本的 App：$version';
-  }
-
-  @override
-  String get appearanceFontFamilies => '介面字型列表';
-
-  @override
-  String get appearanceFontFamiliesTip => '每行一個字型名稱，依序 fallback。';
-
-  @override
-  String get appearanceFontImport => '匯入介面字型檔案';
-
-  @override
-  String get appearanceGradient => '漸層';
-
-  @override
-  String get appearanceNoBackground => '無背景';
-
-  @override
-  String get appearanceIcons => 'App 內圖示';
-
-  @override
-  String get appearanceCorners => '圓角';
-
-  @override
-  String get appearanceCardCorners => '卡片圓角';
-
-  @override
-  String get appearanceTileCorners => 'Tile 圓角';
-
-  @override
-  String get appearanceButtonCorners => '按鈕圓角';
 
   @override
   String get crashCollect => '診斷資料';
@@ -5144,103 +5111,10 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get askAi => '詢問 AI';
 
   @override
-  String get askAiAwaitingResponse => '等待 AI 回應...';
-
-  @override
-  String get askAiEndpointTip =>
-      '需要帶上 API 版本號，如 /v1；智譜是 /api/paas/v4。只會依所選協定補上 /chat/completions 或 /responses。';
-
-  @override
-  String get askAiProtocolTip => '自動模式會嘗試 Responses / Chat Completions。';
-
-  @override
-  String get askAiCommandInserted => '指令已插入終端機';
-
-  @override
-  String askAiConfigMissing(String fields) {
-    return '請前往設定配置 $fields';
-  }
-
-  @override
-  String get askAiDisclaimer => 'AI 可能會犯錯，請謹慎使用。';
-
-  @override
   String get askAiInsertTerminal => '插入終端機';
 
   @override
-  String get askAiNoResponse => '無回覆內容';
-
-  @override
   String get remoteDesktop => '遠端桌面';
-
-  @override
-  String get askAiAgentWelcome => '想在這台伺服器上做什麼？';
-
-  @override
-  String get askAiAgentPromptHint => '讓 Agent 檢查或修復問題……';
-
-  @override
-  String get askAiAnalyzeSelectionPrompt => '分析選取的終端內容，解釋發生了什麼';
-
-  @override
-  String get askAiTerminalContext => '終端機內容';
-
-  @override
-  String get askAiReviewNeeded => '待審核';
-
-  @override
-  String get askAiReviewAction => '審核建議指令';
-
-  @override
-  String get askAiReviewBeforeContinuing => '請先審核或拒絕目前建議';
-
-  @override
-  String get askAiApproveRun => '核准並執行';
-
-  @override
-  String get askAiDecline => '拒絕';
-
-  @override
-  String get askAiActionDeclined => '已拒絕建議指令。';
-
-  @override
-  String get askAiInterrupted => '已中斷 Agent 回覆。';
-
-  @override
-  String get askAiResend => '重新傳送';
-
-  @override
-  String get askAiResendTip => '這則訊息之後的內容會被捨棄——包括回覆、命令及其結果。';
-
-  @override
-  String get askAiDeleteTip => '這則訊息及其之後的內容都會被刪除——包括回覆、命令及其結果。';
-
-  @override
-  String get askAiModelTable => '模型資料表';
-
-  @override
-  String get askAiModelTableTip =>
-      '來自 models.dev 的模型上下文長度對照表。App 內建一份，點擊可取得更新。';
-
-  @override
-  String get askAiContextFallback => '表中沒有該模型';
-
-  @override
-  String get askAiCompactAt => '壓縮閾值';
-
-  @override
-  String get askAiCompactAtTip =>
-      '上下文佔用達到該比例時，把較早的對話壓縮為摘要。設得低會更早失去細節，設得高可能導致請求被模型拒絕。';
-
-  @override
-  String get askAiContextTokens => '上下文長度';
-
-  @override
-  String get askAiContextTokensTip =>
-      '該模型能容納的 token 數。自動表示依模型名稱查表；當服務商提供的長度短於模型本身時，填寫具體數值。';
-
-  @override
-  String get askAiConversationCompacted => '較早的訊息已壓縮為摘要，以便對話繼續。';
 
   @override
   String get askAiRiskReadOnly => '唯讀';
@@ -5255,57 +5129,16 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get askAiRiskDestructive => '高風險';
 
   @override
-  String get askAiHighRiskConfirmTitle => '執行高風險指令？';
-
-  @override
-  String get askAiHighRiskConfirmBody => '此命令可能造成難以撤銷的變更，請仔細檢查。';
-
-  @override
-  String get askAiNoCommandOutput => '指令已完成，沒有輸出。';
-
-  @override
-  String get askAiOutputTruncated => '輸出過長，傳回 Agent 前已被截斷。';
-
-  @override
-  String get askAiAutoApproved => '已自動核准';
-
-  @override
   String get askAiAutoRunSafeCommands => '自動執行唯讀指令';
 
   @override
   String get askAiAutoRunSafeCommandsTip => '僅當模型與本機安全檢查都判定命令為唯讀時自動執行';
 
   @override
-  String get askAiSendOnEnter => 'Enter 傳送';
-
-  @override
-  String get askAiSendOnEnterTip =>
-      'Enter 傳送訊息，Shift+Enter 換行。關閉後：Enter 換行，Cmd/Ctrl+Enter 傳送。';
-
-  @override
-  String get askAiApiKeyOptional => '本機或無需認證可留空';
-
-  @override
-  String get askAiAllowInsecure => '允許明文 HTTP';
-
-  @override
-  String get askAiAllowInsecureTip =>
-      '允許透過 http:// 連線至 localhost 以外位址上的自建模型。API Key 與終端機上下文將以明文傳送；localhost 不受影響。';
-
-  @override
-  String get askAiInsecureEndpoint => '此位址使用 http://。請在 AI 設定中開啟「允許明文 HTTP」。';
-
-  @override
   String get askAiHistory => '對話歷史';
 
   @override
   String get askAiNewConversation => '新增對話';
-
-  @override
-  String get askAiNoHistory => '還沒有已儲存的對話';
-
-  @override
-  String get askAiNoHistoryMessages => '暫無訊息';
 
   @override
   String get askAiUntitledConversation => '新對話';
@@ -5318,24 +5151,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get askAiDeleteConversationTip => '從本機刪除該對話，無法復原。';
-
-  @override
-  String get askAiClearHistoryTitle => '清除這台伺服器的 Agent 歷史？';
-
-  @override
-  String get askAiClearHistoryTip => '這台伺服器儲存的所有 Agent 對話都會被刪除。';
-
-  @override
-  String get askAiRestoredReview => '此命令來自歷史紀錄，請重新審核';
-
-  @override
-  String get agentWelcome => '想對你的伺服器做些什麼？';
-
-  @override
-  String get agentWelcomeTip => '可以讓 Agent 診斷問題或執行維運任務';
-
-  @override
-  String get agentPromptHint => '讓 Agent 檢查或操作你的伺服器……';
 
   @override
   String get agentNoHistory => '暫無全域 Agent 對話';
@@ -5354,14 +5169,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get agentToolWriteFile => '寫入檔案';
-
-  @override
-  String get agentToolFailed => '工具執行失敗。';
-
-  @override
-  String agentToolCallsFmt(int count) {
-    return '$count 次工具呼叫';
-  }
 
   @override
   String get floatOverTabs => '在其他分頁上懸浮';
@@ -5625,9 +5432,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get copyPath => '複製路徑';
 
   @override
-  String get cpuViewAsProgressTip => '以進度條樣式顯示每個CPU的使用率（舊版樣式）';
-
-  @override
   String get customCmd => '自訂指令';
 
   @override
@@ -5635,9 +5439,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get deleteDirRecursive => '連同資料夾裡的所有內容一起刪除';
-
-  @override
-  String get desktopTerminalTip => '啟動 SSH 連線時用於打開終端機模擬器的指令。';
 
   @override
   String get dirEmpty => '請確保目錄為空';
@@ -5658,9 +5459,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get diskHealth => '磁碟健康';
 
   @override
-  String get displayCpuIndex => '顯示 CPU 索引';
-
-  @override
   String dl2Local(String fileName) {
     return '下載 $fileName 到本地？';
   }
@@ -5677,12 +5475,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get dockerStatistics => 'Docker 統計';
-
-  @override
-  String get doubleColumnMode => '雙列模式';
-
-  @override
-  String get doubleColumnTip => '此選項僅用於啟用此功能，是否生效取決於裝置寬度';
 
   @override
   String get editVirtKeys => '虛擬按鍵';
@@ -5889,12 +5681,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get noConnectionMethod => '請設定 SSH、Monitor 或兩者';
 
   @override
-  String get preferredTransport => '優先使用';
-
-  @override
-  String get preferredTransportTip => '狀態從哪一側讀取，指令優先走哪條連線。另一條仍然可用。';
-
-  @override
   String get keepForeground => '請讓 App 保持在前景執行';
 
   @override
@@ -5936,27 +5722,16 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get maxRetryCount => '伺服器嘗試重連次數';
 
   @override
-  String mismatchSystem(String system) {
-    return '系統不匹配：$system';
-  }
-
-  @override
   String get mirror => '鏡像';
 
   @override
   String get needRestart => '需要重開 App';
 
   @override
-  String get netViewType => '網路檢視類型';
-
-  @override
   String get newContainer => '新建容器';
 
   @override
   String get noConnectionStatsData => '暫無連線統計資料';
-
-  @override
-  String get noLineChart => '不使用折線圖';
 
   @override
   String get noPrivateKeyTip => '私鑰不存在，可能已被刪除/配置錯誤。';
@@ -5972,9 +5747,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get parseContainerStatsTip => 'Docker 解析消耗狀態較為緩慢';
-
-  @override
-  String get preferDiskAmount => '優先顯示硬碟容量';
 
   @override
   String get privateKey => '私鑰';
@@ -6216,6 +5988,12 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get serverOrder => '伺服器順序';
 
   @override
+  String get serverOverview => '伺服器總覽';
+
+  @override
+  String get serverOverviewTip => '在伺服器列表頂部顯示總覽，並在開啟的伺服器上方顯示伺服器切換列';
+
+  @override
   String get serverTabEmpty => '還沒有伺服器';
 
   @override
@@ -6328,15 +6106,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String sshConfigAllExist(int duplicateCount) {
     return '所有伺服器均已存在（發現$duplicateCount個重複項）';
   }
-
-  @override
-  String get sshConnectionModeTip => '內建：使用 App 的終端。系統 SSH：在外部終端中啟動系統的 ssh 指令。';
-
-  @override
-  String get sshConnectionModeUseBuiltin => '使用內建終端';
-
-  @override
-  String get sshConnectionModeUseSystem => '使用系統 SSH';
 
   @override
   String sshConfigDuplicatesSkipped(int duplicateCount) {
@@ -6456,9 +6225,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get used => '已使用';
-
-  @override
-  String get view => '檢視';
 
   @override
   String get viewDetails => '檢視詳情';
@@ -6592,13 +6358,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get tmuxSessionName => '工作階段名稱';
 
   @override
-  String get tmuxExistingSessions => '現有工作階段';
-
-  @override
   String get tmuxNewSession => '新增工作階段';
-
-  @override
-  String get tmuxWindows => '視窗';
 
   @override
   String get tmuxNewWindow => '新增視窗';
@@ -6612,25 +6372,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   }
 
   @override
-  String tmuxPaneCount(int count) {
-    return '$count 個窗格';
-  }
-
-  @override
   String get tmuxAttached => '已附加';
-
-  @override
-  String get tmuxActive => '使用中';
-
-  @override
-  String tmuxActiveAt(String time) {
-    return '活動：$time';
-  }
-
-  @override
-  String tmuxAttachedAt(String time) {
-    return '附加：$time';
-  }
 
   @override
   String get tmuxSkip => '略過';
@@ -6876,9 +6618,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get bmcStaleWrite => 'BMC 上的內容在寫入期間被改動過，請重試。';
-
-  @override
-  String get send => '傳送';
 
   @override
   String get privacyBlur => '背景隱私保護';
@@ -7201,6 +6940,20 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   }
 
   @override
+  String funcNeedsAgentGrant(String func, String setting) {
+    return '$func需要在 Monitor agent 中開啟 $setting。';
+  }
+
+  @override
+  String funcNeedsAgentUpdate(String func) {
+    return '$func需要更新 Monitor agent。';
+  }
+
+  @override
+  String get portForwardRemoteNeedsAgent =>
+      '透過 Monitor agent 進行遠端轉發需要較新版本的 agent，請在伺服器上更新。';
+
+  @override
   String get rangeLive => '即時';
 
   @override
@@ -7237,6 +6990,61 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String agentRetentionFmt(String kept) {
     return 'agent 保留 $kept';
   }
+
+  @override
+  String get agentServerTools => '伺服器工具';
+
+  @override
+  String get agentServerToolsTip =>
+      '在伺服器上執行指令、讀寫檔案，透過 SSH 連線其他主機，並使用 ServerBox 本身的操作。';
+
+  @override
+  String get agentTerminalTools => '終端';
+
+  @override
+  String get agentTerminalToolsTip => '在終端自己的對話中：讀取終端顯示的內容，並在其伺服器上執行指令。';
+
+  @override
+  String get agentToolTerminalScreen => '讀取螢幕';
+
+  @override
+  String get agentProviders => '提供者';
+
+  @override
+  String get agentProvidersTip => 'API Key、模型，以及新對話使用的模型';
+
+  @override
+  String get agentTools => '工具';
+
+  @override
+  String get agentToolsTip => 'Agent 可以使用的工具，以及 MCP 伺服器';
+
+  @override
+  String get agentSnippetToolsTip => '列出、新增、修改和刪除 snippet；修改前會詢問。';
+
+  @override
+  String get agentVirtToolsTip => '讀取虛擬化分頁已載入的虛擬機和容器。';
+
+  @override
+  String get agentBenchmarkToolsTip => '讀取效能測試結果；經你核准後執行或停止測試。';
+
+  @override
+  String get agentRemoteDesktopToolsTip => '列出遠端桌面設定；經你核准後連線或中斷。';
+
+  @override
+  String get agentSkills => 'Skills';
+
+  @override
+  String get agentSkillsTip => '特定任務的操作說明，可從 GitHub 或連結安裝';
+
+  @override
+  String get agentPermissions => '權限';
+
+  @override
+  String get agentEmptyHint => '詢問你的伺服器，或讓 Agent 在伺服器上完成某項操作。';
+
+  @override
+  String get agentTerminalEmptyHint => '詢問這台伺服器。Agent 可以讀取目前的終端，並在這裡執行指令。';
 
   @override
   String oldestSampleFmt(String time) {
@@ -7430,32 +7238,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get connectionTip => '兩個可以同時開啟。順序就是撥接的順序。';
 
   @override
-  String transportOrderFmt(String first, String second) {
-    return '拖曳可調整順序。先撥 $first；它不回應時，$second 獨自承擔工作階段。';
-  }
-
-  @override
-  String transportOnlyFmt(String name) {
-    return '只開啟了 $name，沒有可回落的對象。';
-  }
-
-  @override
   String get transportNoneOn => '兩個都關閉了 —— 這台伺服器無法連線。';
-
-  @override
-  String get transportOffKept => '已關閉 —— 設定保留，不會撥接';
-
-  @override
-  String get transportDialledFirst => '先撥';
-
-  @override
-  String get transportFallback => '回落';
-
-  @override
-  String get transportOnlyMethod => '唯一方式';
-
-  @override
-  String get transportOff => '已關閉';
 
   @override
   String get thisDevice => '本機';
@@ -7501,9 +7284,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get optional => '選用';
-
-  @override
-  String get optionalTip => '這裡的東西都不是連線所必需的。展開一項，它的欄位會接管表單。';
 
   @override
   String get sshAdvanced => 'SSH 進階';
@@ -7897,6 +7677,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get remoteDesktopFullScreen => '全螢幕';
 
   @override
+  String get remoteDesktopExitFullScreen => '結束全螢幕';
+
+  @override
   String get remoteDesktopCloseSession => '關閉工作階段';
 
   @override
@@ -7987,6 +7770,15 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get remoteDesktopUsernameRequired => '請輸入 RDP 使用者名稱。';
 
   @override
+  String get remoteDesktopNameInvalid => '設定名稱最多 64 個字元，不能換行。';
+
+  @override
+  String get remoteDesktopHostInvalid => '目標主機不能包含空格或換行。';
+
+  @override
+  String get remoteDesktopCredentialInvalid => '使用者名稱和網域最多 256 個字元，不能換行。';
+
+  @override
   String get remoteDesktopVncPasswordAscii => '傳統 VNC 密碼只能包含 ASCII 字元。';
 
   @override
@@ -8043,11 +7835,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   @override
   String remoteDesktopCertificateValidity(String start, String end) {
     return '有效期：$start – $end';
-  }
-
-  @override
-  String appearanceThemeModeLocked(String mode) {
-    return '此主題僅支援$mode。如需切換模式，請選擇其他主題。';
   }
 
   @override
@@ -8297,9 +8084,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   }
 
   @override
-  String get reopen => '重新開啟';
-
-  @override
   String get virtSnapshots => '快照';
 
   @override
@@ -8460,9 +8244,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get virtCreateNameTaken => '已有同名虛擬機器。';
-
-  @override
-  String get virtCreateVmidInvalid => '範圍為 100 到 999999999。';
 
   @override
   String get virtCreateVmidTaken => '這個 VMID 已被使用。';
@@ -8944,9 +8725,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get virtHwEfiStorage => 'EFI 變數存放於';
-
-  @override
-  String get virtHwTpmStorage => 'TPM 狀態存放於';
 
   @override
   String virtHwSwitchFirmwareAsk(String guest, String firmware) {
@@ -9544,9 +9322,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get virtSnapshotFormInternal => '內部（映像內）';
 
   @override
-  String get virtSnapshotForm => '類型';
-
-  @override
   String get virtSnapshotOverlayPool => '覆蓋層儲存池';
 
   @override
@@ -9573,11 +9348,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get virtSnapshotChainBase => '基礎映像';
 
   @override
-  String virtSnapshotChainRaw(String format) {
-    return '外部快照需要 qcow2 磁碟，而這顆是 $format。';
-  }
-
-  @override
   String get virtSnapshotNoSupport => '虛擬機器的儲存不支援快照，無法建立。';
 
   @override
@@ -9595,9 +9365,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get virtSnapshotDiffShow => '與現在比較';
-
-  @override
-  String get virtSnapshotDiffGroup => '已變更';
 
   @override
   String get virtSnapshotDiffGroupCpu => '處理器';
@@ -9675,19 +9442,10 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get virtTemplateTip => '範本只有在複製後才能執行。';
 
   @override
-  String get virtCloneStorage => '目標儲存';
-
-  @override
   String get virtCloneStorageSame => '與來源相同';
 
   @override
-  String get virtCloneNode => '目標節點';
-
-  @override
   String get virtCloneNodeSame => '與來源相同';
-
-  @override
-  String get virtClonePool => '目標儲存池';
 
   @override
   String get virtCloneStorageContent => '該儲存不存放虛擬機器磁碟。';
@@ -9709,9 +9467,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get virtBackupJobNew => '新增工作';
-
-  @override
-  String get virtBackupJobEdit => '編輯工作';
 
   @override
   String get virtBackupJobRun => '立即執行';
@@ -9764,12 +9519,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get virtBackupMail => '通知';
 
   @override
-  String get virtBackupMailAlways => '總是';
-
-  @override
-  String get virtBackupMailFailure => '失敗時';
-
-  @override
   String get virtBackupNotesTemplate => '備份備註';
 
   @override
@@ -9783,9 +9532,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   @override
   String get virtBackupPruneTip =>
       'PVE 的保留選項，例如 keep-last=7,keep-daily=4。留空則用儲存或節點自身的設定。';
-
-  @override
-  String get virtBackupNextRun => '下次執行';
 
   @override
   String get virtBackupJobNode => '節點';
@@ -9819,9 +9565,6 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get virtBackupRestoreStorageSame => '與備份一致';
-
-  @override
-  String get virtBackupModeSnapshotTip => 'snapshot · 不停機';
 
   @override
   String get virtCloneStorageMissing => '該節點上沒有存放虛擬機器磁碟的儲存。';
@@ -9995,4 +9738,349 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get copyLink => '複製連結';
+
+  @override
+  String funcNeedsAgentPermission(String func) {
+    return '你在此 Monitor agent 上的帳號沒有 $func 的權限，請聯絡該 agent 的管理員。';
+  }
+
+  @override
+  String funcNeedsAgentHttps(String func) {
+    return '$func 需要透過 HTTPS 連線此 Monitor agent，或在 agent 和本 App 中同時允許 HTTP。';
+  }
+
+  @override
+  String funcNeedsAgentSetup(String func) {
+    return '此 Monitor agent 尚未設定 $func，需要由其維運人員設定。';
+  }
+
+  @override
+  String get monitorFilesReadOnly => '唯讀：此帳號可以瀏覽 agent 上的檔案，但不能修改。';
+
+  @override
+  String get monitorAccess => '存取';
+
+  @override
+  String get monitorAccounts => '帳號';
+
+  @override
+  String get monitorRoles => '角色';
+
+  @override
+  String get monitorRole => '角色';
+
+  @override
+  String get monitorChangePassword => '變更密碼';
+
+  @override
+  String get monitorNewPassword => '新密碼';
+
+  @override
+  String get monitorCurrentPassword => '你目前的密碼';
+
+  @override
+  String get monitorReauthTip => '變更存取權限需要再次輸入你的密碼。';
+
+  @override
+  String get monitorPasswordTooShort => '至少 8 個字元';
+
+  @override
+  String get monitorPasswordMismatch => '兩次輸入的密碼不一致';
+
+  @override
+  String get monitorErrReauth => '密碼錯誤。';
+
+  @override
+  String get monitorErrLastAdmin => 'agent 至少需要一個管理員帳號。';
+
+  @override
+  String get monitorErrConflict => '已存在，或仍在使用中。';
+
+  @override
+  String get monitorErrForbidden => '只有管理員可以執行此操作。';
+
+  @override
+  String get monitorRoleNameRule => '小寫字母、數字、- 和 _，最多 32 個字元';
+
+  @override
+  String get monitorGrantShell => 'Shell 和指令';
+
+  @override
+  String get monitorGrantShellTip => '終端機、程序、服務、容器、程式碼片段、電源 —— 以 agent 的系統帳號執行';
+
+  @override
+  String get monitorGrantSshTerminal => '面板 SSH 終端機';
+
+  @override
+  String get monitorGrantVirt => '虛擬化';
+
+  @override
+  String get monitorGrantVirtTip => 'agent 網頁面板中連接的 Proxmox VE、libvirt 和 BMC';
+
+  @override
+  String get monitorGrantFiles => '檔案';
+
+  @override
+  String get monitorGrantConnect => '對外連線';
+
+  @override
+  String get monitorGrantConnectTip => '本機和動態連接埠轉發、遠端桌面';
+
+  @override
+  String get monitorGrantConnectAllow =>
+      '允許的目標（IP 或 CIDR，可帶 :連接埠 或 :起-迄；每行一個，留空表示任意）';
+
+  @override
+  String get monitorGrantListen => '在伺服器上監聽';
+
+  @override
+  String get monitorGrantListenTip => '遠端連接埠轉發';
+
+  @override
+  String get monitorGrantListenPublic => '非 loopback 位址';
+
+  @override
+  String get monitorGrantPorts => '連接埠範圍（留空表示任意）';
+
+  @override
+  String get monitorGrantOff => '關閉';
+
+  @override
+  String get monitorBuiltin => '內建';
+
+  @override
+  String get monitorAdminRoleTip => '管理帳號、角色和 agent 的設定';
+
+  @override
+  String get monitorYou => '你';
+
+  @override
+  String get monitorNoAccessToSettings => '只有管理員可以變更此 agent 的設定。';
+
+  @override
+  String get monitorPasswordNotSaved =>
+      'agent 上的密碼已修改，但 App 未能儲存新密碼。請在這台伺服器的設定中更新 Monitor 密碼。';
+
+  @override
+  String get firewall => '防火牆';
+
+  @override
+  String get firewallLinuxOnly => '防火牆管理支援裝有 ufw 或 firewalld 的 Linux 伺服器。';
+
+  @override
+  String get firewallNeedsRoot => '讀取防火牆規則需要 root 權限。請輸入 sudo 密碼以繼續。';
+
+  @override
+  String get firewallIncoming => '入站';
+
+  @override
+  String get firewallOutgoing => '出站';
+
+  @override
+  String get firewallRouted => '轉送';
+
+  @override
+  String get firewallDefaultPolicy => '預設策略';
+
+  @override
+  String get firewallLogging => '日誌';
+
+  @override
+  String get firewallRules => '規則';
+
+  @override
+  String get firewallRule => '規則';
+
+  @override
+  String get firewallAddRule => '新增規則';
+
+  @override
+  String get firewallAnywhere => '任意';
+
+  @override
+  String firewallFromFmt(String source) {
+    return '來自 $source';
+  }
+
+  @override
+  String get firewallFrom => '來源';
+
+  @override
+  String get firewallTo => '目標';
+
+  @override
+  String get firewallProtocol => '協定';
+
+  @override
+  String get firewallInterface => '網路介面';
+
+  @override
+  String get firewallComment => '備註';
+
+  @override
+  String get firewallAppProfile => '應用設定檔';
+
+  @override
+  String get firewallPrepend => '置於所有規則之前';
+
+  @override
+  String get firewallIpv6Off => 'IPv6 已關閉（IPV6=no），不載入 v6 規則。';
+
+  @override
+  String get firewallReload => '重新載入';
+
+  @override
+  String get firewallNothingMatched => '請填寫連接埠、應用設定檔、位址或網路介面。';
+
+  @override
+  String get firewallInvalidPort => '連接埠無效。格式如 22、80,443 或 6000:6010。';
+
+  @override
+  String get firewallTooManyPorts => '最多 15 個連接埠，一個範圍計為 2 個。';
+
+  @override
+  String get firewallPortsNeedProtocol => '連接埠列表或範圍需要指定 tcp 或 udp。';
+
+  @override
+  String get firewallInvalidAddress => '位址無效。請填寫 IP 位址或網段，例如 192.168.1.0/24。';
+
+  @override
+  String get firewallMixedIpVersions => '來源與目標必須同為 IPv4 或同為 IPv6。';
+
+  @override
+  String get firewallInvalidInterface => '網路介面名稱無效。';
+
+  @override
+  String get firewallInvalidComment => '備註不能包含 \' 或換行。';
+
+  @override
+  String get firewallInterfaceIn => '入站網路介面';
+
+  @override
+  String get firewallInterfaceOut => '出站網路介面';
+
+  @override
+  String get firewallSourcePort => '來源連接埠';
+
+  @override
+  String get firewallMoreOptions => '更多選項';
+
+  @override
+  String get firewallNoneInstalled =>
+      '此伺服器未安裝 ufw 或 firewalld。可用系統的套件管理員安裝其中一個，例如 `apt install ufw` 或 `dnf install firewalld`。';
+
+  @override
+  String get firewallKeepAccess => '先保持本 App 使用的連接埠開放';
+
+  @override
+  String firewallWillRefuseFmt(String access) {
+    return '$access：本 App 的新連線將被拒絕。目前的連線在中斷前不受影響。';
+  }
+
+  @override
+  String firewallMayRefuseFmt(String access) {
+    return '$access：本 App 的新連線可能被拒絕，取決於連線來源位址或進入的網路介面，本 App 無法判斷。';
+  }
+
+  @override
+  String firewallRateLimitedFmt(String access) {
+    return '$access：連線將被限速。同一位址 30 秒內建立 6 個以上連線會被拒絕，本 App 可能達到這個頻率。';
+  }
+
+  @override
+  String get firewallConflict =>
+      'ufw 和 firewalld 同時開啟。兩者都會寫入核心規則，最後載入的一方決定放行什麼。';
+
+  @override
+  String get firewallDefaultZone => '預設 zone';
+
+  @override
+  String get firewallZone => 'Zone';
+
+  @override
+  String get firewallTarget => 'Target';
+
+  @override
+  String get firewallMasquerade => 'Masquerade';
+
+  @override
+  String get firewallServices => '服務';
+
+  @override
+  String get firewallPorts => '連接埠';
+
+  @override
+  String get firewallSources => '來源';
+
+  @override
+  String get firewallInterfaces => '網路介面';
+
+  @override
+  String get firewallRichRules => 'Rich rules';
+
+  @override
+  String get firewallForwardPorts => '連接埠轉送';
+
+  @override
+  String get firewallRuntimeOnly => '僅 runtime';
+
+  @override
+  String get firewallPermanentOnly => '僅 permanent';
+
+  @override
+  String get firewallThisConnection => '目前連線';
+
+  @override
+  String get firewallDefaultTag => '預設';
+
+  @override
+  String get firewallDrift => '目前生效的設定與已儲存的不一致。reload 或重新開機後將改為已儲存的設定。';
+
+  @override
+  String firewallDriftLockoutFmt(String access) {
+    return 'reload 或重新開機後，$access 將被拒絕：已儲存的設定沒有放行它。';
+  }
+
+  @override
+  String get firewallSaveRuntime => '儲存為 permanent';
+
+  @override
+  String get firewallReloadLoses => '未儲存為 permanent 的變更將遺失。';
+
+  @override
+  String get firewallPanic => 'panic 模式已開啟：所有封包都會被丟棄。';
+
+  @override
+  String get firewallPanicOff => '關閉 panic 模式';
+
+  @override
+  String get firewallStoppedNote => 'firewalld 已停止。變更會儲存，啟動後生效。';
+
+  @override
+  String get firewallInvalidSource =>
+      '來源無效。請填寫位址、網段（如 192.168.1.0/24）、ipset:名稱 或 MAC 位址。';
+
+  @override
+  String get firewallInvalidRichRule => 'rich rule 必須以 \"rule\" 開頭，且只能有一行。';
+
+  @override
+  String get firewallInvalidForwardPort =>
+      '格式為 port=80:proto=tcp:toport=8080，需包含 toport、toaddr 或兩者。';
+
+  @override
+  String get monitorSyncNeedsServer => '請選擇存放備份的伺服器（使用其 Monitor 代理）。';
+
+  @override
+  String get monitorBackupUnsupported => '此 Monitor 代理不支援存放備份，請更新代理。';
+
+  @override
+  String get monitorBackupAdminOnly => '只有 Monitor 代理的管理員帳戶可以在其上存放備份。';
+
+  @override
+  String monitorBackupTooLarge(String max) {
+    return '備份超過了 Monitor 代理允許的大小（$max）。';
+  }
+
+  @override
+  String get monitorBackupTooMany => 'Monitor 代理存放的備份數量已達上限，請先刪除一個。';
 }

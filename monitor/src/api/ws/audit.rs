@@ -31,6 +31,10 @@ pub enum Kind {
     /// desktop session or a forwarded port. The detail is the address, which
     /// is the operator's own network rather than anything a client sent.
     Stream,
+    /// A port listened on through `api::ws::listen`, for a remote forward.
+    /// The detail is the address bound; each connection it hands over is
+    /// recorded as a `Stream` connect, with the peer as the detail.
+    Listen,
     /// A file operation through `api::fs`. The subject is the verb and the
     /// path, never the contents.
     Fs,
@@ -42,6 +46,20 @@ pub enum Kind {
     /// subject is the channel names and types, plus the host a test webhook
     /// went to — never a key, a token or a header value.
     Push,
+    /// A change to who may do what: an account or a role created, changed or
+    /// removed, a password changed. The detail names the account or role and
+    /// what changed — never a password.
+    Admin,
+    /// The machine-management endpoints (`api::machine`): power, processes,
+    /// services and the rest. The subject is the account; the detail starts
+    /// with the feature and verb and its target (`power reboot`,
+    /// `process stop 1234`), and never carries a password or a command's
+    /// output.
+    Machine,
+    /// A blob hosted by `api::backup` written or removed. The subject is the
+    /// account; the detail the verb, the blob's name and its size — never its
+    /// contents.
+    Backup,
 }
 
 impl Kind {
@@ -51,9 +69,13 @@ impl Kind {
             Kind::Terminal => "terminal",
             Kind::Exec => "exec",
             Kind::Stream => "stream",
+            Kind::Listen => "listen",
             Kind::Fs => "fs",
             Kind::CustomCmd => "custom_cmd",
             Kind::Push => "push",
+            Kind::Admin => "admin",
+            Kind::Machine => "machine",
+            Kind::Backup => "backup",
         }
     }
 }
@@ -71,6 +93,8 @@ pub enum Action {
     /// was made. Its own action rather than `Open`, which for a terminal means
     /// a shell and is answered with a session handle this has none of.
     Connect,
+    /// Something stored was replaced or removed.
+    Write,
 }
 
 impl Action {
@@ -82,6 +106,7 @@ impl Action {
             Action::Close => "close",
             Action::Denied => "denied",
             Action::Connect => "connect",
+            Action::Write => "write",
         }
     }
 }

@@ -9,9 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:redfish/redfish.dart';
 import 'package:server_box/core/extension/context/locale.dart';
-import 'package:server_box/core/extension/context/motion.dart';
 import 'package:server_box/core/extension/server.dart';
 import 'package:server_box/core/route.dart';
 import 'package:server_box/data/model/app/server_detail_card.dart';
@@ -28,6 +26,8 @@ import 'package:server_box/data/provider/server/single.dart';
 import 'package:server_box/data/res/chart_palette.dart';
 import 'package:server_box/data/res/store.dart';
 import 'package:server_box/data/res/url.dart';
+import 'package:server_box/src/rust/api/bmc.dart';
+import 'package:server_box/view/page/server/card/chart_hero.dart';
 import 'package:server_box/view/page/server/card/metric.dart';
 import 'package:server_box/view/page/server/card/name_hero.dart';
 import 'package:server_box/view/page/server/card/notices.dart';
@@ -121,7 +121,7 @@ const _kFuncBarInset = kFuncBarInset;
   final entries = serverFuncBtnsFor(si.spi, si.remoteAccess);
   if (!serverDetailHasContent(si)) {
     return (
-      entries: [for (final e in entries) (btn: e.btn, available: false)],
+      entries: [for (final e in entries) (btn: e.btn, available: false, reason: null)],
       any: false,
     );
   }
@@ -220,8 +220,6 @@ class _ServerDetailPageState extends ConsumerState<ServerDetailPage>
   /// back on screen — see `_revealFocus`.
   final _focusCardKey = GlobalKey();
   late final _collapse = _settings.collapseUIDefault.fetch();
-  late final _cpuViewAsProgress = _settings.cpuViewAsProgress.fetch();
-  late final _displayCpuIndex = _settings.displayCpuIndex.fetch();
 
   /// Which cards are open, by their `cardKey`.
   ///
@@ -586,7 +584,14 @@ class _ServerDetailPageState extends ConsumerState<ServerDetailPage>
       // Match the grid's top inset so the card-to-detail transition does not
       // introduce a vertical jump.
       padding: EdgeInsets.fromLTRB(13, 4, 13, bottomInset + 13),
-      child: wide
+      // Held to a width and centred inside a scroll view that still has the
+      // whole page, so the page scrolls from anywhere over it.
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: ServerCardSizes.contentMax,
+          ),
+          child: wide
           ? Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -604,6 +609,8 @@ class _ServerDetailPageState extends ConsumerState<ServerDetailPage>
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [...metrics, UIs.height13, aside],
             ),
+        ),
+      ),
     );
   }
 

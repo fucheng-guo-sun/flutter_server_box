@@ -6,17 +6,21 @@
 //!
 //! # Authority
 //!
-//! `remote_access.full_access`, checked here when the socket opens *and* when
-//! the ticket is minted. The host connects as the account the agent runs as,
-//! so this is the same grant as the shell and `/exec` — and deliberately not a
-//! switch of its own: anyone who can open a shell can `ssh -L` from it, so a
-//! grant that withheld this while granting the shell would withhold nothing.
-//! See `RemoteAccess::full_access_available`.
+//! The caller's role (`core::permissions`): `open` needs `connect`, and the
+//! address has to be one its `allow` list names — a host name is resolved
+//! here and every address it resolved to must be allowed, and those very
+//! addresses are what is dialled, so a name cannot be re-resolved to
+//! somewhere else between the check and the connection. `accept` needs
+//! `listen`. Checked when the ticket is minted, when the socket opens, when
+//! the frame arrives, and again whenever a role changes while bytes are
+//! flowing (`AppState.grants_changed`).
 //!
 //! # Wire format
 //!
-//! - **Text** — the request first: `{"type":"open","host":..,"port":..}`. Then
-//!   control JSON, see [`ClientMsg`] and [`ServerMsg`].
+//! - **Text** — the request first: `{"type":"open","host":..,"port":..}`, or
+//!   `{"type":"accept","id":..}` to take a connection a remote forward's
+//!   listener is holding (see `api::ws::listen`). Then control JSON, see
+//!   [`ClientMsg`] and [`ServerMsg`].
 //! - **Binary** — the bytes of that connection, both directions.
 //!
 //! One socket is one connection, and it ends when either side ends it. Unlike
@@ -47,7 +51,9 @@ use tokio::sync::{broadcast, mpsc};
 
 use super::audit::{self, Action, Event, Kind, Outcome};
 use super::ticket::Purpose;
+use crate::api::authz;
 use crate::api::server::AppState;
+use crate::core::permissions::Grant;
 
 /// How many of the client's frames may wait for a target slower than the
 /// client — a disk behind an upload — before the socket stops being read
@@ -66,6 +72,10 @@ const READ_BUFFER: usize = 32 * 1024;
 enum ClientMsg {
     /// Dial this address and start relaying.
     Open { host: String, port: u16 },
+    /// Relay a connection a remote forward accepted, by the id its listener
+    /// announced. The other way round from `open`: the connection came in
+    /// rather than going out, and everything after it is the same.
+    Accept { id: String },
     /// Ask the agent to say whether it is still there.
     ///
     /// The app has its own watchdog; this is for a caller that would rather
@@ -109,11 +119,6 @@ pub async fn stream_ws(
     };
 
     let secure = super::is_secure_transport(&req, app_state.tls_active);
-    // Checked here as well as at the ticket, so the answer cannot be stale by
-    // the time a connection is actually made.
-    if !app_state.full_access_allowed(secure) {
-        return deny("no full access", HttpResponse::Forbidden().finish()).await;
-    }
     if !super::origin_allowed(&req, &app_state.config.get_server().cors_allowed_origins) {
         return deny("origin", HttpResponse::Unauthorized().finish()).await;
     }
@@ -131,11 +136,25 @@ pub async fn stream_ws(
     let subject = reservation.subject().to_string();
     let tickets = app_state.tickets.clone();
 
+    // Checked here as well as at the ticket, so the answer cannot be stale by
+    // the time a connection is actually made. Either grant will do; which one
+    // the first frame needs is checked when it arrives.
+    let admitted = authz::caller_named(&app_state, &subject).await.filter(|caller| {
+        [Grant::Connect, Grant::Listen]
+            .into_iter()
+            .any(|grant| caller.check(grant, &app_state, secure).is_ok())
+    });
+    let Some(admitted) = admitted else {
+        tickets.rollback(reservation);
+        return deny("not granted", HttpResponse::Forbidden().finish()).await;
+    };
+
     let ctx = Rc::new(ConnCtx {
         state: app_state,
         subject,
         remote_ip,
         secure,
+        since: admitted.since,
     });
 
     let upgraded = super::upgrade::start::<_, _, web::Error>(
@@ -161,6 +180,44 @@ struct ConnCtx {
     subject: String,
     remote_ip: Option<String>,
     secure: bool,
+    /// The account's password as of the upgrade (`Caller::since`). A relay
+    /// ends once it moves: what was opened under the old one is not the
+    /// account's any more — see `authz::end_account`.
+    since: i64,
+}
+
+/// What a running relay was allowed under, to be asked again when a role
+/// changes.
+#[derive(Clone, Copy)]
+enum Keep {
+    /// An `open`: `connect`, to this peer.
+    Connect(std::net::SocketAddr),
+    /// An `accept`: `listen`.
+    Listen,
+}
+
+impl ConnCtx {
+    /// This connection's account, its role read again — none once its
+    /// password has changed since the upgrade.
+    async fn caller(&self) -> Option<authz::Caller> {
+        authz::caller_named(&self.state, &self.subject)
+            .await
+            .filter(|caller| caller.since == self.since)
+    }
+
+    /// Whether what [keep] says this relay was opened under still holds.
+    async fn still(&self, keep: Keep) -> bool {
+        let Some(caller) = self.caller().await else {
+            return false;
+        };
+        match keep {
+            Keep::Connect(peer) => {
+                caller.check(Grant::Connect, &self.state, self.secure).is_ok()
+                    && caller.may_connect_to(peer)
+            }
+            Keep::Listen => caller.check(Grant::Listen, &self.state, self.secure).is_ok(),
+        }
+    }
 }
 
 /// What the connection is doing. One `open` per socket, like the terminal's
@@ -289,6 +346,12 @@ async fn on_control(
             }
             open(ctx, sink, phase, &host, port).await
         }
+        ClientMsg::Accept { id } => {
+            if !claim_idle(phase) {
+                return Some(error_frame("bad_request", "A connection is already open"));
+            }
+            accept(ctx, sink, phase, &id).await
+        }
     }
 }
 
@@ -309,37 +372,116 @@ async fn open(
     host: &str,
     port: u16,
 ) -> Option<Message> {
-    // Subscribed before anything else, so a revocation landing anywhere between
-    // this line and the relay task subscribing for itself is still delivered:
-    // the broadcast only reaches receivers that existed when it was sent, and
-    // the check below is what a revocation racing the connect would otherwise
-    // slip past.
-    let revoked = ctx.state.full_access_revoked.subscribe();
+    // Subscribed before anything else, so a role change landing anywhere
+    // between this line and the relay task is still delivered: the broadcast
+    // only reaches receivers that existed when it was sent, and the check
+    // below is what a change racing the connect would otherwise slip past.
+    let changes = ctx.state.grants_changed.subscribe();
 
     // Re-checked at the moment of use rather than trusted from the handshake:
-    // the grant can be turned off while a ticket is outstanding, and the
-    // capabilities a client was told earlier are not a boundary.
-    if !ctx.state.full_access_allowed(ctx.secure) {
+    // a role can change while a ticket is outstanding, and the capabilities a
+    // client was told earlier are not a boundary.
+    let target = format!("{host}:{port}");
+    let caller = match ctx.caller().await {
+        Some(caller) => caller,
+        None => {
+            *phase.borrow_mut() = Phase::Done;
+            audit_connect(ctx, &target, Outcome::Denied).await;
+            return Some(error_frame("forbidden", "This account may not connect"));
+        }
+    };
+    if let Err(why) = caller.check(Grant::Connect, &ctx.state, ctx.secure) {
         *phase.borrow_mut() = Phase::Done;
-        audit_connect(ctx, host, port, Outcome::Denied).await;
-        return Some(error_frame("forbidden", "Full access is off"));
+        audit_connect(ctx, &target, Outcome::Denied).await;
+        return Some(error_frame(
+            "forbidden",
+            &format!("This account may not connect ({})", why.as_str()),
+        ));
     }
 
-    let stream = match TcpStream::connect((host, port)).await {
-        Ok(stream) => stream,
+    // Resolved once, here: every address the name has must be allowed, and
+    // these addresses are the ones dialled. Resolving again to connect would
+    // let a name that answered with an allowed address for the check answer
+    // with another for the connection.
+    let addrs: Vec<std::net::SocketAddr> = match tokio::net::lookup_host((host, port)).await {
+        Ok(addrs) => addrs.collect(),
         Err(error) => {
             *phase.borrow_mut() = Phase::Done;
-            audit_connect(ctx, host, port, Outcome::Error).await;
-            tracing::info!("Stream relay could not reach {host}:{port}: {error}");
+            audit_connect(ctx, &target, Outcome::Error).await;
+            tracing::info!("Stream relay could not resolve {target}: {error}");
             return Some(error_frame("connect_failed", "Could not reach the target"));
         }
     };
-    let _ = stream.set_nodelay(true);
+    if addrs.is_empty() || !addrs.iter().all(|addr| caller.may_connect_to(*addr)) {
+        *phase.borrow_mut() = Phase::Done;
+        audit_connect(ctx, &target, Outcome::Denied).await;
+        return Some(error_frame(
+            "forbidden",
+            "This account may not connect to that address",
+        ));
+    }
 
+    let stream = match TcpStream::connect(&addrs[..]).await {
+        Ok(stream) => stream,
+        Err(error) => {
+            *phase.borrow_mut() = Phase::Done;
+            audit_connect(ctx, &target, Outcome::Error).await;
+            tracing::info!("Stream relay could not reach {target}: {error}");
+            return Some(error_frame("connect_failed", "Could not reach the target"));
+        }
+    };
+
+    // What it actually reached, which is what a later role change is checked
+    // against; one of `addrs` by construction.
+    let peer = stream.peer_addr().unwrap_or(addrs[0]);
+    *phase.borrow_mut() = relay(ctx, sink, stream, changes, Keep::Connect(peer));
+    audit_connect(ctx, &target, Outcome::Ok).await;
+    // The caller waits for this before treating the connection as usable: a
+    // relay that answers `error` must not be raced by bytes the client already
+    // wrote into it.
+    Some(ServerMsg::Ready.frame())
+}
+
+/// Takes the connection a listener is holding under [id] and relays it.
+///
+/// Only one the same panel account listened for: an id is not a credential,
+/// and a second account that saw one in a log must not be able to take the
+/// connection it names. Anything else — unknown, expired, already taken — is
+/// the same answer, so the answer says nothing about which.
+async fn accept(
+    ctx: &Rc<ConnCtx>,
+    sink: &WsSink,
+    phase: &Rc<RefCell<Phase>>,
+    id: &str,
+) -> Option<Message> {
+    // Before the check, for the reason `open` gives.
+    let changes = ctx.state.grants_changed.subscribe();
+    if !ctx.still(Keep::Listen).await {
+        *phase.borrow_mut() = Phase::Done;
+        return Some(error_frame("forbidden", "This account may not listen"));
+    }
+    let Some((stream, peer)) = ctx.state.pending.claim(id, &ctx.subject) else {
+        *phase.borrow_mut() = Phase::Done;
+        return Some(error_frame("not_found", "No such connection is waiting"));
+    };
+    *phase.borrow_mut() = relay(ctx, sink, stream, changes, Keep::Listen);
+    audit_connect(ctx, &peer.to_string(), Outcome::Ok).await;
+    Some(ServerMsg::Ready.frame())
+}
+
+/// Carries [stream] both ways over [sink] until either end closes or the
+/// account loses what [keep] says the relay was opened under, and answers the
+/// phase the socket is now in.
+fn relay(
+    ctx: &Rc<ConnCtx>,
+    sink: &WsSink,
+    stream: TcpStream,
+    mut changes: broadcast::Receiver<&'static str>,
+    keep: Keep,
+) -> Phase {
+    let _ = stream.set_nodelay(true);
     let (mut reader, mut writer) = stream.into_split();
     let (tx, mut rx) = mpsc::channel::<Vec<u8>>(TARGET_QUEUE);
-    *phase.borrow_mut() = Phase::Running(tx);
-    audit_connect(ctx, host, port, Outcome::Ok).await;
 
     // Towards the target.
     let writing = async move {
@@ -374,66 +516,76 @@ async fn open(
             .await;
     };
 
-    // The grant this connection was opened under, which the panel can take
+    // The grant this connection was opened under, which an admin can take
     // away from a running process. Without this the socket would keep carrying
-    // bytes after `full_access` was switched off — the flag is only consulted
-    // when something is *started*. The receiver was taken at the top of this
-    // function, so a revocation racing the connect is delivered rather than
-    // missed.
+    // bytes after the role changed — the role is only consulted when something
+    // is *started*. The receiver was taken by the caller before its own check,
+    // so a change racing the connect is delivered rather than missed.
     let revocation_sink = sink.clone();
+    let ctx = ctx.clone();
 
     spawn(async move {
-        tokio::select! {
-            _ = writing => {}
-            _ = reading => {}
-            _ = awaiting_revocation(revoked) => {
-                // Said before closing, so the app reports why rather than
-                // reconnecting into a refusal it cannot see.
-                let _ = revocation_sink
-                    .send(
-                        ServerMsg::Error {
-                            code: "full_access_disabled",
-                            message: "Full access has been disabled",
-                        }
-                        .frame(),
-                    )
-                    .await;
-                let _ = revocation_sink
-                    .send(Message::Close(Some(CloseCode::Normal.into())))
-                    .await;
+        tokio::pin!(writing, reading);
+        loop {
+            tokio::select! {
+                _ = &mut writing => break,
+                _ = &mut reading => break,
+                code = next_change(&mut changes) => {
+                    // A change to somebody else's role, or one that left this
+                    // account what it needs: carry on.
+                    if ctx.still(keep).await {
+                        continue;
+                    }
+                    // Said before closing, so the app reports why rather than
+                    // reconnecting into a refusal it cannot see.
+                    let _ = revocation_sink
+                        .send(
+                            ServerMsg::Error {
+                                code,
+                                message: "This account may no longer use this connection",
+                            }
+                            .frame(),
+                        )
+                        .await;
+                    let _ = revocation_sink
+                        .send(Message::Close(Some(CloseCode::Normal.into())))
+                        .await;
+                    break;
+                }
             }
         }
     });
-    // The caller waits for this before treating the connection as usable: a
-    // relay that answers `error` must not be raced by bytes the client already
-    // wrote into it.
-    Some(ServerMsg::Ready.frame())
+    Phase::Running(tx)
 }
 
-/// Resolves when the panel turns full access off, or never.
+/// The next role change, as the code a client it ends is told — or never.
 ///
 /// A `broadcast` receiver answers `Err` once the sender is gone, and a `select!`
 /// arm backed by a future that completes immediately would spin. Neither can
 /// happen while the agent is running — the sender lives in `AppState` — but a
-/// closed channel is treated as "no signal" rather than as a revocation, since
-/// guessing here would close every relay the moment a state was dropped.
-async fn awaiting_revocation(mut revoked: broadcast::Receiver<()>) {
+/// closed channel is treated as "no signal" rather than as a change, since
+/// guessing here would re-check every relay the moment a state was dropped. A
+/// receiver that fell behind missed changes, so it re-checks as for one.
+pub(super) async fn next_change(changes: &mut broadcast::Receiver<&'static str>) -> &'static str {
     loop {
-        match revoked.recv().await {
-            Ok(()) | Err(broadcast::error::RecvError::Lagged(_)) => return,
+        match changes.recv().await {
+            Ok(code) => return code,
+            Err(broadcast::error::RecvError::Lagged(_)) => return "permission_revoked",
             Err(broadcast::error::RecvError::Closed) => std::future::pending().await,
         }
     }
 }
 
-async fn audit_connect(ctx: &Rc<ConnCtx>, host: &str, port: u16, outcome: Outcome) {
+/// [target] is the address dialled, or for a connection a listener accepted,
+/// the peer it came from.
+async fn audit_connect(ctx: &Rc<ConnCtx>, target: &str, outcome: Outcome) {
     Event::new(Kind::Stream, Action::Connect, outcome)
         .subject(&ctx.subject)
         .remote_ip(ctx.remote_ip.clone())
         // The address is the whole of what this endpoint was asked for, and it
         // is the operator's own network being dialled — worth recording, and
         // nothing a credential could be read out of.
-        .detail(format!("{host}:{port}"))
+        .detail(target)
         .record(&ctx.state.db)
         .await;
 }

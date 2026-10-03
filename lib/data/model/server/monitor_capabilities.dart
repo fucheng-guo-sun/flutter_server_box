@@ -1,3 +1,4 @@
+import 'package:server_box/data/model/server/monitor_grants.dart';
 import 'package:server_box/data/model/server/monitor_remote_access.dart';
 import 'package:server_box/data/model/server/system.dart';
 
@@ -28,7 +29,17 @@ class MonitorCapabilities {
   /// policy has a day.
   final DateTime? oldestSample;
 
+  /// The account this app is logged in as, and whether it may administer the
+  /// agent. Null for an agent older than roles.
+  final MonitorMe? me;
+
+  /// The machine-management endpoints this agent serves (`power`, `backup`,
+  /// ...). Empty for an agent older than the list, which serves none of them.
+  final Set<String> features;
+
   const MonitorCapabilities({
+    this.me,
+    this.features = const {},
     this.remoteAccess = MonitorRemoteAccess.none,
     this.platform,
     this.version,
@@ -50,7 +61,13 @@ class MonitorCapabilities {
     return MonitorCapabilities(
       remoteAccess: MonitorRemoteAccess.fromJson(
         json['remote_access'] as Map<String, dynamic>? ?? const {},
+        grants: (json['grants'] as Map?)?.cast<String, dynamic>(),
       ),
+      me: MonitorMe.fromJson(json['me']),
+      features: switch (json['features']) {
+        final List<dynamic> list => list.whereType<String>().toSet(),
+        _ => const {},
+      },
       platform: SystemType.fromWire(json['platform'] as String?),
       version: json['version'] as String?,
       retention: switch (json['retention_days']) {

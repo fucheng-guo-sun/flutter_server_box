@@ -1,5 +1,6 @@
 import 'package:flutter/painting.dart' show Alignment;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:server_box/core/llm/scope.dart';
 import 'package:server_box/data/model/app/float_shell.dart';
 import 'package:server_box/data/res/store.dart';
 
@@ -29,11 +30,15 @@ class AgentShell extends _$AgentShell {
 
   void hide() => _set(FloatShellMode.hidden);
 
-  void toggle() => _set(
-    state == FloatShellMode.hidden
+  /// The tab's float button. Turned on, it floats even an empty chat — see
+  /// [AgentChats.engaged]: asked for, it is a composer to start one in.
+  void toggle() {
+    final next = state == FloatShellMode.hidden
         ? FloatShellMode.expanded
-        : FloatShellMode.hidden,
-  );
+        : FloatShellMode.hidden;
+    if (next != FloatShellMode.hidden) AgentChats.engaged.value = true;
+    _set(next);
+  }
 
   void _set(FloatShellMode mode) {
     if (state == mode) return;
@@ -47,7 +52,11 @@ class AgentShell extends _$AgentShell {
 /// A getter rather than a field: [FloatShellGeometry] holds the settings row's
 /// properties, and reading `Stores.setting` at import time would resolve the
 /// store before `Stores.init` has registered one.
+///
+/// Floating until the user closes it, from the Agent tab's float button: what
+/// the Agent does elsewhere in the app, on the user's word, stays in view.
 FloatShellGeometry get agentShellGeometry => FloatShellGeometry(
   Stores.setting.agentShell,
   defaultCorner: Alignment.bottomRight,
+  defaultMode: FloatShellMode.expanded,
 );

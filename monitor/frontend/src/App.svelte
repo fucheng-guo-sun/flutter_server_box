@@ -5,6 +5,16 @@
   import Sidebar from './components/Sidebar.svelte'
   import Dashboard from './pages/Dashboard.svelte'
   import Files from './pages/Files.svelte'
+  import Process from './pages/Process.svelte'
+  import Services from './pages/Services.svelte'
+  import Cron from './pages/Cron.svelte'
+  import Containers from './pages/Containers.svelte'
+  import Benchmark from './pages/Benchmark.svelte'
+  import SystemUsers from './pages/SystemUsers.svelte'
+  import Snippets from './pages/Snippets.svelte'
+  import Desktop from './pages/Desktop.svelte'
+  import Backup from './pages/Backup.svelte'
+  import Bmc from './pages/Bmc.svelte'
   import PanelSettings from './pages/PanelSettings.svelte'
   import ServerSettings from './pages/ServerSettings.svelte'
   import Terminal from './pages/Terminal.svelte'
@@ -33,6 +43,26 @@
             <Terminal />
           {:else if layout.view === 'files'}
             <Files />
+          {:else if layout.view === 'process'}
+            <Process onback={() => layout.back('dashboard')} />
+          {:else if layout.view === 'services'}
+            <Services onback={() => layout.back('dashboard')} />
+          {:else if layout.view === 'cron'}
+            <Cron onback={() => layout.back('dashboard')} />
+          {:else if layout.view === 'containers'}
+            <Containers onback={() => layout.back('dashboard')} />
+          {:else if layout.view === 'benchmark'}
+            <Benchmark onback={() => layout.back('dashboard')} />
+          {:else if layout.view === 'system_users'}
+            <SystemUsers onback={() => layout.back('dashboard')} />
+          {:else if layout.view === 'snippets'}
+            <Snippets onback={() => layout.back('dashboard')} />
+          {:else if layout.view === 'desktop'}
+            <Desktop onback={() => layout.back('dashboard')} />
+          {:else if layout.view === 'bmc'}
+            <Bmc onback={() => layout.back('dashboard')} />
+          {:else if layout.view === 'backup'}
+            <Backup onback={() => layout.back('dashboard')} />
           {:else}
             <Dashboard />
           {/if}

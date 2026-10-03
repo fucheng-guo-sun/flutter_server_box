@@ -1,7 +1,11 @@
+pub mod bmc;
+pub mod desktop;
 pub mod file;
 pub mod parser;
 pub mod remote_desktop;
 pub mod script;
+pub mod snippet;
 pub mod ssh_crypto;
 pub mod ssh_asym;
+pub mod users;
 pub mod virt;

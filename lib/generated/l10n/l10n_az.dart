@@ -9,85 +9,6 @@ class AppLocalizationsAz extends AppLocalizations {
   AppLocalizationsAz([String locale = 'az']) : super(locale);
 
   @override
-  String get appearanceSettings => 'Görünüş';
-
-  @override
-  String get appearancePreset => 'Tema dəsti';
-
-  @override
-  String get appearanceThemeSchemaRange => 'Dəstəklənən mövzu schema-sı';
-
-  @override
-  String get appearanceThemeInstall => 'Mövzu quraşdır';
-
-  @override
-  String get appearanceThemeStore => 'Mövzu mağazası';
-
-  @override
-  String get appearanceInvalidTheme =>
-      'Mövzu paketi və ya kataloq etibarsızdır';
-
-  @override
-  String get themeStoreRefreshFailed => 'Tema kataloqu oxuna bilmədi.';
-
-  @override
-  String themeStoreDeleteTheme(String name) {
-    return '“$name” silinsin? Faylları bu cihazdan silinir. İstifadə olunan temadırsa, tətbiq standart temaya qayıdır.';
-  }
-
-  @override
-  String themeStoreUpdatedFmt(String ago) {
-    return '$ago yeniləndi';
-  }
-
-  @override
-  String get themeStoreUpdatedJustNow => 'indi yeniləndi';
-
-  @override
-  String get themeStoreSortInUse => 'İstifadədə olan əvvəl';
-
-  @override
-  String themeStoreMakeOwnFmt(String doc) {
-    return 'Öz temanızı yaratmaq istəyirsiniz? [Necə yaradılır]($doc) baxın — töhfəniz üçün təşəkkürlər!';
-  }
-
-  @override
-  String appearanceThemeNeedsNewerApp(String version) {
-    return 'Daha yeni tətbiq tələb olunur: $version';
-  }
-
-  @override
-  String get appearanceFontFamilies => 'İnterfeys şrift ailələri';
-
-  @override
-  String get appearanceFontFamiliesTip =>
-      'Hər sətirə bir ad yazın; şriftlər ardıcıllıqla yoxlanır.';
-
-  @override
-  String get appearanceFontImport => 'İnterfeys şrift faylını idxal et';
-
-  @override
-  String get appearanceGradient => 'Qradient';
-
-  @override
-  String get appearanceNoBackground => 'Fon yoxdur';
-
-  @override
-  String get appearanceIcons => 'Tətbiqdaxili ikonlar';
-
-  @override
-  String get appearanceCorners => 'Künclər';
-
-  @override
-  String get appearanceCardCorners => 'Kart küncləri';
-
-  @override
-  String get appearanceTileCorners => 'Element küncləri';
-
-  @override
-  String get appearanceButtonCorners => 'Düymə küncləri';
-
-  @override
   String get crashCollect => 'Diaqnostika məlumatları';
 
   @override
@@ -153,111 +74,10 @@ class AppLocalizationsAz extends AppLocalizations {
   String get askAi => 'AI-dan soruş';
 
   @override
-  String get askAiAwaitingResponse => 'AI cavabı gözlənilir...';
-
-  @override
-  String get askAiEndpointTip =>
-      'Domen və ya tam URL daxil et. Yol seçdiyin protokola əsasən tamamlanır.';
-
-  @override
-  String get askAiProtocolTip =>
-      'Avtomatik rejim əvvəlcə Responses, sonra Chat Completions sınayır.';
-
-  @override
-  String get askAiCommandInserted => 'Əmr terminala daxil edildi';
-
-  @override
-  String askAiConfigMissing(String fields) {
-    return 'Parametrlərdə $fields məlumatlarını təyin et.';
-  }
-
-  @override
-  String get askAiDisclaimer =>
-      'AI səhv edə bilər. Tətbiq etməzdən əvvəl diqqətlə yoxla.';
-
-  @override
   String get askAiInsertTerminal => 'Terminala daxil et';
 
   @override
-  String get askAiNoResponse => 'Cavab yoxdur';
-
-  @override
   String get remoteDesktop => 'Uzaq masaüstü';
-
-  @override
-  String get askAiAgentWelcome => 'Bu serverdə nə edək?';
-
-  @override
-  String get askAiAgentPromptHint =>
-      'Agentdən nəyisə yoxlamağı və ya düzəltməyi istə...';
-
-  @override
-  String get askAiAnalyzeSelectionPrompt =>
-      'Seçilmiş terminal çıxışını təhlil et və nə baş verdiyini izah et';
-
-  @override
-  String get askAiTerminalContext => 'Terminal konteksti';
-
-  @override
-  String get askAiReviewNeeded => 'Yoxla';
-
-  @override
-  String get askAiReviewAction => 'Təklif olunan əmri yoxla';
-
-  @override
-  String get askAiReviewBeforeContinuing =>
-      'Əvvəlcə cari təklifi yoxla və ya rədd et';
-
-  @override
-  String get askAiApproveRun => 'Təsdiqlə və icra et';
-
-  @override
-  String get askAiDecline => 'Rədd et';
-
-  @override
-  String get askAiActionDeclined => 'Təklif olunan əmr rədd edildi.';
-
-  @override
-  String get askAiInterrupted => 'Agentin cavabı kəsildi.';
-
-  @override
-  String get askAiResend => 'Resend';
-
-  @override
-  String get askAiResendTip =>
-      'Bu mesajdan sonrakı hər şey — cavablar, əmrlər və onların nəticələri silinəcək.';
-
-  @override
-  String get askAiDeleteTip =>
-      'Bu mesaj və ondan sonrakı hər şey — cavablar, əmrlər və onların nəticələri silinəcək.';
-
-  @override
-  String get askAiModelTable => 'Model table';
-
-  @override
-  String get askAiModelTableTip =>
-      'models.dev saytından model adına görə kontekst ölçüləri. Biri tətbiqlə birlikdə verilir; yenisini əldə etmək üçün toxunun.';
-
-  @override
-  String get askAiContextFallback => 'cədvəldə yoxdur';
-
-  @override
-  String get askAiCompactAt => 'Summarise at';
-
-  @override
-  String get askAiCompactAtTip =>
-      'Əvvəlki dialoq hissələri xülasə edilməzdən öncə model kontekstinin nə qədər dolacağını müəyyən edir. Daha erkən xülasə detalları tez itirir, daha gec xülasə isə modelin sorğunu rədd etməsi riskini artırır.';
-
-  @override
-  String get askAiContextTokens => 'Context size';
-
-  @override
-  String get askAiContextTokensTip =>
-      'Bu modelin neçə token saxladığını göstərir. Avtomatik rejim bunu ada görə tapır; provider daha qısa kontekst pəncərəsi təqdim edirsə, rəqəmi özünüz təyin edin.';
-
-  @override
-  String get askAiConversationCompacted =>
-      'Söhbətin davam etməsi üçün əvvəlki mesajlar xülasə edildi.';
 
   @override
   String get askAiRiskReadOnly => 'Yalnız oxuma';
@@ -272,23 +92,6 @@ class AppLocalizationsAz extends AppLocalizations {
   String get askAiRiskDestructive => 'Yüksək risk';
 
   @override
-  String get askAiHighRiskConfirmTitle => 'Yüksək riskli əmr icra edilsin?';
-
-  @override
-  String get askAiHighRiskConfirmBody =>
-      'Bu əmr geri qaytarılması çətin olan dəyişikliklər edə bilər. Diqqətlə yoxla.';
-
-  @override
-  String get askAiNoCommandOutput => 'Əmr çıxış olmadan tamamlandı.';
-
-  @override
-  String get askAiOutputTruncated =>
-      'Uzun çıxış agentə geri göndərilməzdən əvvəl qısaldıldı.';
-
-  @override
-  String get askAiAutoApproved => 'Avtomatik təsdiqləndi';
-
-  @override
   String get askAiAutoRunSafeCommands =>
       'Yalnız oxuma əmrlərini avtomatik icra et';
 
@@ -297,38 +100,10 @@ class AppLocalizationsAz extends AppLocalizations {
       'Yalnız həm model, həm də yerli yoxlama əmri yalnız oxuma kimi qiymətləndirdikdə icra olunur';
 
   @override
-  String get askAiSendOnEnter => 'Enter göndərir';
-
-  @override
-  String get askAiSendOnEnterTip =>
-      'Enter göndərir, Shift+Enter yeni sətir açır. Söndürüldükdə: Enter yeni sətir açır, Cmd/Ctrl+Enter göndərir.';
-
-  @override
-  String get askAiApiKeyOptional =>
-      'Yerli istifadə və ya autentifikasiya tələb olunmadıqda boş saxla';
-
-  @override
-  String get askAiAllowInsecure => 'Şifrələnməmiş HTTP-yə icazə ver';
-
-  @override
-  String get askAiAllowInsecureTip =>
-      'localhost xaricindəki ünvanlarda yerləşən öz modelinə http:// ilə qoşulmağa imkan verir. API açarı və terminal konteksti şifrələnmədən göndərilir; localhost bundan təsirlənmir.';
-
-  @override
-  String get askAiInsecureEndpoint =>
-      'Bu ünvan http:// istifadə edir. İstifadə etmək üçün AI parametrlərində «Şifrələnməmiş HTTP-yə icazə ver» seçimini aktivləşdir.';
-
-  @override
   String get askAiHistory => 'Söhbət tarixçəsi';
 
   @override
   String get askAiNewConversation => 'Yeni söhbət';
-
-  @override
-  String get askAiNoHistory => 'Hələ yadda saxlanmış söhbət yoxdur';
-
-  @override
-  String get askAiNoHistoryMessages => 'Hələ mesaj yoxdur';
 
   @override
   String get askAiUntitledConversation => 'Adsız';
@@ -342,29 +117,6 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get askAiDeleteConversationTip =>
       'Söhbəti bu cihazdan silir. Geri qaytarmaq mümkün deyil.';
-
-  @override
-  String get askAiClearHistoryTitle =>
-      'Bu serverin agent tarixçəsi təmizlənsin?';
-
-  @override
-  String get askAiClearHistoryTip =>
-      'Bu server üçün yadda saxlanmış bütün agent söhbətləri silinəcək.';
-
-  @override
-  String get askAiRestoredReview =>
-      'Bu əmr tarixçədən götürülüb. Yenidən yoxla';
-
-  @override
-  String get agentWelcome => 'Serverlərində nə edək?';
-
-  @override
-  String get agentWelcomeTip =>
-      'Agentə problemi araşdırmağı və ya tapşırığı yerinə yetirməyi həvalə et';
-
-  @override
-  String get agentPromptHint =>
-      'Agentdən serverlərini yoxlamağı və ya idarə etməyi istə...';
 
   @override
   String get agentNoHistory => 'Yadda saxlanmış ümumi agent söhbəti yoxdur';
@@ -384,14 +136,6 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get agentToolWriteFile => 'Fayla yaz';
-
-  @override
-  String get agentToolFailed => 'Alətin icrası uğursuz oldu.';
-
-  @override
-  String agentToolCallsFmt(int count) {
-    return '$count alət çağırışı';
-  }
 
   @override
   String get floatOverTabs => 'Digər vərəqlərin üzərində göstər';
@@ -677,10 +421,6 @@ class AppLocalizationsAz extends AppLocalizations {
   String get copyPath => 'Yolu kopyala';
 
   @override
-  String get cpuViewAsProgressTip =>
-      'Hər CPU istifadəsini irəliləyiş zolağı şəklində göstər (köhnə üslub)';
-
-  @override
   String get customCmd => 'Fərdi əmrlər';
 
   @override
@@ -688,10 +428,6 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get deleteDirRecursive => 'Qovluğu və içindəkilərin hamısını sil';
-
-  @override
-  String get desktopTerminalTip =>
-      'SSH sessiyaları başladılarkən terminal emulyatorunu açmaq üçün istifadə olunan əmr.';
 
   @override
   String get dirEmpty => 'Qovluğun boş olduğuna əmin ol.';
@@ -712,9 +448,6 @@ class AppLocalizationsAz extends AppLocalizations {
   String get diskHealth => 'Diskin sağlamlığı';
 
   @override
-  String get displayCpuIndex => 'CPU indeksini göstər';
-
-  @override
   String dl2Local(String fileName) {
     return '$fileName bu cihaza endirilsin?';
   }
@@ -732,13 +465,6 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get dockerStatistics => 'Docker statistikası';
-
-  @override
-  String get doubleColumnMode => 'İki sütunlu rejim';
-
-  @override
-  String get doubleColumnTip =>
-      'Bu seçim yalnız funksiyanı aktivləşdirir. Onun həqiqətən işləməsi cihazın enindən asılıdır.';
 
   @override
   String get editVirtKeys => 'Virtual düymələr';
@@ -961,13 +687,6 @@ class AppLocalizationsAz extends AppLocalizations {
       'SSH, monitorinq agenti və ya hər ikisini konfiqurasiya et';
 
   @override
-  String get preferredTransport => 'Əvvəlcə sına';
-
-  @override
-  String get preferredTransportTip =>
-      'Vəziyyətin haradan oxunduğunu və əmrin əvvəlcə hansı əlaqəni açdığını müəyyən edir. Digər əlaqə də əlçatan qalır.';
-
-  @override
   String get keepForeground => 'Tətbiqi ön planda saxla!';
 
   @override
@@ -1013,27 +732,16 @@ class AppLocalizationsAz extends AppLocalizations {
   String get maxRetryCount => 'Serverlə yenidən əlaqə cəhdlərinin sayı';
 
   @override
-  String mismatchSystem(String system) {
-    return 'Uyğun olmayan sistem: $system';
-  }
-
-  @override
   String get mirror => 'Güzgü serveri';
 
   @override
   String get needRestart => 'Tətbiq yenidən başladılmalıdır';
 
   @override
-  String get netViewType => 'Şəbəkə görünüşünün növü';
-
-  @override
   String get newContainer => 'Yeni konteyner';
 
   @override
   String get noConnectionStatsData => 'Əlaqə statistikası məlumatları yoxdur';
-
-  @override
-  String get noLineChart => 'Xətti qrafiklərdən istifadə etmə';
 
   @override
   String get noPrivateKeyTip =>
@@ -1052,9 +760,6 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get parseContainerStatsTip =>
       'Docker resurs istifadəsi vəziyyətinin təhlili nisbətən yavaşdır.';
-
-  @override
-  String get preferDiskAmount => 'Disk tutumunun göstərilməsinə üstünlük ver';
 
   @override
   String get privateKey => 'Məxfi açar';
@@ -1312,6 +1017,13 @@ class AppLocalizationsAz extends AppLocalizations {
   String get serverOrder => 'Serverlərin sırası';
 
   @override
+  String get serverOverview => 'Server icmalı';
+
+  @override
+  String get serverOverviewTip =>
+      'Server siyahısının yuxarısında icmalı və açıq serverin üstündə server panelini göstərir';
+
+  @override
   String get serverTabEmpty => 'Hələ server yoxdur';
 
   @override
@@ -1434,16 +1146,6 @@ class AppLocalizationsAz extends AppLocalizations {
   String sshConfigAllExist(int duplicateCount) {
     return 'Bütün serverlər artıq mövcuddur ($duplicateCount təkrar tapıldı)';
   }
-
-  @override
-  String get sshConnectionModeTip =>
-      'Daxili: tətbiqin terminalından istifadə et. Sistem SSH: sistemin ssh əmrini xarici terminalda başlat.';
-
-  @override
-  String get sshConnectionModeUseBuiltin => 'Daxili terminaldan istifadə et';
-
-  @override
-  String get sshConnectionModeUseSystem => 'Sistem SSH istifadə et';
 
   @override
   String sshConfigDuplicatesSkipped(int duplicateCount) {
@@ -1572,9 +1274,6 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get used => 'İstifadə olunur';
-
-  @override
-  String get view => 'Bax';
 
   @override
   String get viewDetails => 'Təfərrüatlara bax';
@@ -1719,13 +1418,7 @@ class AppLocalizationsAz extends AppLocalizations {
   String get tmuxSessionName => 'Sessiya adı';
 
   @override
-  String get tmuxExistingSessions => 'Mövcud sessiyalar';
-
-  @override
   String get tmuxNewSession => 'Yeni sessiya';
-
-  @override
-  String get tmuxWindows => 'Pəncərələr';
 
   @override
   String get tmuxNewWindow => 'Yeni pəncərə';
@@ -1745,31 +1438,7 @@ class AppLocalizationsAz extends AppLocalizations {
   }
 
   @override
-  String tmuxPaneCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count bölmə',
-      one: '1 bölmə',
-    );
-    return '$_temp0';
-  }
-
-  @override
   String get tmuxAttached => 'Qoşulub';
-
-  @override
-  String get tmuxActive => 'Aktivdir';
-
-  @override
-  String tmuxActiveAt(String time) {
-    return 'aktivdir: $time';
-  }
-
-  @override
-  String tmuxAttachedAt(String time) {
-    return 'qoşulub: $time';
-  }
 
   @override
   String get tmuxSkip => 'Keç';
@@ -2056,9 +1725,6 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get bmcStaleWrite =>
       'Məlumat yazılarkən BMC dəyişdi. Yenidən cəhd et.';
-
-  @override
-  String get send => 'Göndər';
 
   @override
   String get privacyBlur => 'Arxa planda məxfilik';
@@ -2400,6 +2066,20 @@ class AppLocalizationsAz extends AppLocalizations {
   }
 
   @override
+  String funcNeedsAgentGrant(String func, String setting) {
+    return '$func üçün Monitor agent-də $setting aktiv edilməlidir.';
+  }
+
+  @override
+  String funcNeedsAgentUpdate(String func) {
+    return '$func üçün daha yeni Monitor agent lazımdır.';
+  }
+
+  @override
+  String get portForwardRemoteNeedsAgent =>
+      'Monitor agent vasitəsilə uzaq yönləndirmələr daha yeni agent tələb edir: serverdə onu yeniləyin.';
+
+  @override
   String get rangeLive => 'Canlı';
 
   @override
@@ -2437,6 +2117,71 @@ class AppLocalizationsAz extends AppLocalizations {
   String agentRetentionFmt(String kept) {
     return 'Agent $kept saxlayır';
   }
+
+  @override
+  String get agentServerTools => 'Server alətləri';
+
+  @override
+  String get agentServerToolsTip =>
+      'Serverlərinizdə əmrlər icra etmək, faylları oxumaq və ya yazmaq, SSH ilə digər hostlara qoşulmaq və ServerBox-un öz əməliyyatlarından istifadə etmək.';
+
+  @override
+  String get agentTerminalTools => 'Terminal';
+
+  @override
+  String get agentTerminalToolsTip =>
+      'Terminalın öz söhbətlərində: terminalın göstərdiyini oxumaq və onun serverində əmrlər icra etmək.';
+
+  @override
+  String get agentToolTerminalScreen => 'Ekranı oxu';
+
+  @override
+  String get agentProviders => 'Provayderlər';
+
+  @override
+  String get agentProvidersTip =>
+      'API açarları, modellər və yeni söhbətin modeli';
+
+  @override
+  String get agentTools => 'Alətlər';
+
+  @override
+  String get agentToolsTip =>
+      'Agent-in istifadə edə bildikləri və onun MCP serverləri';
+
+  @override
+  String get agentSnippetToolsTip =>
+      'Snippet-ləri siyahıla, əlavə et, dəyiş və sil. Dəyişikliklər soruşulur.';
+
+  @override
+  String get agentVirtToolsTip =>
+      'Virtualizasiya bölməsinin yüklədiyi VM və konteynerləri oxu.';
+
+  @override
+  String get agentBenchmarkToolsTip =>
+      'Benchmark nəticələrini oxu; icazənizlə benchmark başlat və ya dayandır.';
+
+  @override
+  String get agentRemoteDesktopToolsTip =>
+      'Uzaq masaüstü profillərini siyahıla; icazənizlə qoşul və ya ayrıl.';
+
+  @override
+  String get agentSkills => 'Skills';
+
+  @override
+  String get agentSkillsTip =>
+      'Müəyyən tapşırıqlar üçün təlimatlar, GitHub-dan və ya keçiddən quraşdırılır';
+
+  @override
+  String get agentPermissions => 'İcazələr';
+
+  @override
+  String get agentEmptyHint =>
+      'Serverləriniz haqqında soruşun və ya Agent-dən onlarda nəsə etməsini xahiş edin.';
+
+  @override
+  String get agentTerminalEmptyHint =>
+      'Bu server haqqında soruşun. Agent bu terminalı oxuya və burada əmrlər icra edə bilər.';
 
   @override
   String oldestSampleFmt(String time) {
@@ -2633,34 +2378,8 @@ class AppLocalizationsAz extends AppLocalizations {
       'Hər ikisi eyni anda açıq ola bilər. Sıra, onların yığılma sırasıdır.';
 
   @override
-  String transportOrderFmt(String first, String second) {
-    return 'Sıranı dəyişmək üçün sürüşdürün. Əvvəlcə $first yığılır; cavab verməsə, sessiyanı $second təkbaşına aparır.';
-  }
-
-  @override
-  String transportOnlyFmt(String name) {
-    return 'Yalnız $name açıqdır, ona görə də geri dönüləcək bir şey yoxdur.';
-  }
-
-  @override
   String get transportNoneOn =>
       'Hər ikisi bağlıdır — bu serverə qoşulmaq mümkün deyil.';
-
-  @override
-  String get transportOffKept =>
-      'bağlı — parametrlər saxlanılır, heç vaxt yığılmır';
-
-  @override
-  String get transportDialledFirst => 'əvvəlcə yığılır';
-
-  @override
-  String get transportFallback => 'ehtiyat';
-
-  @override
-  String get transportOnlyMethod => 'yeganə üsul';
-
-  @override
-  String get transportOff => 'bağlı';
 
   @override
   String get thisDevice => 'Bu cihaz';
@@ -2708,10 +2427,6 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get optional => 'İstəyə bağlı';
-
-  @override
-  String get optionalTip =>
-      'Burada heç nə qoşulmaq üçün lazım deyil. Birini açın, onun sahələri formanı əvəz edir.';
 
   @override
   String get sshAdvanced => 'SSH əlavə';
@@ -3122,6 +2837,9 @@ class AppLocalizationsAz extends AppLocalizations {
   String get remoteDesktopFullScreen => 'Tam ekran';
 
   @override
+  String get remoteDesktopExitFullScreen => 'Tam ekrandan çıx';
+
+  @override
   String get remoteDesktopCloseSession => 'Sessiyanı bağla';
 
   @override
@@ -3219,6 +2937,18 @@ class AppLocalizationsAz extends AppLocalizations {
   String get remoteDesktopUsernameRequired => 'RDP istifadəçi adını daxil et.';
 
   @override
+  String get remoteDesktopNameInvalid =>
+      'Profil adı ən çox 64 simvol ola bilər və sətir sonu ola bilməz.';
+
+  @override
+  String get remoteDesktopHostInvalid =>
+      'Hədəf host boşluq və ya sətir sonu ehtiva edə bilməz.';
+
+  @override
+  String get remoteDesktopCredentialInvalid =>
+      'İstifadəçi adı və domen ən çox 256 simvol ola bilər və sətir sonu ola bilməz.';
+
+  @override
   String get remoteDesktopVncPasswordAscii =>
       'Klassik VNC parolları yalnız ASCII simvollarından ibarət olmalıdır.';
 
@@ -3278,11 +3008,6 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String remoteDesktopCertificateValidity(String start, String end) {
     return 'Etibarlıdır: $start – $end';
-  }
-
-  @override
-  String appearanceThemeModeLocked(String mode) {
-    return 'Bu mövzu yalnız $mode rejimini dəstəkləyir. Rejimi dəyişmək üçün başqa mövzu seçin.';
   }
 
   @override
@@ -3543,9 +3268,6 @@ class AppLocalizationsAz extends AppLocalizations {
   }
 
   @override
-  String get reopen => 'Yenidən aç';
-
-  @override
   String get virtSnapshots => 'Snapshotlar';
 
   @override
@@ -3715,9 +3437,6 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get virtCreateNameTaken => 'Bu adda qonaq var.';
-
-  @override
-  String get virtCreateVmidInvalid => '100-dən 999999999-a qədər.';
 
   @override
   String get virtCreateVmidTaken => 'Bu VMID məşğuldur.';
@@ -4222,9 +3941,6 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get virtHwEfiStorage => 'EFI dəyişənlərinin yeri';
-
-  @override
-  String get virtHwTpmStorage => 'TPM vəziyyətinin yeri';
 
   @override
   String virtHwSwitchFirmwareAsk(String guest, String firmware) {
@@ -4857,9 +4573,6 @@ class AppLocalizationsAz extends AppLocalizations {
   String get virtSnapshotFormInternal => 'Daxili (şəkil içində)';
 
   @override
-  String get virtSnapshotForm => 'Növ';
-
-  @override
   String get virtSnapshotOverlayPool => 'Örtük hovuzu';
 
   @override
@@ -4887,11 +4600,6 @@ class AppLocalizationsAz extends AppLocalizations {
   String get virtSnapshotChainBase => 'Əsas şəkil';
 
   @override
-  String virtSnapshotChainRaw(String format) {
-    return 'Xarici anlık görüntü qcow2 disk tələb edir. Bu disk $format.';
-  }
-
-  @override
   String get virtSnapshotNoSupport =>
       'Qonağın yaddaşı anlık görüntünü dəstəkləmir, buna görə yaradıla bilməz.';
 
@@ -4912,9 +4620,6 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get virtSnapshotDiffShow => 'İndiki ilə müqayisə et';
-
-  @override
-  String get virtSnapshotDiffGroup => 'Dəyişdi';
 
   @override
   String get virtSnapshotDiffGroupCpu => 'Prosessor';
@@ -4995,19 +4700,10 @@ class AppLocalizationsAz extends AppLocalizations {
   String get virtTemplateTip => 'Şablon yalnızca klonlandıqdan sonra işləyir.';
 
   @override
-  String get virtCloneStorage => 'Hədəf anbar';
-
-  @override
   String get virtCloneStorageSame => 'Mənbə ilə eyni';
 
   @override
-  String get virtCloneNode => 'Hədəf node';
-
-  @override
   String get virtCloneNodeSame => 'Mənbə ilə eyni';
-
-  @override
-  String get virtClonePool => 'Hədəf hovuz';
 
   @override
   String get virtCloneStorageContent => 'Bu anbar VM disklərini saxlamır.';
@@ -5032,9 +4728,6 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get virtBackupJobNew => 'Yeni iş';
-
-  @override
-  String get virtBackupJobEdit => 'İşi düzəlt';
 
   @override
   String get virtBackupJobRun => 'İndi işə sal';
@@ -5087,12 +4780,6 @@ class AppLocalizationsAz extends AppLocalizations {
   String get virtBackupMail => 'Bildiriş';
 
   @override
-  String get virtBackupMailAlways => 'Həmişə';
-
-  @override
-  String get virtBackupMailFailure => 'Xəta zamanı';
-
-  @override
   String get virtBackupNotesTemplate => 'Yedək qeydləri';
 
   @override
@@ -5106,9 +4793,6 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get virtBackupPruneTip =>
       'PVE saxlama seçimləri, məs. keep-last=7,keep-daily=4. Boş: anbarın və ya node-un öz ayarı.';
-
-  @override
-  String get virtBackupNextRun => 'Növbəti işə salma';
 
   @override
   String get virtBackupJobNode => 'Node';
@@ -5143,9 +4827,6 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get virtBackupRestoreStorageSame => 'Yedəkdəki kimi';
-
-  @override
-  String get virtBackupModeSnapshotTip => 'snapshot · dayanmadan';
 
   @override
   String get virtCloneStorageMissing =>
@@ -5333,4 +5014,374 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get copyLink => 'Keçidi kopyala';
+
+  @override
+  String funcNeedsAgentPermission(String func) {
+    return 'Bu Monitor agent-dəki hesabınızın $func üçün icazəsi yoxdur. Agent-in adminindən istəyin.';
+  }
+
+  @override
+  String funcNeedsAgentHttps(String func) {
+    return '$func bu Monitor agent-ə HTTPS və ya həm agent-də, həm də bu tətbiqdə icazə verilmiş HTTP tələb edir.';
+  }
+
+  @override
+  String funcNeedsAgentSetup(String func) {
+    return '$func bu Monitor agent-də qurulmayıb; onun operatoru konfiqurasiya etməlidir.';
+  }
+
+  @override
+  String get monitorFilesReadOnly =>
+      'Yalnız oxuma: bu hesab agent-dəki faylları gözdən keçirə bilər, amma dəyişə bilməz.';
+
+  @override
+  String get monitorAccess => 'Giriş';
+
+  @override
+  String get monitorAccounts => 'Hesablar';
+
+  @override
+  String get monitorRoles => 'Rollar';
+
+  @override
+  String get monitorRole => 'Rol';
+
+  @override
+  String get monitorChangePassword => 'Şifrəni dəyiş';
+
+  @override
+  String get monitorNewPassword => 'Yeni şifrə';
+
+  @override
+  String get monitorCurrentPassword => 'Hazırkı şifrəniz';
+
+  @override
+  String get monitorReauthTip =>
+      'Girişi dəyişmək üçün şifrəniz yenidən tələb olunur.';
+
+  @override
+  String get monitorPasswordTooShort => 'Ən azı 8 simvol';
+
+  @override
+  String get monitorPasswordMismatch => 'Şifrələr uyğun gəlmir';
+
+  @override
+  String get monitorErrReauth => 'Şifrəniz yanlış idi.';
+
+  @override
+  String get monitorErrLastAdmin =>
+      'Agent-in ən azı bir admin hesabı olmalıdır.';
+
+  @override
+  String get monitorErrConflict => 'Artıq mövcuddur və ya hələ istifadədədir.';
+
+  @override
+  String get monitorErrForbidden => 'Bunu yalnız admin edə bilər.';
+
+  @override
+  String get monitorRoleNameRule =>
+      'Kiçik hərflər, rəqəmlər, - və _, 32 simvola qədər';
+
+  @override
+  String get monitorGrantShell => 'Shell və əmrlər';
+
+  @override
+  String get monitorGrantShellTip =>
+      'Terminal, proseslər, xidmətlər, konteynerlər, snippet-lər, enerji — agent hesabı ilə';
+
+  @override
+  String get monitorGrantSshTerminal => 'SSH üzərindən panel terminalı';
+
+  @override
+  String get monitorGrantVirt => 'Virtuallaşdırma';
+
+  @override
+  String get monitorGrantVirtTip =>
+      'Agentin veb panelində qoşulduğu Proxmox VE, libvirt və BMC-lər';
+
+  @override
+  String get monitorGrantFiles => 'Fayllar';
+
+  @override
+  String get monitorGrantConnect => 'Çıxan bağlantılar';
+
+  @override
+  String get monitorGrantConnectTip =>
+      'Lokal və dinamik port yönləndirmələri, uzaq masaüstü';
+
+  @override
+  String get monitorGrantConnectAllow =>
+      'İcazə verilən hədəflər (IP və ya CIDR, istəyə görə :port və ya :başlanğıc-son; hər sətirdə bir, boş = hər yer)';
+
+  @override
+  String get monitorGrantListen => 'Serverdə dinlə';
+
+  @override
+  String get monitorGrantListenTip => 'Uzaq port yönləndirmələri';
+
+  @override
+  String get monitorGrantListenPublic => 'Loopback olmayan ünvanlar';
+
+  @override
+  String get monitorGrantPorts => 'Port aralığı (boş = istənilən)';
+
+  @override
+  String get monitorGrantOff => 'Söndürülüb';
+
+  @override
+  String get monitorBuiltin => 'Daxili';
+
+  @override
+  String get monitorAdminRoleTip =>
+      'Hesabları, rolları və agent ayarlarını idarə edir';
+
+  @override
+  String get monitorYou => 'Siz';
+
+  @override
+  String get monitorNoAccessToSettings =>
+      'Bu agent-in ayarlarını yalnız admin dəyişə bilər.';
+
+  @override
+  String get monitorPasswordNotSaved =>
+      'Parol agent-də dəyişdirildi, lakin tətbiq onu saxlaya bilmədi. Bu serverin ayarlarında Monitor parolunu yeniləyin.';
+
+  @override
+  String get firewall => 'Firewall';
+
+  @override
+  String get firewallLinuxOnly =>
+      'Firewall idarəetməsi ufw və ya firewalld quraşdırılmış Linux serverlərini dəstəkləyir.';
+
+  @override
+  String get firewallNeedsRoot =>
+      'Firewall qaydalarını oxumaq üçün root lazımdır. Davam etmək üçün sudo parolunu daxil edin.';
+
+  @override
+  String get firewallIncoming => 'Daxil olan';
+
+  @override
+  String get firewallOutgoing => 'Çıxan';
+
+  @override
+  String get firewallRouted => 'Yönləndirilən';
+
+  @override
+  String get firewallDefaultPolicy => 'Standart siyasət';
+
+  @override
+  String get firewallLogging => 'Jurnal';
+
+  @override
+  String get firewallRules => 'Qaydalar';
+
+  @override
+  String get firewallRule => 'Qayda';
+
+  @override
+  String get firewallAddRule => 'Qayda əlavə et';
+
+  @override
+  String get firewallAnywhere => 'İstənilən yer';
+
+  @override
+  String firewallFromFmt(String source) {
+    return 'mənbə: $source';
+  }
+
+  @override
+  String get firewallFrom => 'Mənbə';
+
+  @override
+  String get firewallTo => 'Təyinat';
+
+  @override
+  String get firewallProtocol => 'Protokol';
+
+  @override
+  String get firewallInterface => 'İnterfeys';
+
+  @override
+  String get firewallComment => 'Şərh';
+
+  @override
+  String get firewallAppProfile => 'Tətbiq profili';
+
+  @override
+  String get firewallPrepend => 'Bütün digər qaydalardan əvvəl yerləşdir';
+
+  @override
+  String get firewallIpv6Off =>
+      'IPv6 söndürülüb (IPV6=no): v6 qaydaları yüklənmir.';
+
+  @override
+  String get firewallReload => 'Yenidən yüklə';
+
+  @override
+  String get firewallNothingMatched =>
+      'Port, tətbiq profili, ünvan və ya interfeys daxil edin.';
+
+  @override
+  String get firewallInvalidPort =>
+      'Yanlış port. 22, 80,443 və ya 6000:6010 formatından istifadə edin.';
+
+  @override
+  String get firewallTooManyPorts => 'Ən çox 15 port; bir aralıq iki sayılır.';
+
+  @override
+  String get firewallPortsNeedProtocol =>
+      'Port siyahısı və ya aralığı üçün tcp və ya udp lazımdır.';
+
+  @override
+  String get firewallInvalidAddress =>
+      'Yanlış ünvan. IP ünvanı və ya 192.168.1.0/24 kimi şəbəkə istifadə edin.';
+
+  @override
+  String get firewallMixedIpVersions =>
+      'Mənbə və Təyinat ya hər ikisi IPv4, ya da hər ikisi IPv6 olmalıdır.';
+
+  @override
+  String get firewallInvalidInterface => 'Yanlış interfeys adı.';
+
+  @override
+  String get firewallInvalidComment => 'Şərhdə \' və ya sətir sonu ola bilməz.';
+
+  @override
+  String get firewallInterfaceIn => 'Daxil olan interfeys';
+
+  @override
+  String get firewallInterfaceOut => 'Çıxan interfeys';
+
+  @override
+  String get firewallSourcePort => 'Mənbə portu';
+
+  @override
+  String get firewallMoreOptions => 'Əlavə seçimlər';
+
+  @override
+  String get firewallNoneInstalled =>
+      'Bu serverdə nə ufw, nə də firewalld quraşdırılıb. Onlardan birini sistemin paket meneceri ilə quraşdırın, məsələn `apt install ufw` və ya `dnf install firewalld`.';
+
+  @override
+  String get firewallKeepAccess => 'Əvvəlcə bu tətbiqin portlarını açıq saxla';
+
+  @override
+  String firewallWillRefuseFmt(String access) {
+    return '$access: bu tətbiqin yeni qoşulmaları rədd ediləcək. İstifadə olunan qoşulma kəsilənə qədər qalır.';
+  }
+
+  @override
+  String firewallMayRefuseFmt(String access) {
+    return '$access: bu tətbiqin yeni qoşulmaları rədd edilə bilər. Bu, qoşulmanın gəldiyi ünvandan və ya interfeysdən asılıdır və tətbiq bunu bilə bilmir.';
+  }
+
+  @override
+  String firewallRateLimitedFmt(String access) {
+    return '$access: qoşulmalar sürət məhdudiyyətinə düşəcək. 30 saniyə ərzində 6 və ya daha çox qoşulma açan ünvan rədd edilir və bu tətbiq bu qədər tez-tez yenidən qoşula bilər.';
+  }
+
+  @override
+  String get firewallConflict =>
+      'ufw və firewalld hər ikisi aktivdir. Hər ikisi nüvənin qaydalarını yazır və sonuncu yüklənən nəyin keçəcəyini həll edir.';
+
+  @override
+  String get firewallDefaultZone => 'Standart zone';
+
+  @override
+  String get firewallZone => 'Zone';
+
+  @override
+  String get firewallTarget => 'Target';
+
+  @override
+  String get firewallMasquerade => 'Masquerade';
+
+  @override
+  String get firewallServices => 'Xidmətlər';
+
+  @override
+  String get firewallPorts => 'Portlar';
+
+  @override
+  String get firewallSources => 'Mənbələr';
+
+  @override
+  String get firewallInterfaces => 'İnterfeyslər';
+
+  @override
+  String get firewallRichRules => 'Rich rules';
+
+  @override
+  String get firewallForwardPorts => 'Yönləndirilən portlar';
+
+  @override
+  String get firewallRuntimeOnly => 'yalnız runtime';
+
+  @override
+  String get firewallPermanentOnly => 'yalnız permanent';
+
+  @override
+  String get firewallThisConnection => 'bu qoşulma';
+
+  @override
+  String get firewallDefaultTag => 'standart';
+
+  @override
+  String get firewallDrift =>
+      'Qüvvədə olan konfiqurasiya saxlanılandan fərqlənir. Reload və ya yenidən başlatma onu saxlanılan konfiqurasiya ilə əvəz edir.';
+
+  @override
+  String firewallDriftLockoutFmt(String access) {
+    return 'Reload və ya yenidən başlatmadan sonra $access rədd ediləcək: saxlanılan konfiqurasiya ona icazə vermir.';
+  }
+
+  @override
+  String get firewallSaveRuntime => 'Permanent kimi saxla';
+
+  @override
+  String get firewallReloadLoses =>
+      'Permanent kimi saxlanmayan dəyişikliklər itəcək.';
+
+  @override
+  String get firewallPanic => 'Panic rejimi aktivdir: bütün paketlər atılır.';
+
+  @override
+  String get firewallPanicOff => 'Panic rejimini söndür';
+
+  @override
+  String get firewallStoppedNote =>
+      'firewalld dayandırılıb. Dəyişikliklər saxlanılır və o başlayanda qüvvəyə minir.';
+
+  @override
+  String get firewallInvalidSource =>
+      'Yanlış mənbə. Ünvan, 192.168.1.0/24 kimi şəbəkə, ipset:AD və ya MAC ünvanı istifadə edin.';
+
+  @override
+  String get firewallInvalidRichRule =>
+      'Rich rule \"rule\" ilə başlayır və bir sətirdə olur.';
+
+  @override
+  String get firewallInvalidForwardPort =>
+      'port=80:proto=tcp:toport=8080 formatından toport, toaddr və ya hər ikisi ilə istifadə edin.';
+
+  @override
+  String get monitorSyncNeedsServer =>
+      'Ehtiyat nüsxəni saxlayan monitor agentinin serverini seçin.';
+
+  @override
+  String get monitorBackupUnsupported =>
+      'Bu monitor agenti ehtiyat nüsxə saxlaya bilmir. Agenti yeniləyin.';
+
+  @override
+  String get monitorBackupAdminOnly =>
+      'Monitor agentində yalnız administrator hesabı ehtiyat nüsxə saxlaya bilər.';
+
+  @override
+  String monitorBackupTooLarge(String max) {
+    return 'Ehtiyat nüsxə monitor agentinin qəbul etdiyi ölçüdən ($max) böyükdür.';
+  }
+
+  @override
+  String get monitorBackupTooMany =>
+      'Monitor agenti icazə verdiyi qədər ehtiyat nüsxə saxlayır. Əvvəlcə birini silin.';
 }

@@ -125,144 +125,6 @@ abstract class AppLocalizations {
     Locale('zh', 'TW'),
   ];
 
-  /// User-facing label or message for appearance settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Appearance'**
-  String get appearanceSettings;
-
-  /// User-facing label or message for appearance preset.
-  ///
-  /// In en, this message translates to:
-  /// **'Theme preset'**
-  String get appearancePreset;
-
-  /// User-facing label or message for appearance theme schema range.
-  ///
-  /// In en, this message translates to:
-  /// **'Supported theme schema'**
-  String get appearanceThemeSchemaRange;
-
-  /// User-facing label or message for appearance theme install.
-  ///
-  /// In en, this message translates to:
-  /// **'Install theme'**
-  String get appearanceThemeInstall;
-
-  /// User-facing label or message for appearance theme store.
-  ///
-  /// In en, this message translates to:
-  /// **'Theme store'**
-  String get appearanceThemeStore;
-
-  /// User-facing label or message for appearance invalid theme.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid theme package or catalog'**
-  String get appearanceInvalidTheme;
-
-  /// Shown when a manual refresh of the theme store could not read the catalog or any of its repositories.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not read the theme catalog.'**
-  String get themeStoreRefreshFailed;
-
-  /// Confirm dialog for deleting one installed theme. It also names what happens when that theme is the one in use.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete “{name}”? Its files are removed from this device. If it is the theme in use, the app returns to the default theme.'**
-  String themeStoreDeleteTheme(String name);
-
-  /// How long ago the catalog on screen was read, under the repository names. {ago} is a phrase such as "5 minutes ago".
-  ///
-  /// In en, this message translates to:
-  /// **'updated {ago}'**
-  String themeStoreUpdatedFmt(String ago);
-
-  /// How long ago the catalog on screen was read, when that was under a minute. Spelled out rather than composed with themeStoreUpdatedFmt because "just now" is a sentence of its own in every language.
-  ///
-  /// In en, this message translates to:
-  /// **'updated just now'**
-  String get themeStoreUpdatedJustNow;
-
-  /// Sort option for the theme store: the theme in use, then the themes on this device, then what only the catalog offers.
-  ///
-  /// In en, this message translates to:
-  /// **'In use first'**
-  String get themeStoreSortInUse;
-
-  /// At the end of the theme store's list, under the last theme. Markdown: the document is a link rather than an address the reader has to copy.
-  ///
-  /// In en, this message translates to:
-  /// **'Want to make your own theme? [How to author one]({doc}) — thank you for contributing!'**
-  String themeStoreMakeOwnFmt(String doc);
-
-  /// Shown when a selected theme requires a newer app version. {version} is the required version.
-  ///
-  /// In en, this message translates to:
-  /// **'Needs a newer app: {version}'**
-  String appearanceThemeNeedsNewerApp(String version);
-
-  /// User-facing label or message for appearance font families.
-  ///
-  /// In en, this message translates to:
-  /// **'UI font families'**
-  String get appearanceFontFamilies;
-
-  /// Help text for the appearance font families setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'One name per line; fonts are tried in order.'**
-  String get appearanceFontFamiliesTip;
-
-  /// User-facing label or message for appearance font import.
-  ///
-  /// In en, this message translates to:
-  /// **'Import UI font file'**
-  String get appearanceFontImport;
-
-  /// User-facing label or message for appearance gradient.
-  ///
-  /// In en, this message translates to:
-  /// **'Gradient'**
-  String get appearanceGradient;
-
-  /// User-facing label or message for appearance no background.
-  ///
-  /// In en, this message translates to:
-  /// **'No background'**
-  String get appearanceNoBackground;
-
-  /// User-facing label or message for appearance icons.
-  ///
-  /// In en, this message translates to:
-  /// **'In-app icons'**
-  String get appearanceIcons;
-
-  /// User-facing label or message for appearance corners.
-  ///
-  /// In en, this message translates to:
-  /// **'Corners'**
-  String get appearanceCorners;
-
-  /// User-facing label or message for appearance card corners.
-  ///
-  /// In en, this message translates to:
-  /// **'Card corners'**
-  String get appearanceCardCorners;
-
-  /// User-facing label or message for appearance tile corners.
-  ///
-  /// In en, this message translates to:
-  /// **'Tile corners'**
-  String get appearanceTileCorners;
-
-  /// User-facing label or message for appearance button corners.
-  ///
-  /// In en, this message translates to:
-  /// **'Button corners'**
-  String get appearanceButtonCorners;
-
   /// User-facing label or message for crash collect.
   ///
   /// In en, this message translates to:
@@ -377,191 +239,17 @@ abstract class AppLocalizations {
   /// **'Ask AI'**
   String get askAi;
 
-  /// User-facing label or message for ask AI awaiting response.
-  ///
-  /// In en, this message translates to:
-  /// **'Waiting for AI response...'**
-  String get askAiAwaitingResponse;
-
-  /// Help text for the ask AI endpoint setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Include the API version, such as /v1 — Zhipu uses /api/paas/v4. Only /chat/completions or /responses is added, from the protocol you pick.'**
-  String get askAiEndpointTip;
-
-  /// Help text for the ask AI protocol setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Auto tries Responses, then Chat Completions.'**
-  String get askAiProtocolTip;
-
-  /// User-facing label or message for ask AI command inserted.
-  ///
-  /// In en, this message translates to:
-  /// **'Command inserted into terminal'**
-  String get askAiCommandInserted;
-
-  /// User-facing label or message for ask AI config missing.
-  ///
-  /// In en, this message translates to:
-  /// **'Please configure {fields} in Settings.'**
-  String askAiConfigMissing(String fields);
-
-  /// User-facing label or message for ask AI disclaimer.
-  ///
-  /// In en, this message translates to:
-  /// **'AI may be incorrect. Review carefully before applying.'**
-  String get askAiDisclaimer;
-
   /// User-facing label or message for ask AI insert terminal.
   ///
   /// In en, this message translates to:
   /// **'Insert into terminal'**
   String get askAiInsertTerminal;
 
-  /// User-facing label or message for ask AI no response.
-  ///
-  /// In en, this message translates to:
-  /// **'No response'**
-  String get askAiNoResponse;
-
   /// User-facing label or message for remote desktop.
   ///
   /// In en, this message translates to:
   /// **'Remote desktop'**
   String get remoteDesktop;
-
-  /// User-facing label or message for ask AI agent welcome.
-  ///
-  /// In en, this message translates to:
-  /// **'What should we do on this server?'**
-  String get askAiAgentWelcome;
-
-  /// Hint shown in the ask AI agent prompt field or section.
-  ///
-  /// In en, this message translates to:
-  /// **'Ask the Agent to inspect or fix something...'**
-  String get askAiAgentPromptHint;
-
-  /// User-facing label or message for ask AI analyze selection prompt.
-  ///
-  /// In en, this message translates to:
-  /// **'Analyse the selected terminal output and explain what happened'**
-  String get askAiAnalyzeSelectionPrompt;
-
-  /// User-facing label or message for ask AI terminal context.
-  ///
-  /// In en, this message translates to:
-  /// **'Terminal context'**
-  String get askAiTerminalContext;
-
-  /// User-facing label or message for ask AI review needed.
-  ///
-  /// In en, this message translates to:
-  /// **'Review'**
-  String get askAiReviewNeeded;
-
-  /// User-facing label or message for ask AI review action.
-  ///
-  /// In en, this message translates to:
-  /// **'Review proposed command'**
-  String get askAiReviewAction;
-
-  /// User-facing label or message for ask AI review before continuing.
-  ///
-  /// In en, this message translates to:
-  /// **'Review or decline the current suggestion first'**
-  String get askAiReviewBeforeContinuing;
-
-  /// User-facing label or message for ask AI approve run.
-  ///
-  /// In en, this message translates to:
-  /// **'Approve & run'**
-  String get askAiApproveRun;
-
-  /// User-facing label or message for ask AI decline.
-  ///
-  /// In en, this message translates to:
-  /// **'Decline'**
-  String get askAiDecline;
-
-  /// User-facing label or message for ask AI action declined.
-  ///
-  /// In en, this message translates to:
-  /// **'The proposed command was declined.'**
-  String get askAiActionDeclined;
-
-  /// User-facing label or message for ask AI interrupted.
-  ///
-  /// In en, this message translates to:
-  /// **'Agent response was interrupted.'**
-  String get askAiInterrupted;
-
-  /// User-facing label or message for ask AI resend.
-  ///
-  /// In en, this message translates to:
-  /// **'Resend'**
-  String get askAiResend;
-
-  /// Help text for the ask AI resend setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Everything after this message is discarded — the replies, the commands and their results.'**
-  String get askAiResendTip;
-
-  /// Help text for the ask AI delete setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'This message and everything after it are removed — the replies, the commands and their results.'**
-  String get askAiDeleteTip;
-
-  /// User-facing label or message for ask AI model table.
-  ///
-  /// In en, this message translates to:
-  /// **'Model table'**
-  String get askAiModelTable;
-
-  /// Help text for the ask AI model table setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Context sizes by model name, from models.dev. One ships with the app; tap to fetch a newer one.'**
-  String get askAiModelTableTip;
-
-  /// User-facing label or message for ask AI context fallback.
-  ///
-  /// In en, this message translates to:
-  /// **'not in the table'**
-  String get askAiContextFallback;
-
-  /// User-facing label or message for ask AI compact at.
-  ///
-  /// In en, this message translates to:
-  /// **'Summarise at'**
-  String get askAiCompactAt;
-
-  /// Help text for the ask AI compact at setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'How full the model’s context gets before earlier turns are summarised. Earlier loses detail sooner; later risks a request the model refuses.'**
-  String get askAiCompactAtTip;
-
-  /// User-facing label or message for ask AI context tokens.
-  ///
-  /// In en, this message translates to:
-  /// **'Context size'**
-  String get askAiContextTokens;
-
-  /// Help text for the ask AI context tokens setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'How many tokens this model holds. Automatic looks it up by name; set a number when your provider serves a shorter window than the model has.'**
-  String get askAiContextTokensTip;
-
-  /// User-facing label or message for ask AI conversation compacted.
-  ///
-  /// In en, this message translates to:
-  /// **'Earlier messages were summarised to keep the conversation going.'**
-  String get askAiConversationCompacted;
 
   /// User-facing label or message for ask AI risk read only.
   ///
@@ -587,36 +275,6 @@ abstract class AppLocalizations {
   /// **'High risk'**
   String get askAiRiskDestructive;
 
-  /// Title shown for the ask AI high risk confirm dialog or section.
-  ///
-  /// In en, this message translates to:
-  /// **'Run high-risk command?'**
-  String get askAiHighRiskConfirmTitle;
-
-  /// Explanatory message shown in the ask AI high risk confirm dialog or notice.
-  ///
-  /// In en, this message translates to:
-  /// **'This command may make changes that are hard to undo. Check it carefully.'**
-  String get askAiHighRiskConfirmBody;
-
-  /// User-facing label or message for ask AI no command output.
-  ///
-  /// In en, this message translates to:
-  /// **'Command completed without output.'**
-  String get askAiNoCommandOutput;
-
-  /// User-facing label or message for ask AI output truncated.
-  ///
-  /// In en, this message translates to:
-  /// **'Long output was truncated before it was sent back to the Agent.'**
-  String get askAiOutputTruncated;
-
-  /// User-facing label or message for ask AI auto approved.
-  ///
-  /// In en, this message translates to:
-  /// **'Auto-approved'**
-  String get askAiAutoApproved;
-
   /// User-facing label or message for ask AI auto run safe commands.
   ///
   /// In en, this message translates to:
@@ -629,42 +287,6 @@ abstract class AppLocalizations {
   /// **'Runs only when both the model and the local check call it read-only'**
   String get askAiAutoRunSafeCommandsTip;
 
-  /// User-facing label or message for ask AI send on enter.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter sends'**
-  String get askAiSendOnEnter;
-
-  /// Help text for the ask AI send on enter setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter sends, Shift+Enter for a new line. Off: Enter for a new line, Cmd/Ctrl+Enter sends.'**
-  String get askAiSendOnEnterTip;
-
-  /// User-facing label or message for ask AI API key optional.
-  ///
-  /// In en, this message translates to:
-  /// **'Leave empty for local or unauthenticated'**
-  String get askAiApiKeyOptional;
-
-  /// User-facing label or message for ask AI allow insecure.
-  ///
-  /// In en, this message translates to:
-  /// **'Allow plain HTTP'**
-  String get askAiAllowInsecure;
-
-  /// Help text for the ask AI allow insecure setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Allows http:// connections to self-hosted models at non-localhost addresses. The API key and any terminal context are sent unencrypted; localhost is unaffected.'**
-  String get askAiAllowInsecureTip;
-
-  /// User-facing label or message for ask AI insecure endpoint.
-  ///
-  /// In en, this message translates to:
-  /// **'This endpoint uses http://. Turn on “Allow plain HTTP” in AI settings to use it.'**
-  String get askAiInsecureEndpoint;
-
   /// User-facing label or message for ask AI history.
   ///
   /// In en, this message translates to:
@@ -676,18 +298,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'New conversation'**
   String get askAiNewConversation;
-
-  /// User-facing label or message for ask AI no history.
-  ///
-  /// In en, this message translates to:
-  /// **'No saved conversations yet'**
-  String get askAiNoHistory;
-
-  /// User-facing label or message for ask AI no history messages.
-  ///
-  /// In en, this message translates to:
-  /// **'No messages yet'**
-  String get askAiNoHistoryMessages;
 
   /// User-facing label or message for ask AI untitled conversation.
   ///
@@ -712,42 +322,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Deletes it from this device. Cannot be undone.'**
   String get askAiDeleteConversationTip;
-
-  /// Title shown for the ask AI clear history dialog or section.
-  ///
-  /// In en, this message translates to:
-  /// **'Clear this server\'s Agent history?'**
-  String get askAiClearHistoryTitle;
-
-  /// Help text for the ask AI clear history setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Every saved Agent conversation for this server will be deleted.'**
-  String get askAiClearHistoryTip;
-
-  /// User-facing label or message for ask AI restored review.
-  ///
-  /// In en, this message translates to:
-  /// **'This command came from history. Review it again'**
-  String get askAiRestoredReview;
-
-  /// User-facing label or message for agent welcome.
-  ///
-  /// In en, this message translates to:
-  /// **'What should we do across your servers?'**
-  String get agentWelcome;
-
-  /// Help text for the agent welcome setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Have the Agent diagnose a problem or carry out a task'**
-  String get agentWelcomeTip;
-
-  /// Hint shown in the agent prompt field or section.
-  ///
-  /// In en, this message translates to:
-  /// **'Ask the Agent to inspect or operate your servers...'**
-  String get agentPromptHint;
 
   /// User-facing label or message for agent no history.
   ///
@@ -784,18 +358,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Write file'**
   String get agentToolWriteFile;
-
-  /// Error message shown when agent tool failed.
-  ///
-  /// In en, this message translates to:
-  /// **'Tool execution failed.'**
-  String get agentToolFailed;
-
-  /// Formatted user-facing message for agent tool calls; runtime values are supplied by placeholders.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} tool calls'**
-  String agentToolCallsFmt(int count);
 
   /// User-facing label or message for float over tabs.
   ///
@@ -1283,12 +845,6 @@ abstract class AppLocalizations {
   /// **'Copy path'**
   String get copyPath;
 
-  /// Help text for the CPU view as progress setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Display the usage of each CPU in a progress bar style (old style)'**
-  String get cpuViewAsProgressTip;
-
   /// User-facing label or message for custom cmd.
   ///
   /// In en, this message translates to:
@@ -1306,12 +862,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete the folder and everything in it'**
   String get deleteDirRecursive;
-
-  /// Help text for the desktop terminal setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Command used to open the terminal emulator when launching SSH sessions.'**
-  String get desktopTerminalTip;
 
   /// Empty-state message for dir empty.
   ///
@@ -1349,12 +899,6 @@ abstract class AppLocalizations {
   /// **'Disk Health'**
   String get diskHealth;
 
-  /// User-facing label or message for display CPU index.
-  ///
-  /// In en, this message translates to:
-  /// **'Display CPU index'**
-  String get displayCpuIndex;
-
   /// User-facing label or message for dl 2 local.
   ///
   /// In en, this message translates to:
@@ -1384,18 +928,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Docker Statistics'**
   String get dockerStatistics;
-
-  /// User-facing label or message for double column mode.
-  ///
-  /// In en, this message translates to:
-  /// **'Double column mode'**
-  String get doubleColumnMode;
-
-  /// Help text for the double column setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'This option only enables the feature, whether it can actually be enabled depends on the width of the device'**
-  String get doubleColumnTip;
 
   /// Action label for edit virt keys.
   ///
@@ -1781,18 +1313,6 @@ abstract class AppLocalizations {
   /// **'Configure SSH, a monitor agent, or both'**
   String get noConnectionMethod;
 
-  /// User-facing label or message for preferred transport.
-  ///
-  /// In en, this message translates to:
-  /// **'Try first'**
-  String get preferredTransport;
-
-  /// Help text for the preferred transport setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Where status is read from, and which connection a command opens first. The other stays available.'**
-  String get preferredTransportTip;
-
   /// User-facing label or message for keep foreground.
   ///
   /// In en, this message translates to:
@@ -1871,12 +1391,6 @@ abstract class AppLocalizations {
   /// **'Number of server reconnections'**
   String get maxRetryCount;
 
-  /// User-facing label or message for mismatch system.
-  ///
-  /// In en, this message translates to:
-  /// **'Mismatch system: {system}'**
-  String mismatchSystem(String system);
-
   /// User-facing label or message for mirror.
   ///
   /// In en, this message translates to:
@@ -1889,12 +1403,6 @@ abstract class AppLocalizations {
   /// **'App needs to be restarted'**
   String get needRestart;
 
-  /// User-facing label or message for net view type.
-  ///
-  /// In en, this message translates to:
-  /// **'Network view type'**
-  String get netViewType;
-
   /// User-facing label or message for new container.
   ///
   /// In en, this message translates to:
@@ -1906,12 +1414,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No connection statistics data'**
   String get noConnectionStatsData;
-
-  /// User-facing label or message for no line chart.
-  ///
-  /// In en, this message translates to:
-  /// **'Do not use line charts'**
-  String get noLineChart;
 
   /// Help text for the no private key setting or action.
   ///
@@ -1942,12 +1444,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Parsing the occupancy status of Docker is relatively slow.'**
   String get parseContainerStatsTip;
-
-  /// User-facing label or message for prefer disk amount.
-  ///
-  /// In en, this message translates to:
-  /// **'Prioritize displaying disk capacity'**
-  String get preferDiskAmount;
 
   /// User-facing label or message for private key.
   ///
@@ -2374,6 +1870,18 @@ abstract class AppLocalizations {
   /// **'Server order'**
   String get serverOrder;
 
+  /// Setting that shows the summary strip at the top of the server tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Server overview'**
+  String get serverOverview;
+
+  /// Help text for the server overview setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the summary at the top of the server list, and the row of servers above an open one'**
+  String get serverOverviewTip;
+
   /// Empty-state message for server tab empty.
   ///
   /// In en, this message translates to:
@@ -2578,24 +2086,6 @@ abstract class AppLocalizations {
   /// **'All servers already exist ({duplicateCount} duplicates found)'**
   String sshConfigAllExist(int duplicateCount);
 
-  /// Help text for the SSH connection mode setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Built-in: use the app\'s terminal. System SSH: launch the system ssh command in an external terminal.'**
-  String get sshConnectionModeTip;
-
-  /// User-facing label or message for SSH connection mode use builtin.
-  ///
-  /// In en, this message translates to:
-  /// **'Use built-in terminal'**
-  String get sshConnectionModeUseBuiltin;
-
-  /// User-facing label or message for SSH connection mode use system.
-  ///
-  /// In en, this message translates to:
-  /// **'Use system SSH'**
-  String get sshConnectionModeUseSystem;
-
   /// User-facing label or message for SSH config duplicates skipped.
   ///
   /// In en, this message translates to:
@@ -2799,12 +2289,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Used'**
   String get used;
-
-  /// User-facing label or message for view.
-  ///
-  /// In en, this message translates to:
-  /// **'View'**
-  String get view;
 
   /// User-facing label or message for view details.
   ///
@@ -3058,23 +2542,11 @@ abstract class AppLocalizations {
   /// **'Session name'**
   String get tmuxSessionName;
 
-  /// User-facing label or message for tmux existing sessions.
-  ///
-  /// In en, this message translates to:
-  /// **'Existing sessions'**
-  String get tmuxExistingSessions;
-
   /// User-facing label or message for tmux new session.
   ///
   /// In en, this message translates to:
   /// **'New session'**
   String get tmuxNewSession;
-
-  /// User-facing label or message for tmux windows.
-  ///
-  /// In en, this message translates to:
-  /// **'Windows'**
-  String get tmuxWindows;
 
   /// User-facing label or message for tmux new window.
   ///
@@ -3094,35 +2566,11 @@ abstract class AppLocalizations {
   /// **'{count, plural, one{1 window} other{{count} windows}}'**
   String tmuxWindowCount(int count);
 
-  /// User-facing label or message for tmux pane count.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, one{1 pane} other{{count} panes}}'**
-  String tmuxPaneCount(int count);
-
   /// User-facing label or message for tmux attached.
   ///
   /// In en, this message translates to:
   /// **'Attached'**
   String get tmuxAttached;
-
-  /// User-facing label or message for tmux active.
-  ///
-  /// In en, this message translates to:
-  /// **'Active'**
-  String get tmuxActive;
-
-  /// User-facing label or message for tmux active at.
-  ///
-  /// In en, this message translates to:
-  /// **'active: {time}'**
-  String tmuxActiveAt(String time);
-
-  /// User-facing label or message for tmux attached at.
-  ///
-  /// In en, this message translates to:
-  /// **'attached: {time}'**
-  String tmuxAttachedAt(String time);
 
   /// User-facing label or message for tmux skip.
   ///
@@ -3549,12 +2997,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The BMC changed while this was being written. Try again.'**
   String get bmcStaleWrite;
-
-  /// Action label for send.
-  ///
-  /// In en, this message translates to:
-  /// **'Send'**
-  String get send;
 
   /// User-facing label or message for privacy blur.
   ///
@@ -4144,6 +3586,24 @@ abstract class AppLocalizations {
   /// **'{func} is not available over this server\'s connection.'**
   String funcUnavailableFmt(String func);
 
+  /// No description provided for @funcNeedsAgentGrant.
+  ///
+  /// In en, this message translates to:
+  /// **'{func} needs the Monitor agent\'s {setting} to be turned on.'**
+  String funcNeedsAgentGrant(String func, String setting);
+
+  /// No description provided for @funcNeedsAgentUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'{func} needs a newer Monitor agent.'**
+  String funcNeedsAgentUpdate(String func);
+
+  /// No description provided for @portForwardRemoteNeedsAgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Remote forwards through the Monitor agent need a newer agent: update it on the server.'**
+  String get portForwardRemoteNeedsAgent;
+
   /// User-facing label or message for range live.
   ///
   /// In en, this message translates to:
@@ -4215,6 +3675,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Agent keeps {kept}'**
   String agentRetentionFmt(String kept);
+
+  /// Agent: agentServerTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Server tools'**
+  String get agentServerTools;
+
+  /// Agent: agentServerToolsTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Run commands and read or write files on your servers, connect to other hosts over SSH, and use ServerBox\'s own actions.'**
+  String get agentServerToolsTip;
+
+  /// Agent: agentTerminalTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Terminal'**
+  String get agentTerminalTools;
+
+  /// Agent: agentTerminalToolsTip.
+  ///
+  /// In en, this message translates to:
+  /// **'In a terminal\'s own chats: read what the terminal shows, and run commands on its server.'**
+  String get agentTerminalToolsTip;
+
+  /// Agent: agentToolTerminalScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the screen'**
+  String get agentToolTerminalScreen;
+
+  /// Agent: agentProviders.
+  ///
+  /// In en, this message translates to:
+  /// **'Providers'**
+  String get agentProviders;
+
+  /// Agent: agentProvidersTip.
+  ///
+  /// In en, this message translates to:
+  /// **'API keys, models, and the model a new chat uses'**
+  String get agentProvidersTip;
+
+  /// Agent: agentTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get agentTools;
+
+  /// Agent: agentToolsTip.
+  ///
+  /// In en, this message translates to:
+  /// **'What the Agent may use, and its MCP servers'**
+  String get agentToolsTip;
+
+  /// Agent: agentSnippetToolsTip.
+  ///
+  /// In en, this message translates to:
+  /// **'List, add, change and delete your snippets. Changes are asked about.'**
+  String get agentSnippetToolsTip;
+
+  /// Agent: agentVirtToolsTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the VMs and containers the Virtualization tab has loaded.'**
+  String get agentVirtToolsTip;
+
+  /// Agent: agentBenchmarkToolsTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Read benchmark results, and run or stop a benchmark with your approval.'**
+  String get agentBenchmarkToolsTip;
+
+  /// Agent: agentRemoteDesktopToolsTip.
+  ///
+  /// In en, this message translates to:
+  /// **'List remote desktop profiles, and connect or disconnect with your approval.'**
+  String get agentRemoteDesktopToolsTip;
+
+  /// Agent: agentSkills.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get agentSkills;
+
+  /// Agent: agentSkillsTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Instructions for particular tasks, installed from GitHub or a link'**
+  String get agentSkillsTip;
+
+  /// Agent: agentPermissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Permissions'**
+  String get agentPermissions;
+
+  /// Agent: agentEmptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask about your servers, or ask the Agent to do something on them.'**
+  String get agentEmptyHint;
+
+  /// Agent: agentTerminalEmptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask about this server. The Agent can read this terminal and run commands here.'**
+  String get agentTerminalEmptyHint;
 
   /// Formatted user-facing message for oldest sample; runtime values are supplied by placeholders.
   ///
@@ -4522,53 +4090,11 @@ abstract class AppLocalizations {
   /// **'Both can be on at once. The order is the order they are dialled.'**
   String get connectionTip;
 
-  /// Formatted user-facing message for transport order; runtime values are supplied by placeholders.
-  ///
-  /// In en, this message translates to:
-  /// **'Drag to change the order. {first} is dialled first; if it does not answer, {second} carries the session on its own.'**
-  String transportOrderFmt(String first, String second);
-
-  /// Formatted user-facing message for transport only; runtime values are supplied by placeholders.
-  ///
-  /// In en, this message translates to:
-  /// **'Only {name} is on, so there is nothing to fall back to.'**
-  String transportOnlyFmt(String name);
-
   /// User-facing label or message for transport none on.
   ///
   /// In en, this message translates to:
   /// **'Both are off — this server cannot be connected.'**
   String get transportNoneOn;
-
-  /// User-facing label or message for transport off kept.
-  ///
-  /// In en, this message translates to:
-  /// **'off — settings kept, never dialled'**
-  String get transportOffKept;
-
-  /// User-facing label or message for transport dialled first.
-  ///
-  /// In en, this message translates to:
-  /// **'dialled first'**
-  String get transportDialledFirst;
-
-  /// User-facing label or message for transport fallback.
-  ///
-  /// In en, this message translates to:
-  /// **'fallback'**
-  String get transportFallback;
-
-  /// User-facing label or message for transport only method.
-  ///
-  /// In en, this message translates to:
-  /// **'only method'**
-  String get transportOnlyMethod;
-
-  /// User-facing label or message for transport off.
-  ///
-  /// In en, this message translates to:
-  /// **'off'**
-  String get transportOff;
 
   /// User-facing label or message for this device.
   ///
@@ -4647,12 +4173,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Optional'**
   String get optional;
-
-  /// Help text for the optional setting or action.
-  ///
-  /// In en, this message translates to:
-  /// **'Nothing here is needed to connect. Open one and its fields take over the form.'**
-  String get optionalTip;
 
   /// User-facing label or message for SSH advanced.
   ///
@@ -5368,6 +4888,12 @@ abstract class AppLocalizations {
   /// **'Full screen'**
   String get remoteDesktopFullScreen;
 
+  /// No description provided for @remoteDesktopExitFullScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit full screen'**
+  String get remoteDesktopExitFullScreen;
+
   /// User-facing label or message for remote desktop close session.
   ///
   /// In en, this message translates to:
@@ -5542,6 +5068,24 @@ abstract class AppLocalizations {
   /// **'Enter the RDP username.'**
   String get remoteDesktopUsernameRequired;
 
+  /// No description provided for @remoteDesktopNameInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'The profile name can be up to 64 characters and cannot contain line breaks.'**
+  String get remoteDesktopNameInvalid;
+
+  /// No description provided for @remoteDesktopHostInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'The target host cannot contain spaces or line breaks.'**
+  String get remoteDesktopHostInvalid;
+
+  /// No description provided for @remoteDesktopCredentialInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'The username and domain can be up to 256 characters and cannot contain line breaks.'**
+  String get remoteDesktopCredentialInvalid;
+
   /// No description provided for @remoteDesktopVncPasswordAscii.
   ///
   /// In en, this message translates to:
@@ -5631,12 +5175,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Valid: {start} – {end}'**
   String remoteDesktopCertificateValidity(String start, String end);
-
-  /// User-facing label or message for appearance theme mode locked.
-  ///
-  /// In en, this message translates to:
-  /// **'This theme only supports {mode}. Select another theme to change the mode.'**
-  String appearanceThemeModeLocked(String mode);
 
   /// Label for logging in to Proxmox VE with an API token.
   ///
@@ -6082,12 +5620,6 @@ abstract class AppLocalizations {
   /// **'Closing in {seconds} s'**
   String remoteSessionClosingIn(int seconds);
 
-  /// Button: show a console that is still running again.
-  ///
-  /// In en, this message translates to:
-  /// **'Reopen'**
-  String get reopen;
-
   /// A guest view and its heading: the guest's snapshots.
   ///
   /// In en, this message translates to:
@@ -6393,12 +5925,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A guest with this name exists.'**
   String get virtCreateNameTaken;
-
-  /// The VMID is out of PVE's range.
-  ///
-  /// In en, this message translates to:
-  /// **'From 100 to 999999999.'**
-  String get virtCreateVmidInvalid;
 
   /// The VMID is already used.
   ///
@@ -7287,12 +6813,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Where the EFI variables go'**
   String get virtHwEfiStorage;
-
-  /// Hardware view (virtualization): TpmStorage
-  ///
-  /// In en, this message translates to:
-  /// **'Where the TPM state goes'**
-  String get virtHwTpmStorage;
 
   /// Hardware view (virtualization): SwitchFirmwareAsk
   ///
@@ -8331,12 +7851,6 @@ abstract class AppLocalizations {
   /// **'Internal (in the image)'**
   String get virtSnapshotFormInternal;
 
-  /// Snapshot form: which kind of snapshot to take.
-  ///
-  /// In en, this message translates to:
-  /// **'Kind'**
-  String get virtSnapshotForm;
-
   /// Snapshot form: the pool an external snapshot puts its overlays in.
   ///
   /// In en, this message translates to:
@@ -8385,12 +7899,6 @@ abstract class AppLocalizations {
   /// **'Base image'**
   String get virtSnapshotChainBase;
 
-  /// Snapshots view: a disk that is not qcow2, so no external snapshot.
-  ///
-  /// In en, this message translates to:
-  /// **'An external snapshot needs a qcow2 disk. This one is {format}.'**
-  String virtSnapshotChainRaw(String format);
-
   /// Snapshot form: the storage does not support snapshots (PVE).
   ///
   /// In en, this message translates to:
@@ -8426,12 +7934,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Compare with now'**
   String get virtSnapshotDiffShow;
-
-  /// Snapshots view: the groups a diff is shown under.
-  ///
-  /// In en, this message translates to:
-  /// **'Changed'**
-  String get virtSnapshotDiffGroup;
 
   /// Snapshot diff group: processor.
   ///
@@ -8559,35 +8061,17 @@ abstract class AppLocalizations {
   /// **'A template only runs once it is cloned.'**
   String get virtTemplateTip;
 
-  /// Clone group: which storage the copy's disks go to.
-  ///
-  /// In en, this message translates to:
-  /// **'Target storage'**
-  String get virtCloneStorage;
-
   /// Clone group: the source's own storage.
   ///
   /// In en, this message translates to:
   /// **'Same as the source'**
   String get virtCloneStorageSame;
 
-  /// Clone group: the node the copy is made on.
-  ///
-  /// In en, this message translates to:
-  /// **'Target node'**
-  String get virtCloneNode;
-
   /// Clone group: the source's own node.
   ///
   /// In en, this message translates to:
   /// **'Same as the source'**
   String get virtCloneNodeSame;
-
-  /// Clone group (libvirt): the pool the copy's disks go in.
-  ///
-  /// In en, this message translates to:
-  /// **'Target pool'**
-  String get virtClonePool;
 
   /// Clone group: the storage has to hold VM images.
   ///
@@ -8630,12 +8114,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'New job'**
   String get virtBackupJobNew;
-
-  /// Datacenter view: editing a job.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit job'**
-  String get virtBackupJobEdit;
 
   /// Datacenter view: running a job now.
   ///
@@ -8727,18 +8205,6 @@ abstract class AppLocalizations {
   /// **'Notification'**
   String get virtBackupMail;
 
-  /// Job editor: notify on every run.
-  ///
-  /// In en, this message translates to:
-  /// **'Always'**
-  String get virtBackupMailAlways;
-
-  /// Job editor: notify only on failure.
-  ///
-  /// In en, this message translates to:
-  /// **'On failure'**
-  String get virtBackupMailFailure;
-
   /// Job editor: the notes every backup the job makes carries.
   ///
   /// In en, this message translates to:
@@ -8762,12 +8228,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PVE\'s retention options, e.g. keep-last=7,keep-daily=4. Empty: the storage\'s or the node\'s own.'**
   String get virtBackupPruneTip;
-
-  /// Job list: when the job next runs.
-  ///
-  /// In en, this message translates to:
-  /// **'Next run'**
-  String get virtBackupNextRun;
 
   /// Job editor: the node the job runs on.
   ///
@@ -8834,12 +8294,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'As in the backup'**
   String get virtBackupRestoreStorageSame;
-
-  /// Backup view: snapshot mode keeps a running guest running.
-  ///
-  /// In en, this message translates to:
-  /// **'snapshot · no downtime'**
-  String get virtBackupModeSnapshotTip;
 
   /// Clone group: no storage on the node holds VM images.
   ///
@@ -9128,6 +8582,648 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Copy link'**
   String get copyLink;
+
+  /// No description provided for @funcNeedsAgentPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account on this Monitor agent has no permission for {func}. Ask the agent\'s admin.'**
+  String funcNeedsAgentPermission(String func);
+
+  /// No description provided for @funcNeedsAgentHttps.
+  ///
+  /// In en, this message translates to:
+  /// **'{func} needs HTTPS to this Monitor agent, or plain HTTP allowed on both the agent and this app.'**
+  String funcNeedsAgentHttps(String func);
+
+  /// No description provided for @funcNeedsAgentSetup.
+  ///
+  /// In en, this message translates to:
+  /// **'{func} is not set up on this Monitor agent; its operator has to configure it.'**
+  String funcNeedsAgentSetup(String func);
+
+  /// No description provided for @monitorFilesReadOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Read-only: this account can browse files on the agent but not change them.'**
+  String get monitorFilesReadOnly;
+
+  /// No description provided for @monitorAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Access'**
+  String get monitorAccess;
+
+  /// No description provided for @monitorAccounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Accounts'**
+  String get monitorAccounts;
+
+  /// No description provided for @monitorRoles.
+  ///
+  /// In en, this message translates to:
+  /// **'Roles'**
+  String get monitorRoles;
+
+  /// No description provided for @monitorRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get monitorRole;
+
+  /// No description provided for @monitorChangePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get monitorChangePassword;
+
+  /// No description provided for @monitorNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get monitorNewPassword;
+
+  /// No description provided for @monitorCurrentPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current password'**
+  String get monitorCurrentPassword;
+
+  /// No description provided for @monitorReauthTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Changing access needs your own password again.'**
+  String get monitorReauthTip;
+
+  /// No description provided for @monitorPasswordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 8 characters'**
+  String get monitorPasswordTooShort;
+
+  /// No description provided for @monitorPasswordMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The passwords do not match'**
+  String get monitorPasswordMismatch;
+
+  /// No description provided for @monitorErrReauth.
+  ///
+  /// In en, this message translates to:
+  /// **'Your password was wrong.'**
+  String get monitorErrReauth;
+
+  /// No description provided for @monitorErrLastAdmin.
+  ///
+  /// In en, this message translates to:
+  /// **'The agent needs at least one admin account.'**
+  String get monitorErrLastAdmin;
+
+  /// No description provided for @monitorErrConflict.
+  ///
+  /// In en, this message translates to:
+  /// **'It already exists, or it is still in use.'**
+  String get monitorErrConflict;
+
+  /// No description provided for @monitorErrForbidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Only an admin can do this.'**
+  String get monitorErrForbidden;
+
+  /// No description provided for @monitorRoleNameRule.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowercase letters, digits, - and _, up to 32 characters'**
+  String get monitorRoleNameRule;
+
+  /// No description provided for @monitorGrantShell.
+  ///
+  /// In en, this message translates to:
+  /// **'Shell and commands'**
+  String get monitorGrantShell;
+
+  /// No description provided for @monitorGrantShellTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Terminal, processes, services, containers, snippets, power — as the agent\'s account'**
+  String get monitorGrantShellTip;
+
+  /// No description provided for @monitorGrantSshTerminal.
+  ///
+  /// In en, this message translates to:
+  /// **'Panel terminal over SSH'**
+  String get monitorGrantSshTerminal;
+
+  /// No description provided for @monitorGrantVirt.
+  ///
+  /// In en, this message translates to:
+  /// **'Virtualization'**
+  String get monitorGrantVirt;
+
+  /// No description provided for @monitorGrantVirtTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Proxmox VE, libvirt and BMCs the agent reaches, in its web panel'**
+  String get monitorGrantVirtTip;
+
+  /// No description provided for @monitorGrantFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Files'**
+  String get monitorGrantFiles;
+
+  /// No description provided for @monitorGrantConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Outbound connections'**
+  String get monitorGrantConnect;
+
+  /// No description provided for @monitorGrantConnectTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Local and dynamic port forwards, remote desktop'**
+  String get monitorGrantConnectTip;
+
+  /// No description provided for @monitorGrantConnectAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Allowed targets (IP or CIDR, optionally :port or :from-to; one per line, empty is anywhere)'**
+  String get monitorGrantConnectAllow;
+
+  /// No description provided for @monitorGrantListen.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen on the server'**
+  String get monitorGrantListen;
+
+  /// No description provided for @monitorGrantListenTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Remote port forwards'**
+  String get monitorGrantListenTip;
+
+  /// No description provided for @monitorGrantListenPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-loopback addresses'**
+  String get monitorGrantListenPublic;
+
+  /// No description provided for @monitorGrantPorts.
+  ///
+  /// In en, this message translates to:
+  /// **'Port range (empty is any)'**
+  String get monitorGrantPorts;
+
+  /// No description provided for @monitorGrantOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get monitorGrantOff;
+
+  /// No description provided for @monitorBuiltin.
+  ///
+  /// In en, this message translates to:
+  /// **'Built-in'**
+  String get monitorBuiltin;
+
+  /// No description provided for @monitorAdminRoleTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Manages accounts, roles and the agent\'s settings'**
+  String get monitorAdminRoleTip;
+
+  /// No description provided for @monitorYou.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get monitorYou;
+
+  /// No description provided for @monitorNoAccessToSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Only an admin can change this agent\'s settings.'**
+  String get monitorNoAccessToSettings;
+
+  /// Shown when the agent accepted a new password but the app failed to update the credential it stores for the server.
+  ///
+  /// In en, this message translates to:
+  /// **'The password was changed on the agent, but the app could not save it. Update this server\'s Monitor password in its settings.'**
+  String get monitorPasswordNotSaved;
+
+  /// Server function that manages the server's firewall (ufw).
+  ///
+  /// In en, this message translates to:
+  /// **'Firewall'**
+  String get firewall;
+
+  /// Shown when the server is not Linux.
+  ///
+  /// In en, this message translates to:
+  /// **'Firewall management supports Linux servers with ufw or firewalld.'**
+  String get firewallLinuxOnly;
+
+  /// Shown when the user declined to enter a sudo password.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading the firewall\'s rules needs root. Enter the sudo password to continue.'**
+  String get firewallNeedsRoot;
+
+  /// Default policy chain for incoming traffic.
+  ///
+  /// In en, this message translates to:
+  /// **'Incoming'**
+  String get firewallIncoming;
+
+  /// Default policy chain for outgoing traffic.
+  ///
+  /// In en, this message translates to:
+  /// **'Outgoing'**
+  String get firewallOutgoing;
+
+  /// Default policy chain for forwarded traffic.
+  ///
+  /// In en, this message translates to:
+  /// **'Routed'**
+  String get firewallRouted;
+
+  /// Section title for ufw's default policies.
+  ///
+  /// In en, this message translates to:
+  /// **'Default policy'**
+  String get firewallDefaultPolicy;
+
+  /// ufw log level.
+  ///
+  /// In en, this message translates to:
+  /// **'Logging'**
+  String get firewallLogging;
+
+  /// Section title for the firewall rule list.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules'**
+  String get firewallRules;
+
+  /// One firewall rule, as the type in a delete confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Rule'**
+  String get firewallRule;
+
+  /// Button and dialog title for adding a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'Add rule'**
+  String get firewallAddRule;
+
+  /// Any address or port in a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'Anywhere'**
+  String get firewallAnywhere;
+
+  /// Where the traffic a rule matches comes from.
+  ///
+  /// In en, this message translates to:
+  /// **'from {source}'**
+  String firewallFromFmt(String source);
+
+  /// Field label: the source address of a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get firewallFrom;
+
+  /// Field label: the destination address of a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get firewallTo;
+
+  /// Field label: tcp, udp or any.
+  ///
+  /// In en, this message translates to:
+  /// **'Protocol'**
+  String get firewallProtocol;
+
+  /// Field label: network interface name.
+  ///
+  /// In en, this message translates to:
+  /// **'Interface'**
+  String get firewallInterface;
+
+  /// Field label: comment stored with a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'Comment'**
+  String get firewallComment;
+
+  /// ufw application profile, which names the ports of an application.
+  ///
+  /// In en, this message translates to:
+  /// **'App profile'**
+  String get firewallAppProfile;
+
+  /// Switch: insert the rule first. ufw applies the first rule that matches.
+  ///
+  /// In en, this message translates to:
+  /// **'Put before all other rules'**
+  String get firewallPrepend;
+
+  /// Shown when ufw's IPv6 support is off.
+  ///
+  /// In en, this message translates to:
+  /// **'IPv6 is off (IPV6=no): v6 rules are not loaded.'**
+  String get firewallIpv6Off;
+
+  /// Reload ufw's rules.
+  ///
+  /// In en, this message translates to:
+  /// **'Reload'**
+  String get firewallReload;
+
+  /// Validation error for a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a port, an app profile, an address or an interface.'**
+  String get firewallNothingMatched;
+
+  /// Validation error for a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid port. Use 22, 80,443 or 6000:6010.'**
+  String get firewallInvalidPort;
+
+  /// Validation error for a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'At most 15 ports; a range counts as two.'**
+  String get firewallTooManyPorts;
+
+  /// Validation error for a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'A port list or range needs tcp or udp.'**
+  String get firewallPortsNeedProtocol;
+
+  /// Validation error for a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid address. Use an IP address or a network such as 192.168.1.0/24.'**
+  String get firewallInvalidAddress;
+
+  /// Validation error for a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'From and To must both be IPv4 or both be IPv6.'**
+  String get firewallMixedIpVersions;
+
+  /// Validation error for a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid interface name.'**
+  String get firewallInvalidInterface;
+
+  /// Validation error for a firewall rule.
+  ///
+  /// In en, this message translates to:
+  /// **'The comment cannot contain \' or line breaks.'**
+  String get firewallInvalidComment;
+
+  /// Field label: the interface a packet arrives on.
+  ///
+  /// In en, this message translates to:
+  /// **'Incoming interface'**
+  String get firewallInterfaceIn;
+
+  /// Field label: the interface a packet leaves by.
+  ///
+  /// In en, this message translates to:
+  /// **'Outgoing interface'**
+  String get firewallInterfaceOut;
+
+  /// Field label: the port the traffic a rule matches comes from.
+  ///
+  /// In en, this message translates to:
+  /// **'Source port'**
+  String get firewallSourcePort;
+
+  /// Expands the less used fields of the add-rule form.
+  ///
+  /// In en, this message translates to:
+  /// **'More options'**
+  String get firewallMoreOptions;
+
+  /// Shown when neither firewall is found.
+  ///
+  /// In en, this message translates to:
+  /// **'Neither ufw nor firewalld is installed on this server. Install one with the system\'s package manager, for example `apt install ufw` or `dnf install firewalld`.'**
+  String get firewallNoneInstalled;
+
+  /// Checkbox: run commands that keep the app's own ports open before the change.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep this app\'s ports open first'**
+  String get firewallKeepAccess;
+
+  /// Warning: a firewall change blocks the app's own connection.
+  ///
+  /// In en, this message translates to:
+  /// **'{access}: new connections from this app will be refused. The connection in use stays up until it drops.'**
+  String firewallWillRefuseFmt(String access);
+
+  /// Warning: a firewall change may block the app's own connection.
+  ///
+  /// In en, this message translates to:
+  /// **'{access}: new connections from this app may be refused. It depends on the address or interface they arrive by, which this app cannot tell.'**
+  String firewallMayRefuseFmt(String access);
+
+  /// Warning: a firewall change rate-limits the app's own connection.
+  ///
+  /// In en, this message translates to:
+  /// **'{access}: connections will be rate-limited. An address that opens 6 or more within 30 seconds is refused, and this app may reconnect that often.'**
+  String firewallRateLimitedFmt(String access);
+
+  /// Shown when both firewalls are enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Both ufw and firewalld are on. Each writes the kernel\'s rules, and whichever loaded last decides what gets through.'**
+  String get firewallConflict;
+
+  /// firewalld's default zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Default zone'**
+  String get firewallDefaultZone;
+
+  /// A firewalld zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Zone'**
+  String get firewallZone;
+
+  /// What a firewalld zone does with traffic nothing else matched.
+  ///
+  /// In en, this message translates to:
+  /// **'Target'**
+  String get firewallTarget;
+
+  /// firewalld masquerading (NAT) of a zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Masquerade'**
+  String get firewallMasquerade;
+
+  /// firewalld services allowed in a zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get firewallServices;
+
+  /// Ports allowed in a zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Ports'**
+  String get firewallPorts;
+
+  /// Source addresses bound to a zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources'**
+  String get firewallSources;
+
+  /// Interfaces bound to a zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Interfaces'**
+  String get firewallInterfaces;
+
+  /// firewalld rich rules.
+  ///
+  /// In en, this message translates to:
+  /// **'Rich rules'**
+  String get firewallRichRules;
+
+  /// firewalld forwarded ports.
+  ///
+  /// In en, this message translates to:
+  /// **'Forwarded ports'**
+  String get firewallForwardPorts;
+
+  /// Tag: in force now, but not saved; lost at a reload or reboot.
+  ///
+  /// In en, this message translates to:
+  /// **'runtime only'**
+  String get firewallRuntimeOnly;
+
+  /// Tag: saved, but not in force until a reload.
+  ///
+  /// In en, this message translates to:
+  /// **'permanent only'**
+  String get firewallPermanentOnly;
+
+  /// Tag: the zone this app's connection arrives in.
+  ///
+  /// In en, this message translates to:
+  /// **'this connection'**
+  String get firewallThisConnection;
+
+  /// Tag: the default zone.
+  ///
+  /// In en, this message translates to:
+  /// **'default'**
+  String get firewallDefaultTag;
+
+  /// Shown when firewalld's runtime differs from its permanent configuration.
+  ///
+  /// In en, this message translates to:
+  /// **'What is in force differs from what is saved. A reload or a reboot replaces it with the saved configuration.'**
+  String get firewallDrift;
+
+  /// Shown when the permanent configuration would block the app's connection.
+  ///
+  /// In en, this message translates to:
+  /// **'After a reload or a reboot, {access} will be refused: the saved configuration does not let it in.'**
+  String firewallDriftLockoutFmt(String access);
+
+  /// Save firewalld's runtime configuration as permanent.
+  ///
+  /// In en, this message translates to:
+  /// **'Save as permanent'**
+  String get firewallSaveRuntime;
+
+  /// Note before a reload of firewalld.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes not saved as permanent will be lost.'**
+  String get firewallReloadLoses;
+
+  /// Shown when firewalld's panic mode is on.
+  ///
+  /// In en, this message translates to:
+  /// **'Panic mode is on: every packet is dropped.'**
+  String get firewallPanic;
+
+  /// Button: turn firewalld's panic mode off.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off panic mode'**
+  String get firewallPanicOff;
+
+  /// Shown while firewalld is not running.
+  ///
+  /// In en, this message translates to:
+  /// **'firewalld is stopped. Changes are saved, and take effect when it starts.'**
+  String get firewallStoppedNote;
+
+  /// Validation error for a firewalld source.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid source. Use an address, a network such as 192.168.1.0/24, ipset:NAME or a MAC address.'**
+  String get firewallInvalidSource;
+
+  /// Validation error for a firewalld rich rule.
+  ///
+  /// In en, this message translates to:
+  /// **'A rich rule starts with \"rule\" and fits on one line.'**
+  String get firewallInvalidRichRule;
+
+  /// Validation error for a firewalld forwarded port.
+  ///
+  /// In en, this message translates to:
+  /// **'Use port=80:proto=tcp:toport=8080, with toport, toaddr or both.'**
+  String get firewallInvalidForwardPort;
+
+  /// Backup sync to a monitor agent: no server is chosen yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the server whose monitor agent stores the backup.'**
+  String get monitorSyncNeedsServer;
+
+  /// Backup sync to a monitor agent: the agent is too old to store backups.
+  ///
+  /// In en, this message translates to:
+  /// **'This monitor agent cannot store backups. Update the agent.'**
+  String get monitorBackupUnsupported;
+
+  /// Backup sync to a monitor agent: the account the app logs in with is not an admin.
+  ///
+  /// In en, this message translates to:
+  /// **'Only an admin account of the monitor agent can store backups on it.'**
+  String get monitorBackupAdminOnly;
+
+  /// Backup sync to a monitor agent: the file exceeds the agent's size limit, given as max.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup is larger than the monitor agent accepts ({max}).'**
+  String monitorBackupTooLarge(String max);
+
+  /// Backup sync to a monitor agent: the agent's blob count limit is reached.
+  ///
+  /// In en, this message translates to:
+  /// **'The monitor agent already holds as many backups as it allows. Delete one first.'**
+  String get monitorBackupTooMany;
 }
 
 class _AppLocalizationsDelegate

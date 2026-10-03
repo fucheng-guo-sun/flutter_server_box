@@ -29,7 +29,8 @@ abstract final class Urls {
   /// put on the clipboard instead and this page is opened to paste it into.
   static const newIssue = '$thisRepo/issues/new';
 
-  static const docs = 'https://serverbox.lollipopkit.com/docs';
+  static const site = 'https://serverbox.lollipopkit.com';
+  static const docs = '$site/docs';
 
   /// What `{DIST}` and `{BRIGHT}` mean, and what a usable image URL looks
   /// like.
@@ -48,13 +49,13 @@ abstract final class Urls {
   /// — not a thing a switch can convey on its own.
   static const monitorAgentDoc = '$docs/advanced/monitor-agent/';
 
-  /// What `[remote_access]` grants, and that every switch under it is off
-  /// until the agent's operator edits `config.toml`.
+  /// The agent's accounts, roles and grants, and who can change them.
   ///
   /// Linked from the server page of an agent that grants nothing — the one
   /// place the absence of the whole function bar needs explaining, and where
-  /// the reader may not be the person who has the file.
-  static const monitorPermissionsDoc = '$monitorAgentDoc#permission-switches';
+  /// the reader may not be the person who can grant more.
+  static const monitorPermissionsDoc =
+      '$monitorAgentDoc#accounts-and-permissions';
 
   /// How an alert rule is written: what a metric, a matcher and a threshold
   /// are, which combinations the agent actually evaluates, and when a rule

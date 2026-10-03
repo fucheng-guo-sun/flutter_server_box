@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:computer/computer.dart';
 import 'package:dartssh2/dartssh2.dart';
 import 'package:fl_lib/fl_lib.dart';
+import 'package:fl_lib/theme.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
@@ -12,12 +13,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:server_box/app.dart';
 import 'package:server_box/core/chan.dart';
 import 'package:server_box/core/diag.dart';
+import 'package:server_box/core/llm/host.dart';
 import 'package:server_box/core/motion.dart';
-import 'package:server_box/core/service/app_font.dart';
 import 'package:server_box/core/service/crash_report.dart';
 import 'package:server_box/core/service/diagnostics_upload.dart';
 import 'package:server_box/core/service/native_exit.dart';
-import 'package:server_box/core/service/theme_package.dart';
+import 'package:server_box/core/service/theme_host.dart';
 import 'package:server_box/core/service/watch_sync.dart';
 import 'package:server_box/core/service/widget_sync.dart';
 import 'package:server_box/core/sync.dart';
@@ -25,8 +26,6 @@ import 'package:server_box/core/utils/rootfs.dart';
 import 'package:server_box/core/utils/rootfs_manifest_source.dart';
 import 'package:server_box/core/utils/sandbox_import.dart';
 import 'package:server_box/core/utils/ssh_native_crypto.dart';
-import 'package:server_box/core/utils/stored_path.dart';
-import 'package:server_box/data/model/ai/model_context.dart';
 import 'package:server_box/data/model/server/dist_license.dart';
 import 'package:server_box/data/res/build_data.dart';
 import 'package:server_box/data/res/misc.dart';
@@ -43,8 +42,12 @@ import 'package:server_box/view/page/schema_too_new.dart';
 
 Future<void> main() async {
   await _runInZone(() async {
+    // The app's providers, made here rather than by a `ProviderScope`: the
+    // Agent's tools run outside any widget and read the same servers the pages
+    // do — see [LlmHost.init].
+    final container = ProviderContainer();
     try {
-      await _initApp();
+      await _initApp(container);
     } on SchemaTooNewException catch (e) {
       // The one failure with something to say. Every other way `_initApp` can
       // throw goes to the zone handler, which logs it and leaves the launch
@@ -82,7 +85,7 @@ Future<void> main() async {
       runApp(SchemaTooNewApp(err: e));
       return;
     }
-    runApp(ProviderScope(child: const MyApp()));
+    runApp(UncontrolledProviderScope(container: container, child: const MyApp()));
   });
 }
 
@@ -125,7 +128,7 @@ Future<void> _runInZone(Future<void> Function() body) async {
   }, zoneSpecification: zoneSpec);
 }
 
-Future<void> _initApp() async {
+Future<void> _initApp(ProviderContainer container) async {
   // The app's own, which is what lets its motion setting reach the
   // framework's animations — see [AppBinding].
   AppBinding();
@@ -185,11 +188,10 @@ Future<void> _initApp() async {
   // Before anything can open the licence page. Cheap: the callback only runs
   // when that page asks for it.
   registerDistMarkLicenses();
-  // Read once, off the path of the first Agent turn: the table decides when a
-  // conversation is summarised, and loading it there would put an asset read
-  // between the user and their first answer.
-  unawaited(ModelContextTable.shared.ensureLoaded());
   await _initData();
+  // After the stores and their migrations, before the first frame: a chat the
+  // Agent tab opens at once needs the runtime already there.
+  await LlmHost.init(container);
   // After the settings are open, and before the first frame is drawn with a
   // preference it has not read.
   await AppMotion.init();
@@ -260,8 +262,11 @@ Future<void> _initData() async {
 
   if (Stores.setting.betaTest.fetch()) AppUpdate.chan = AppUpdateChan.beta;
 
+  // Before anything below reads a theme.
+  initThemeHost();
+
   // Before the fonts and the theme read the paths it fixes.
-  StoredPaths.repair();
+  StoredPaths.repair(alsoRepair: [Stores.setting.fontPath]);
 
   // Not awaited: only the terminal uses it, and a broken font file is the
   // user's, not a defect to report.
